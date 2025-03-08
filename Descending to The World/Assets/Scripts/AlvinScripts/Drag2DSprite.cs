@@ -20,24 +20,24 @@ public class Drag2DSprite : MonoBehaviour
     {
         transform.localScale -= Vector3.one * 0.07f;
     }
-
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        // 检测是否碰撞到tag为normalFloor的对象
+        // 检测是否碰撞到tag为NormalFloor的对象
         if (collision.gameObject.CompareTag("NormalFloor"))
         {
             isValidFloor = true;
-            gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+            Debug.Log("111");
         }
     }
-
-    void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // 当离开碰撞时，重置状态
         if (collision.gameObject.CompareTag("NormalFloor"))
         {
             isValidFloor = false;
-            gameObject.SetActive(true);
+            collision.gameObject.SetActive(true);
+            Debug.Log("111");
         }
     }
 
