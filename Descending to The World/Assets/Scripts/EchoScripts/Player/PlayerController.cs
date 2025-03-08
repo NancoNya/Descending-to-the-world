@@ -3,15 +3,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    private Rigidbody2D rb;
-    private Animator anim;
     public Vector3 initialPosition;
     public bool isMoving;
+
+    private Rigidbody2D rb;
+    private Animator anim;
+    private PhysicsCheck physicsCheck;
+
+    //private float originalSpeed;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        physicsCheck = GetComponent<PhysicsCheck>();
     }
 
     void Start()
@@ -23,17 +28,37 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isMoving)
+        // 移动并且在地面上
+        if(isMoving && physicsCheck.isGround)
         {
+            WalkAnim();
             StartWalking();
+        }
+
+        // 不在地面上则自由落体
+        else if (!physicsCheck.isGround)
+        {
+            //isMoving = true;
+            FallDown();
         }
     }
 
+    /// <summary>
+    /// 触发移动事件，若在地上则行走，不在地上则垂直下落
+    /// </summary>
     void OnMovementEvent()
     {
         isMoving = true;
-        WalkAnim();
-        //StartWalking();
+        //if(physicsCheck.isGround)
+        //{
+        //    WalkAnim();
+        //}
+        //else if(!physicsCheck.isGround)
+        //{
+        //    Debug.Log("不在地上");
+        //    FallDown();
+        //    IdleAnim();
+        //}
     }
 
     void OnIdleEvent()
@@ -52,6 +77,18 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveSpeed, 0f);
     }
 
+    /// <summary>
+    /// 垂直下落
+    /// </summary>
+    public void FallDown()
+    {
+        Debug.Log("falldown");
+        Vector2 currentVelocity = rb.velocity;
+        //rb.velocity = new Vector2(0,rb.velocity.y);
+        currentVelocity.x = 0;
+        rb.velocity = currentVelocity;
+        anim.SetBool("isWalking", false);
+    }
 
     public void WalkAnim()
     {
