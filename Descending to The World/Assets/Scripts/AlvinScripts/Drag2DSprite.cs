@@ -27,7 +27,6 @@ public class Drag2DSprite : MonoBehaviour
         {
             isValidFloor = true;
             collision.gameObject.SetActive(false);
-            Debug.Log("111");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,7 +36,6 @@ public class Drag2DSprite : MonoBehaviour
         {
             isValidFloor = false;
             collision.gameObject.SetActive(true);
-            Debug.Log("111");
         }
     }
 
