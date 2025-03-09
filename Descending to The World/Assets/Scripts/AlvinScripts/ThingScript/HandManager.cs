@@ -50,4 +50,12 @@ void FollowCursor()
         currentThing.transform.position = mouseWorldPosition;
 
     }
+
+public void OnCellClick(Cell cell)
+    {
+        if(currentThing == null) return;
+        //currentThing.transform.position = cell.transform.position;
+        bool isSuccess = cell.AddThingOS(currentThing);
+        if(isSuccess)currentThing = null;
+    }
 }
