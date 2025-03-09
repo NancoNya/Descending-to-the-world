@@ -48,6 +48,7 @@ void FollowCursor()
         Vector3 mouseWorldPosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
         currentThing.transform.position = mouseWorldPosition;
+        Time.timeScale = 0;
 
     }
 
@@ -56,6 +57,10 @@ public void OnCellClick(Cell cell)
         if(currentThing == null) return;
         //currentThing.transform.position = cell.transform.position;
         bool isSuccess = cell.AddThingOS(currentThing);
-        if(isSuccess)currentThing = null;
+        if (isSuccess)
+        {
+            Time.timeScale = 1;
+            currentThing = null;
+        }
     }
 }

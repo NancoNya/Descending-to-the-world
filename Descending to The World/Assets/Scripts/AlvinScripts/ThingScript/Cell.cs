@@ -8,10 +8,10 @@ public class Cell : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("111");
         HandManager.instance.OnCellClick(this);
 
     }
+
     public bool AddThingOS(ThingOnScene thingOnScene)
     {
         if (currentThing != null) return false;
