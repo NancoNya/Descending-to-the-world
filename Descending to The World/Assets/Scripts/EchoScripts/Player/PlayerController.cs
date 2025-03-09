@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private PhysicsCheck physicsCheck;
+    public Vector3 faceDir;
+    private bool isFacingRight = true;
 
-    //private float originalSpeed;
 
     private void Awake()
     {
@@ -25,6 +26,16 @@ public class PlayerController : MonoBehaviour
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
+
+    //private void Update()
+    //{
+    //    faceDir = new Vector3(-transform.localScale.x, 0, 0);
+
+    //    if((physicsCheck.touchLeftWall && faceDir.x > 0) || (physicsCheck.touchRightWall && faceDir.x < 0))
+    //    {
+    //        transform.localScale = new Vector3(faceDir.x, 2, 1);
+    //    }
+    //}
 
     private void FixedUpdate()
     {
@@ -107,5 +118,47 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = initialPosition;
+
+        isFacingRight = true;
+        moveSpeed = Mathf.Abs(moveSpeed);
+        //Vector2 currentVelocity = rb.velocity;
+        //currentVelocity.x = moveSpeed;
+        //rb.velocity = currentVelocity;
+
+        //调整sprite方向
+        Vector3 theScale = transform.localScale;
+        theScale.x = Mathf.Abs(theScale.x);
+        transform.localScale = theScale;
+
+    }
+
+    /// <summary>
+    /// 碰撞到墙壁或地动仪翻转
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            FlipDirection();
+        }
+    }
+
+
+    private void FlipDirection()
+    {
+        moveSpeed = -moveSpeed;
+        Vector2 currentVelocity = rb.velocity;
+        currentVelocity.x = moveSpeed;
+        rb.velocity = currentVelocity;
+        isFacingRight = !isFacingRight;
+        FlipSprite();
+    }
+
+    private void FlipSprite()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

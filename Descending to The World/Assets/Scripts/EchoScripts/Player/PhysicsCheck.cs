@@ -6,6 +6,8 @@ public class PhysicsCheck : MonoBehaviour
 {
     [Header("状态")]
     public bool isGround;
+    public bool touchLeftWall;
+    public bool touchRightWall;
 
     [Header("检测通用数值")]
     public float checkRadius; // 物理检测范围大小
@@ -13,6 +15,12 @@ public class PhysicsCheck : MonoBehaviour
     [Header("地面监测")]
     public Vector2 bottomOffset; //检测偏移量
     public LayerMask groundLayer;
+
+    [Header("墙壁和地动仪检测")]
+    public Vector2 leftOffset;
+    public Vector2 rightOffset;
+    public LayerMask obstacleLayer;
+
 
     private void Update()
     {
@@ -22,12 +30,28 @@ public class PhysicsCheck : MonoBehaviour
 
     public void Check()
     {
-        isGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, checkRadius, groundLayer);
-        //Physics2D.OverlapCapsule
+        // TODO  Physics2D.OverlapCapsule
+        //isGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, checkRadius, groundLayer);
+
+        touchLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, checkRadius, obstacleLayer);
+        touchRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, checkRadius, obstacleLayer);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, checkRadius);
+        //Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, checkRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+            isGround = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isGround = false;
     }
 }
