@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         Button button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
@@ -12,8 +12,8 @@ public class ButtonController : MonoBehaviour
     /// <summary>
     /// µã»÷Ê±ÖÓ°´Å¥
     /// </summary>
-    void OnButtonClick()
+    private void OnButtonClick()
     {
-        EventHandler.OnGameControlButtonClick();
+        EventHandler.CallGameControlButtonClick();
     }
 }

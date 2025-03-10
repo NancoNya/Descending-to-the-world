@@ -7,6 +7,7 @@ TagManager:
   - NormalFloor
   - Obstacle
   - Ground
+  - CollapseGround
   layers:
   - Default
   - TransparentFX
