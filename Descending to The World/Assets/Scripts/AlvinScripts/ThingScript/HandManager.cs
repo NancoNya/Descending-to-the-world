@@ -23,10 +23,7 @@ public class HandManager : MonoBehaviour
         currentThing = GameObject.Instantiate(thingOSPrefab);
         return true;
     }
-    private void Update()
-    {
-        FollowCursor();
-    }
+    
 
     private ThingOnScene GetThingOSPrefab(ThingOSType thingOSType)
     {
@@ -49,7 +46,6 @@ void FollowCursor()
         mouseWorldPosition.z = 0;
         currentThing.transform.position = mouseWorldPosition;
         Time.timeScale = 0;
-
     }
 
 public void OnCellClick(Cell cell)
@@ -62,5 +58,10 @@ public void OnCellClick(Cell cell)
             Time.timeScale = 1;
             currentThing = null;
         }
+    }
+
+private void Update()
+    {
+        FollowCursor();
     }
 }

@@ -5,7 +5,8 @@ using static ThingScript;
 
 public enum ThingOSType
 {
-    Seismometer
+    Seismometer,
+    KongMingLantern
 }
 public class ThingOnScene : MonoBehaviour
 {
