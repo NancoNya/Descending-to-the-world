@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void FallDown()
     {
-        Debug.Log("falldown");
         Vector2 currentVelocity = rb.velocity;
         //rb.velocity = new Vector2(0,rb.velocity.y);
         currentVelocity.x = 0;
