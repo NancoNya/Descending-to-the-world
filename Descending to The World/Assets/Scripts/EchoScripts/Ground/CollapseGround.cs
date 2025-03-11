@@ -4,18 +4,37 @@ using UnityEngine;
 
 public class CollapseGround : MonoBehaviour
 {
+    //protected int reachCount = 0;
+    private Collider2D groundCollider;
+
+    private void Awake()
+    {
+        groundCollider = GetComponent<Collider2D>();
+    }
+
     private void Start()
     {
         EventHandler.ResetGroundEvent.AddListener(OnResetGroundEvent);
     }
 
+    //private void OnEnable()
+    //{
+    //    EventHandler.ResetGroundEvent.AddListener(OnResetGroundEvent);
+    //}
+
+    //private void OnDisable()
+    //{
+    //    EventHandler.ResetGroundEvent.RemoveListener(OnResetGroundEvent);
+    //}
+
+
     /// <summary>
     /// 人物走上坍塌地块,坍塌地块消失
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    public  void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             this.gameObject.SetActive(false);
         }
@@ -26,6 +45,8 @@ public class CollapseGround : MonoBehaviour
     /// </summary>
     private void OnResetGroundEvent()
     {
+        //reachCount = 0;
+
         //查找所有坍塌地块
         CollapseGround[] allCollapseGrounds = Resources.FindObjectsOfTypeAll<CollapseGround>();
 
