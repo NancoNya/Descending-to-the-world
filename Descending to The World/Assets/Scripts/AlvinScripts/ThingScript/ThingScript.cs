@@ -5,7 +5,9 @@ using UnityEngine;
 public enum ThingType
 {
     Seismometer,
-    KongMingLantern
+    KongMingLantern,
+    Sundial,
+    MilkyWay
 }
 
 

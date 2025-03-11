@@ -6,7 +6,9 @@ using static ThingScript;
 public enum ThingOSType
 {
     Seismometer,
-    KongMingLantern
+    KongMingLantern,
+    Sundial,
+    MilkyWay
 }
 public class ThingOnScene : MonoBehaviour
 {
@@ -16,7 +18,6 @@ public class ThingOnScene : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("将该对象类型的预制体实例化到手中");
         HandManager.instance.AddThingOS(thingOSType);
     }
 }

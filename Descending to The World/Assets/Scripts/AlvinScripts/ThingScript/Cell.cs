@@ -8,7 +8,6 @@ public class Cell : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("OnMouseDown");
         HandManager.instance.OnCellClick(this);
 
     }
