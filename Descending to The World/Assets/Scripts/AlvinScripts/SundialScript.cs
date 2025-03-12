@@ -29,7 +29,9 @@ public class SundialScript : MonoBehaviour
     }
     void Start()
     {
-        Sun_Moon = 0;
+        Moon = GameObject.Find("Moon");
+        if (Moon) { Sun_Moon = 1; }
+        else if(!Moon) {Sun_Moon = 0;}
         isInvincible = false;
         Moon.SetActive (false);
     }

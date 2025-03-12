@@ -11,6 +11,7 @@ public class MilkyWayTrigger : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
+        Moon = GameObject.Find("Moon");
 
     }
 
