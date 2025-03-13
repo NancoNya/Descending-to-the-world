@@ -8,6 +8,7 @@ public class KongMingLantern : MonoBehaviour
     private Rigidbody2D rb;
     private Rigidbody2D rb2;
     public bool isHit;
+    public GameObject Moon;
 
     private void Start()
     {
@@ -15,7 +16,9 @@ public class KongMingLantern : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(0, speed);
+        if (Moon)
+            rb.velocity = new Vector2(0, speed);
+        else rb.velocity = new Vector2(0, 0);
 
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -24,9 +27,9 @@ public class KongMingLantern : MonoBehaviour
         if (collision.gameObject.CompareTag("NormalFloor"))
         {
             isHit = true;
-
             rb2 = collision.gameObject.GetComponent<Rigidbody2D>();
-            rb2.velocity = new Vector2(0, speed);
+            if (Moon)rb2.velocity = new Vector2(0, speed);
+            else rb2.velocity = new Vector2(0, 0);
             //Vector3 currentPosition = collision.gameObject.transform.position;
 
             //// 计算新的 Y 坐标，使其向上移动
@@ -35,5 +38,10 @@ public class KongMingLantern : MonoBehaviour
             //// 更新物体的位置
             //transform.position = new Vector3(currentPosition.x, newYPosition, 0);
         }
+    }
+    private void Update()
+    {
+        Moon = GameObject.Find("Moon");
+
     }
 }
