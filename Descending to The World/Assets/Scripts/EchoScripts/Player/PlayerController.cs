@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 initialPosition;
     public bool isMoving;
 
+    // 道具
+    public bool isHoldingCompass;
+    private GameObject magnet;
+
     private Rigidbody2D rb;
     private Animator anim;
     private PhysicsCheck physicsCheck;
@@ -37,10 +41,27 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
+    private void Update()
+    {
+        if (isHoldingCompass)
+        {
+            magnet = GameObject.FindWithTag("Magnet");
+            if (magnet != null)
+            {
+                MoveTowardsMagnet();
+            }
+            else
+            {
+                anim.SetBool("IsHoldingCompass", true);
+            }
+        }
+    }
+
+
     private void FixedUpdate()
     {
-        // 移动并且在地面上
-        if(isMoving && physicsCheck.isGround)
+        // 移动, 在地面上, 没有拿着司南
+        if(isMoving && physicsCheck.isGround && !isHoldingCompass)
         {
             WalkAnim();
             StartWalking();
@@ -143,7 +164,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 转换移动方向
+    /// </summary>
     private void FlipDirection()
     {
         moveSpeed = -moveSpeed;
@@ -154,10 +177,35 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
     }
 
+    /// <summary>
+    /// 人物sprite翻转
+    /// </summary>
     private void FlipSprite()
     {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    /// <summary>
+    /// 拾取司南道具，向磁石移动
+    /// </summary>
+    private void MoveTowardsMagnet()
+    {
+        //磁石位置
+        float targetX = magnet.transform.position.x;
+        //人物当前
+        float currentX = transform.position.x;
+        //人物移动方向
+        float direction = Mathf.Sign(targetX - currentX);
+
+        if (Mathf.Abs(targetX - currentX) > 0.01f)
+        {
+            transform.Translate(Vector3.right * direction * moveSpeed * Time.deltaTime);
+            if (direction < 0 && transform.localScale.x > 0 || direction > 0 && transform.localScale.x < 0)
+            {
+                FlipDirection();
+            }
+        }
     }
 }
