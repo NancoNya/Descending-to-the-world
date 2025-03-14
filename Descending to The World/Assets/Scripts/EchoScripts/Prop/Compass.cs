@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Compass : MonoBehaviour
 {
-    private Animator playerAnimator;
-
+    /// <summary>
+    /// 司南与人物碰撞
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            playerAnimator = other.GetComponent<Animator>();
-            if (playerAnimator != null)
+            PickupCompass player = other.gameObject.GetComponent<PickupCompass>();
+            if (player != null)
             {
-                playerAnimator.SetBool("IsWalking", false);
-                playerAnimator.SetBool("IsHoldingCompass", true);
+                player.PickUpCompass();
+                Destroy(gameObject);
             }
         }
     }

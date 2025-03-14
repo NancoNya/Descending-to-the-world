@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
-    public bool isMoving;
 
-    // 道具
-    public bool isHoldingCompass;
+    [Header("状态")]
+    public bool isMoving;
+    public Vector3 faceDir;
+    public bool hasCompass;
+    
     private GameObject magnet;
 
     private Rigidbody2D rb;
     private Animator anim;
     private PhysicsCheck physicsCheck;
-    public Vector3 faceDir;
     private bool isFacingRight = true;
 
 
@@ -31,37 +33,28 @@ public class PlayerController : MonoBehaviour
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
-    //private void Update()
-    //{
-    //    faceDir = new Vector3(-transform.localScale.x, 0, 0);
-
-    //    if((physicsCheck.touchLeftWall && faceDir.x > 0) || (physicsCheck.touchRightWall && faceDir.x < 0))
-    //    {
-    //        transform.localScale = new Vector3(faceDir.x, 2, 1);
-    //    }
-    //}
 
     private void Update()
     {
-        if (isHoldingCompass)
+        if (hasCompass)
         {
             magnet = GameObject.FindWithTag("Magnet");
             if (magnet != null)
             {
                 MoveTowardsMagnet();
             }
-            else
-            {
-                anim.SetBool("IsHoldingCompass", true);
-            }
+            //else
+            //{
+            //    anim.SetBool("hasCompass", true);
+            //}
         }
     }
 
 
     private void FixedUpdate()
     {
-        // 移动, 在地面上, 没有拿着司南
-        if(isMoving && physicsCheck.isGround && !isHoldingCompass)
+        // 移动, 在地面上
+        if(isMoving && physicsCheck.isGround)
         {
             WalkAnim();
             StartWalking();
@@ -93,6 +86,9 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// 触发回溯事件，人物停止移动，回到初始位置
+    /// </summary>
     void OnIdleEvent()
     {
         isMoving = false;
@@ -188,23 +184,56 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// 拾取司南道具，向磁石移动
+    /// 拾取司南
+    /// </summary>
+    public void PickUpCompass()
+    {
+        hasCompass = true;
+        anim.SetBool("hasCompass", true);
+        FindMagnet();
+    }
+
+    /// <summary>
+    /// 拾取司南后寻找磁石。若找到磁石，向磁石方向移动
+    /// </summary>
+    private void FindMagnet()
+    {
+        magnet = GameObject.FindWithTag("Magnet");
+        if (magnet != null)
+        {
+            MoveTowardsMagnet();
+        }
+        else
+        {
+            //未找到磁石，移动状态不变，但仍播放拿着司南的动画
+            anim.SetBool("hasCompass", true);
+        }
+    }
+
+    /// <summary>
+    /// 向磁石移动
     /// </summary>
     private void MoveTowardsMagnet()
     {
-        //磁石位置
-        float targetX = magnet.transform.position.x;
-        //人物当前
-        float currentX = transform.position.x;
-        //人物移动方向
-        float direction = Mathf.Sign(targetX - currentX);
-
-        if (Mathf.Abs(targetX - currentX) > 0.01f)
+        if (magnet != null)
         {
-            transform.Translate(Vector3.right * direction * moveSpeed * Time.deltaTime);
-            if (direction < 0 && transform.localScale.x > 0 || direction > 0 && transform.localScale.x < 0)
+            float targetX = magnet.transform.position.x;
+            float currentX = transform.position.x;
+            if (currentX < targetX)
             {
-                FlipDirection();
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            }
+            else if (currentX > targetX)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                anim.SetBool("hasCompass", false);
+                //anim.SetBool("isIdle", true);
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
     }

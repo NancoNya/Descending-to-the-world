@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 1894365411}
   m_Layer: 0
   m_Name: Magnet
-  m_TagString: Untagged
+  m_TagString: Magnet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1679,8 +1679,16 @@ PrefabInstance:
       value: Compass
       objectReference: {fileID: 0}
     - target: {fileID: 2221863780966039625, guid: 8c58011858c527047a34c5de58960875, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221863780966039625, guid: 8c58011858c527047a34c5de58960875, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221863780966039625, guid: 8c58011858c527047a34c5de58960875, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: -2.79
       objectReference: {fileID: 0}
     - target: {fileID: 2221863780966039625, guid: 8c58011858c527047a34c5de58960875, type: 3}
       propertyPath: m_LocalPosition.y

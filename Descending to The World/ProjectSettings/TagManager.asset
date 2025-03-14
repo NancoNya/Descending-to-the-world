@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Ground
   - CollapseGround
+  - Magnet
+  - Compass
   layers:
   - Default
   - TransparentFX

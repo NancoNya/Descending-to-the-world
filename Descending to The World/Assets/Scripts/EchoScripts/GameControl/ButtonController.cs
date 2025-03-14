@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
+    public GenerateCompass generateCompass;
+    //public PickupCompass pickupCompass;
     private void Start()
     {
         Button button = GetComponent<Button>();
@@ -15,5 +17,11 @@ public class ButtonController : MonoBehaviour
     private void OnButtonClick()
     {
         EventHandler.CallGameControlButtonClick();
+        
+        GameObject compass = GameObject.FindWithTag("Compass");
+        if (compass == null)
+        {
+            generateCompass.RespawnCompass();
+        }
     }
 }

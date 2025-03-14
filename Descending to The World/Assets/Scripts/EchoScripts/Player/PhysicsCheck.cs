@@ -55,20 +55,4 @@ public class PhysicsCheck : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
             isGround = false;
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //    {
-    //        isGround = true;
-    //    }
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //    {
-    //        isGround = false;
-    //    }
-    //}
 }
