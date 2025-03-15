@@ -232,7 +232,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 anim.SetBool("hasCompass", false);
-                //anim.SetBool("isIdle", true);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }

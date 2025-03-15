@@ -4,11 +4,19 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
     public GenerateCompass generateCompass;
-    //public PickupCompass pickupCompass;
     private void Start()
     {
         Button button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
+        GameObject PropControllerObj = GameObject.FindWithTag("PropController");
+        if (PropControllerObj != null)
+        {
+            generateCompass = PropControllerObj.GetComponent<GenerateCompass>();
+        }
+        else
+        {
+            Debug.LogError("未找到挂载 CompassSpawner 脚本的游戏对象，请检查标签设置。");
+        }
     }
 
     /// <summary>

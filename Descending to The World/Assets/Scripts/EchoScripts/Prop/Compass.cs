@@ -17,6 +17,7 @@ public class Compass : MonoBehaviour
             {
                 player.PickUpCompass();
                 Destroy(gameObject);
+                Debug.Log("destroy");
             }
         }
     }

@@ -78,8 +78,8 @@ public class PickupCompass : MonoBehaviour
             }
             else
             {
+                // 磁石和人物x轴位置相同
                 anim.SetBool("hasCompass", false);
-                //anim.SetBool("isIdle", true);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }

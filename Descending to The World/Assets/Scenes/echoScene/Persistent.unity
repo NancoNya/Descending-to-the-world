@@ -396,7 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaff19c9b66697a4cbb75fd3d8aee74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   hasCompass: 0
 --- !u!1 &609572461
 GameObject:
@@ -546,7 +545,7 @@ GameObject:
   - component: {fileID: 2001151987}
   m_Layer: 0
   m_Name: PropConroller
-  m_TagString: Untagged
+  m_TagString: PropController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compassPrefab: {fileID: 1699718635146983898, guid: 8c58011858c527047a34c5de58960875, type: 3}
-  compassPosition: {x: -0.14, y: 2.065, z: 0}
+  compassPosition: {x: -2.79, y: 2.065, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
