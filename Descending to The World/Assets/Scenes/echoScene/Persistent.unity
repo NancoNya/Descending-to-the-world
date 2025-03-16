@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f564f1df84dd4f3469b2a6c2fb9fb585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3.73
+  moveSpeed: 2
   initialPosition: {x: -7.64, y: 3.22, z: 0}
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
@@ -333,8 +333,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  leftOffset: {x: -0.17, y: 0.48}
-  rightOffset: {x: 0.3, y: 0.5}
+  leftOffset: {x: -0.08, y: 0.22}
+  rightOffset: {x: 0.15, y: 0.2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64

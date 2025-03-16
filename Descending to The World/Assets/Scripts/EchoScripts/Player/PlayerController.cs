@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool isMoving;
     public Vector3 faceDir;
     public bool hasCompass = false;
+    public bool arriveMagnet = false;
     
     private GameObject magnet;
     private float positionThreshold = 0.01f; // 坐标差值
@@ -34,21 +35,12 @@ public class PlayerController : MonoBehaviour
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
-
-    //private void Update()
-    //{
-    //    if (hasCompass)
-    //    {
-    //        MoveTowardsMagnet();
-    //    }
-    //}
-
-
     private void FixedUpdate()
     {
-        // 移动, 在地面上
-        if(isMoving && physicsCheck.isGround)
+        // 移动, 在地面上,未到达磁石位置
+        if(isMoving && physicsCheck.isGround && !arriveMagnet)
         {
+            Debug.Log("fixupdate");
             WalkAnim();
             StartWalking();
         }
@@ -92,6 +84,8 @@ public class PlayerController : MonoBehaviour
     void OnIdleEvent()
     {
         isMoving = false;
+        hasCompass = false;
+        arriveMagnet = false;
         anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
@@ -104,6 +98,8 @@ public class PlayerController : MonoBehaviour
     public void StartWalking()
     {
         rb.velocity = new Vector2(moveSpeed, 0f);
+        Debug.Log(moveSpeed);
+        Debug.Log(rb.velocity.x);
     }
 
     /// <summary>
@@ -128,6 +124,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isWalking", false);
         Debug.Log("idle");
     }
+
 
     /// <summary>
     /// Player移动时点击时钟，回到初始位置
@@ -228,15 +225,18 @@ public class PlayerController : MonoBehaviour
             }
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
-            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-
+            // transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+            rb.MovePosition(new Vector2(newX, rb.position.y));
             // 判断是否到达目标位置
             if (Mathf.Abs(currentX - targetX) < positionThreshold)
             {
                 Debug.Log("arrive");
                 // 到达目标位置，停止移动并播放待机动画
+                rb.velocity = Vector2.zero;
                 anim.SetBool("hasCompass", false);
                 anim.SetBool("isWalking", false);
+                hasCompass = false;
+                arriveMagnet = true;
             }
             //if (currentX < targetX)
             //{
