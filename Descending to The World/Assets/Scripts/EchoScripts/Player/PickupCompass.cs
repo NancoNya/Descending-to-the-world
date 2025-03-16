@@ -35,6 +35,7 @@ public class PickupCompass : MonoBehaviour
         hasCompass = true;
         anim.SetBool("hasCompass", true);
         FindMagnet();
+        //Debug.Log("")
     }
 
     /// <summary>

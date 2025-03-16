@@ -9,9 +9,10 @@ public class PlayerController : MonoBehaviour
     [Header("状态")]
     public bool isMoving;
     public Vector3 faceDir;
-    public bool hasCompass;
+    public bool hasCompass = false;
     
     private GameObject magnet;
+    private float positionThreshold = 0.01f; // 坐标差值
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -34,21 +35,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (hasCompass)
-        {
-            magnet = GameObject.FindWithTag("Magnet");
-            if (magnet != null)
-            {
-                MoveTowardsMagnet();
-            }
-            //else
-            //{
-            //    anim.SetBool("hasCompass", true);
-            //}
-        }
-    }
+    //private void Update()
+    //{
+    //    if (hasCompass)
+    //    {
+    //        MoveTowardsMagnet();
+    //    }
+    //}
 
 
     private void FixedUpdate()
@@ -66,6 +59,13 @@ public class PlayerController : MonoBehaviour
             //isMoving = true;
             FallDown();
         }
+
+        if (hasCompass)
+        {
+            WalkAnim();
+            MoveTowardsMagnet();
+        }
+
     }
 
     /// <summary>
@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     void OnIdleEvent()
     {
         isMoving = false;
+        anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
     }
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
     public void IdleAnim()
     {
         anim.SetBool("isWalking", false);
+        Debug.Log("idle");
     }
 
     /// <summary>
@@ -188,25 +190,21 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void PickUpCompass()
     {
-        hasCompass = true;
+        // hasCompass = true;
         anim.SetBool("hasCompass", true);
         FindMagnet();
     }
 
     /// <summary>
-    /// 拾取司南后寻找磁石。若找到磁石，向磁石方向移动
+    /// 拾取司南后寻找磁石。若找到磁石，向磁石方向移动；未找到则保持拿司南的动画
     /// </summary>
     private void FindMagnet()
     {
         magnet = GameObject.FindWithTag("Magnet");
         if (magnet != null)
         {
-            MoveTowardsMagnet();
-        }
-        else
-        {
-            //未找到磁石，移动状态不变，但仍播放拿着司南的动画
-            anim.SetBool("hasCompass", true);
+            hasCompass = true;
+            Debug.Log(hasCompass);
         }
     }
 
@@ -219,21 +217,43 @@ public class PlayerController : MonoBehaviour
         {
             float targetX = magnet.transform.position.x;
             float currentX = transform.position.x;
-            if (currentX < targetX)
+
+            // 计算移动方向
+            float direction = Mathf.Sign(targetX - currentX);
+
+            // 设置sprite朝向
+            if (direction != 0)
             {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-                transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+                transform.localScale = new Vector3(direction, 1f, 1f);
             }
-            else if (currentX > targetX)
+            // 计算新的位置
+            float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
+            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+
+            // 判断是否到达目标位置
+            if (Mathf.Abs(currentX - targetX) < positionThreshold)
             {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            }
-            else
-            {
+                Debug.Log("arrive");
+                // 到达目标位置，停止移动并播放待机动画
                 anim.SetBool("hasCompass", false);
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                anim.SetBool("isWalking", false);
             }
+            //if (currentX < targetX)
+            //{
+            //    transform.localScale = new Vector3(1f, 1f, 1f);
+            //    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            //}
+            //else if (currentX > targetX)
+            //{
+            //    transform.localScale = new Vector3(-1f, 1f, 1f);
+            //    transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            //}
+            //else
+            //{
+            //    anim.SetBool("hasCompass", false);
+            //    hasCompass = false;
+            //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            //}
         }
     }
 }

@@ -15,7 +15,7 @@ public class ButtonController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("未找到挂载 CompassSpawner 脚本的游戏对象，请检查标签设置。");
+            Debug.LogError("未找到挂载 CompassSpawner 脚本的游戏对象");
         }
     }
 

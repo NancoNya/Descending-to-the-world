@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 180642962}
   - component: {fileID: 180642963}
   - component: {fileID: 180642964}
-  - component: {fileID: 180642966}
   m_Layer: 0
   m_Name: ///Player
   m_TagString: Player
@@ -309,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f564f1df84dd4f3469b2a6c2fb9fb585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 3.73
   initialPosition: {x: -7.64, y: 3.22, z: 0}
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
@@ -384,19 +383,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15436101, y: 0.08604479}
   m_EdgeRadius: 0
---- !u!114 &180642966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180642957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaff19c9b66697a4cbb75fd3d8aee74f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasCompass: 0
 --- !u!1 &609572461
 GameObject:
   m_ObjectHideFlags: 0
