@@ -7,7 +7,9 @@ public enum ThingType
     Seismometer,
     KongMingLantern,
     Sundial,
-    MilkyWay
+    MilkyWay,
+    Compass,
+    Magnet
 }
 
 

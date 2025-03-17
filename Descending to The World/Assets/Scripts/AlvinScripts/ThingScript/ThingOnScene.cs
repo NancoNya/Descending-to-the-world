@@ -8,7 +8,9 @@ public enum ThingOSType
     Seismometer,
     KongMingLantern,
     Sundial,
-    MilkyWay
+    MilkyWay,
+    Compass,
+    Magnet
 }
 public class ThingOnScene : MonoBehaviour
 {
