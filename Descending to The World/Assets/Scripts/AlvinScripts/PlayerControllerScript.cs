@@ -16,7 +16,7 @@ public class PlayerControllerScript : MonoBehaviour
     private float positionThreshold = 0.01f; // 坐标差值
 
     private Rigidbody2D rb;
-    private Animator anim;
+    //private Animator anim;
     private PhysicsCheckScript physicsCheckScript;
     private bool isFacingRight = true;
 
@@ -24,7 +24,7 @@ public class PlayerControllerScript : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         physicsCheckScript = GetComponent<PhysicsCheckScript>();
     }
 
@@ -40,7 +40,7 @@ public class PlayerControllerScript : MonoBehaviour
         // 移动, 在地面上,未到达磁石位置
         if(isMoving && physicsCheckScript.isGround && !arriveMagnet)
         {
-            Debug.Log("fixupdate");
+            //Debug.Log("fixupdate");
             WalkAnim();
             StartWalking();
         }
@@ -86,7 +86,7 @@ public class PlayerControllerScript : MonoBehaviour
         isMoving = false;
         hasCompass = false;
         arriveMagnet = false;
-        anim.SetBool("hasCompass", false);
+        ////////////////////anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
     }
@@ -98,8 +98,8 @@ public class PlayerControllerScript : MonoBehaviour
     public void StartWalking()
     {
         rb.velocity = new Vector2(moveSpeed, 0f);
-        Debug.Log(moveSpeed);
-        Debug.Log(rb.velocity.x);
+        //Debug.Log(moveSpeed);
+        //Debug.Log(rb.velocity.x);
     }
 
     /// <summary>
@@ -116,13 +116,13 @@ public class PlayerControllerScript : MonoBehaviour
 
     public void WalkAnim()
     {
-        //anim.SetBool("isWalking", true);
+        ///////////anim.SetBool("isWalking", true);
     }
 
     public void IdleAnim()
     {
-        //anim.SetBool("isWalking", false);
-        Debug.Log("idle");
+        ///////////anim.SetBool("isWalking", false);
+        //Debug.Log("idle");
     }
 
 
@@ -188,7 +188,7 @@ public class PlayerControllerScript : MonoBehaviour
     public void PickUpCompass()
     {
         // hasCompass = true;
-        anim.SetBool("hasCompass", true);
+        ///////anim.SetBool("hasCompass", true);
         FindMagnet();
     }
 
@@ -201,7 +201,7 @@ public class PlayerControllerScript : MonoBehaviour
         if (magnet != null)
         {
             hasCompass = true;
-            Debug.Log(hasCompass);
+            //Debug.Log(hasCompass);
         }
     }
 
@@ -230,11 +230,11 @@ public class PlayerControllerScript : MonoBehaviour
             // 判断是否到达目标位置
             if (Mathf.Abs(currentX - targetX) < positionThreshold)
             {
-                Debug.Log("arrive");
+                //Debug.Log("arrive");
                 // 到达目标位置，停止移动并播放待机动画
                 rb.velocity = Vector2.zero;
-                anim.SetBool("hasCompass", false);
-                anim.SetBool("isWalking", false);
+                ////////////////////////////anim.SetBool("hasCompass", false);
+                ////////////////////////////anim.SetBool("isWalking", false);
                 hasCompass = false;
                 arriveMagnet = true;
             }

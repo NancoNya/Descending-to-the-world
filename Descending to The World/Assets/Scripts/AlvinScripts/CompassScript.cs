@@ -12,7 +12,7 @@ public class CompassScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            PlayerControllerScript player = other.gameObject.GetComponent<PlayerControllerScript>();
             if (player != null)
             {
                 player.PickUpCompass();
