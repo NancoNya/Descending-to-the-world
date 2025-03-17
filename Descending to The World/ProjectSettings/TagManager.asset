@@ -11,6 +11,7 @@ TagManager:
   - Magnet
   - Compass
   - PropController
+  - DeadZone
   layers:
   - Default
   - TransparentFX

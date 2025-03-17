@@ -7,7 +7,7 @@ public static class EventHandler
     public static UnityEvent IdleEvent = new UnityEvent();
     public static UnityEvent ResetGroundEvent = new UnityEvent();
 
-    private static bool isMoving = false;
+    public static bool isMoving = false;
 
     /// <summary>
     /// 点击时钟触发移动或回溯

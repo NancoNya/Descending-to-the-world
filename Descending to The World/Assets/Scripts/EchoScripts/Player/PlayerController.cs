@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         physicsCheck = GetComponent<PhysicsCheck>();
     }
 
-    void Start()
+    private void Start()
     {
         // 订阅点击时钟触发的事件
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         // 移动, 在地面上,未到达磁石位置
         if(isMoving && physicsCheck.isGround && !arriveMagnet)
         {
-            Debug.Log("fixupdate");
             WalkAnim();
             StartWalking();
         }
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 触发移动事件，若在地上则行走，不在地上则垂直下落
     /// </summary>
-    void OnMovementEvent()
+    public void OnMovementEvent()
     {
         isMoving = true;
         //if(physicsCheck.isGround)
@@ -81,7 +80,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 触发回溯事件，人物停止移动，回到初始位置
     /// </summary>
-    void OnIdleEvent()
+    public void OnIdleEvent()
     {
         isMoving = false;
         hasCompass = false;
@@ -98,8 +97,6 @@ public class PlayerController : MonoBehaviour
     public void StartWalking()
     {
         rb.velocity = new Vector2(moveSpeed, 0f);
-        Debug.Log(moveSpeed);
-        Debug.Log(rb.velocity.x);
     }
 
     /// <summary>
@@ -122,7 +119,6 @@ public class PlayerController : MonoBehaviour
     public void IdleAnim()
     {
         anim.SetBool("isWalking", false);
-        Debug.Log("idle");
     }
 
 
@@ -254,6 +250,20 @@ public class PlayerController : MonoBehaviour
             //    hasCompass = false;
             //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             //}
+        }
+    }
+
+
+    /// <summary>
+    /// 人物掉落到边界则回溯
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("DeadZone"))
+        {
+            OnIdleEvent();
+            EventHandler.isMoving = !EventHandler.isMoving;
         }
     }
 }

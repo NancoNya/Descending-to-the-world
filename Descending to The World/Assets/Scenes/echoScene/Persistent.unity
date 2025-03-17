@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 180642961}
   - component: {fileID: 180642960}
   - component: {fileID: 180642959}
+  - component: {fileID: 180642962}
   - component: {fileID: 180642958}
   - component: {fileID: 180642965}
-  - component: {fileID: 180642962}
   - component: {fileID: 180642963}
   - component: {fileID: 180642964}
   m_Layer: 0
@@ -313,6 +313,7 @@ MonoBehaviour:
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
   hasCompass: 0
+  arriveMagnet: 0
 --- !u!114 &180642964
 MonoBehaviour:
   m_ObjectHideFlags: 0
