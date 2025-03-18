@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
+    [Header("AlvinScript")]
+    private float speed = 8.0f;//火箭筒速度
+    private float timer = 0f;
+    private bool canAddSpeed = false;
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
@@ -35,6 +39,7 @@ public class PlayerControllerScript : MonoBehaviour
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
+
     private void FixedUpdate()
     {
         // 移动, 在地面上,未到达磁石位置
@@ -57,6 +62,9 @@ public class PlayerControllerScript : MonoBehaviour
             WalkAnim();
             MoveTowardsMagnet();
         }
+        if (canAddSpeed) { timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0); }
+        if (timer >= 0.8f){rb.velocity = new Vector2(moveSpeed,0); canAddSpeed = false;}
+
 
     }
 
@@ -66,16 +74,6 @@ public class PlayerControllerScript : MonoBehaviour
     void OnMovementEvent()
     {
         isMoving = true;
-        //if(physicsCheck.isGround)
-        //{
-        //    WalkAnim();
-        //}
-        //else if(!physicsCheck.isGround)
-        //{
-        //    Debug.Log("不在地上");
-        //    FallDown();
-        //    IdleAnim();
-        //}
     }
 
     /// <summary>
@@ -153,12 +151,14 @@ public class PlayerControllerScript : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Obstacle"))
+        if(collision.gameObject.CompareTag("Obstacle"))FlipDirection();
+        if (collision.gameObject.CompareTag("Rocket"))
         {
-            FlipDirection();
+            
+            canAddSpeed = true;
         }
     }
-
+    
     /// <summary>
     /// 转换移动方向
     /// </summary>
@@ -216,12 +216,12 @@ public class PlayerControllerScript : MonoBehaviour
             float currentX = transform.position.x;
 
             // 计算移动方向
-            float direction = Mathf.Sign(targetX - currentX);
+            float direction = (Mathf.Sign(targetX - currentX))*5;
 
             // 设置sprite朝向
             if (direction != 0)
             {
-                transform.localScale = new Vector3(direction, 1f, 1f);
+                transform.localScale = new Vector3(direction, 5f, 1f);
             }
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
@@ -238,22 +238,7 @@ public class PlayerControllerScript : MonoBehaviour
                 hasCompass = false;
                 arriveMagnet = true;
             }
-            //if (currentX < targetX)
-            //{
-            //    transform.localScale = new Vector3(1f, 1f, 1f);
-            //    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-            //}
-            //else if (currentX > targetX)
-            //{
-            //    transform.localScale = new Vector3(-1f, 1f, 1f);
-            //    transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            //}
-            //else
-            //{
-            //    anim.SetBool("hasCompass", false);
-            //    hasCompass = false;
-            //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //}
+            
         }
     }
 }

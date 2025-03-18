@@ -10,7 +10,8 @@ public enum ThingOSType
     Sundial,
     MilkyWay,
     Compass,
-    Magnet
+    Magnet,
+    Rocket
 }
 public class ThingOnScene : MonoBehaviour
 {

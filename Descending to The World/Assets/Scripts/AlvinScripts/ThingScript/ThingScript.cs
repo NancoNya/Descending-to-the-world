@@ -9,7 +9,8 @@ public enum ThingType
     Sundial,
     MilkyWay,
     Compass,
-    Magnet
+    Magnet,
+    Rocket
 }
 
 

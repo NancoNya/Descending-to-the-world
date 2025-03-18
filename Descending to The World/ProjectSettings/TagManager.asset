@@ -12,6 +12,7 @@ TagManager:
   - Compass
   - PropController
   - DeadZone
+  - Rocket
   layers:
   - Default
   - TransparentFX
