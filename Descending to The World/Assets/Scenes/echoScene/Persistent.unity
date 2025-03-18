@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1 &180642957
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +385,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15436101, y: 0.08604479}
   m_EdgeRadius: 0
+=======
+>>>>>>> Stashed changes
 --- !u!1 &609572461
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,5 +575,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 609572464}
   - {fileID: 1341938463}
-  - {fileID: 180642961}
   - {fileID: 2001151986}

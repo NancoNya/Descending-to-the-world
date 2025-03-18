@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
     public GenerateCompass generateCompass;
+    public LevelTimer levelTimer;
+
     private void Start()
     {
         Button button = GetComponent<Button>();
@@ -25,7 +27,9 @@ public class ButtonController : MonoBehaviour
     private void OnButtonClick()
     {
         EventHandler.CallGameControlButtonClick();
-        
+
+        levelTimer.StartTimer();
+
         GameObject compass = GameObject.FindWithTag("Compass");
         if (compass == null)
         {

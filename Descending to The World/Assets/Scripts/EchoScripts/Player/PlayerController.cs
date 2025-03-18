@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
+    private void OnDestroy()
+    {
+        EventHandler.MovementEvent.RemoveListener(OnMovementEvent);
+        EventHandler.IdleEvent.RemoveListener(OnIdleEvent);
+    }
+
     private void FixedUpdate()
     {
         // 移动, 在地面上,未到达磁石位置
@@ -197,7 +203,6 @@ public class PlayerController : MonoBehaviour
         if (magnet != null)
         {
             hasCompass = true;
-            Debug.Log(hasCompass);
         }
     }
 
@@ -212,12 +217,12 @@ public class PlayerController : MonoBehaviour
             float currentX = transform.position.x;
 
             // 计算移动方向
-            float direction = Mathf.Sign(targetX - currentX);
+            float direction = (Mathf.Sign(targetX - currentX)) * 2;
 
             // 设置sprite朝向
             if (direction != 0)
             {
-                transform.localScale = new Vector3(direction, 1f, 1f);
+                transform.localScale = new Vector3(direction, 2f, 1f);
             }
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
