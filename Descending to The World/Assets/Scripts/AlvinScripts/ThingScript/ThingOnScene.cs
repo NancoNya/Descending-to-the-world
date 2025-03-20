@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ThingScript;
 
-public enum ThingOSType
-{
-    Seismometer,
-    KongMingLantern,
-    Sundial,
-    MilkyWay,
-    Compass,
-    Magnet,
-    Rocket
-}
+//public enum ThingOSType
+//{
+//    Seismograph,
+//    Seismometer,
+//    KongMingLantern,
+//    Sundial,
+//    MilkyWay,
+//    Compass,
+//    Magnet,
+//    Rocket
+//}
 public class ThingOnScene : MonoBehaviour
 {
-
 
     public ThingOSType thingOSType = ThingOSType.Seismometer;
 

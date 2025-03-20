@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/AlvinSceneTest/MainMenu.unity
     guid: d94d5be91515f6e4a9646d4c14369106
   - enabled: 1
+    path: Assets/Scenes/AlvinSceneTest/SkyBigScene.unity
+    guid: e4d3ca72e96a90b42a54856f1fbc0ac6
+  - enabled: 1
     path: Assets/Scenes/AlvinSceneTest/PropColumn.unity
     guid: f1c2a58293ff0b444b277e54fcf70ea7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PauseMenu.unity
     guid: de4d6330b569b594e98af34cd8e9fc3f
   m_configObjects: {}

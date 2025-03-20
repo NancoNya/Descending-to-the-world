@@ -9,7 +9,6 @@ public class Cell : MonoBehaviour
     private void OnMouseDown()
     {
         HandManager.instance.OnCellClick(this);
-
     }
 
     public bool AddThingOS(ThingOnScene thingOnScene)

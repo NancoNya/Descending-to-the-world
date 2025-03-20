@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 0
+  Moon: {fileID: 0}
 --- !u!114 &3894836592365630143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9293c944b6b65df45908a34de49962be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 1
+  thingOSType: 2
 --- !u!61 &7248290345186115341
 BoxCollider2D:
   m_ObjectHideFlags: 0

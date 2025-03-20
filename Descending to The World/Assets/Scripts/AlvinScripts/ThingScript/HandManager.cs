@@ -17,9 +17,7 @@ public class HandManager : MonoBehaviour
     {
         if (currentThing != null) return false;
         ThingOnScene thingOSPrefab = GetThingOSPrefab(thingOSType);
-        if (thingOSPrefab == null) {
-            print("Null");return false;
-        }
+        if (thingOSPrefab == null) {print("Null");return false;}
         currentThing = GameObject.Instantiate(thingOSPrefab);
         return true;
     }
@@ -28,12 +26,7 @@ public class HandManager : MonoBehaviour
     private ThingOnScene GetThingOSPrefab(ThingOSType thingOSType)
     {
         foreach(ThingOnScene thingOnScene in ThingOnSceneList)
-        {
-            if(thingOnScene.thingOSType == thingOSType)
-            {
-                return thingOnScene;
-            }
-        }
+        if(thingOnScene.thingOSType == thingOSType)return thingOnScene;
         return null;
     }
 
