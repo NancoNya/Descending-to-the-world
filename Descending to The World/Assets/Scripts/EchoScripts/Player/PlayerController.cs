@@ -71,16 +71,6 @@ public class PlayerController : MonoBehaviour
     public void OnMovementEvent()
     {
         isMoving = true;
-        //if(physicsCheck.isGround)
-        //{
-        //    WalkAnim();
-        //}
-        //else if(!physicsCheck.isGround)
-        //{
-        //    Debug.Log("不在地上");
-        //    FallDown();
-        //    IdleAnim();
-        //}
     }
 
     /// <summary>
@@ -127,6 +117,10 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isWalking", false);
     }
 
+    public void ClapAnim()
+    {
+        anim.SetTrigger("Clap");
+    }
 
     /// <summary>
     /// Player移动时点击时钟，回到初始位置
@@ -138,9 +132,6 @@ public class PlayerController : MonoBehaviour
 
         isFacingRight = true;
         moveSpeed = Mathf.Abs(moveSpeed);
-        //Vector2 currentVelocity = rb.velocity;
-        //currentVelocity.x = moveSpeed;
-        //rb.velocity = currentVelocity;
 
         //调整sprite方向
         Vector3 theScale = transform.localScale;
@@ -189,7 +180,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void PickUpCompass()
     {
-        // hasCompass = true;
         anim.SetBool("hasCompass", true);
         FindMagnet();
     }
@@ -233,42 +223,35 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("arrive");
                 // 到达目标位置，停止移动并播放待机动画
-                rb.velocity = Vector2.zero;
+                // rb.velocity = Vector2.zero;
                 anim.SetBool("hasCompass", false);
-                anim.SetBool("isWalking", false);
+                anim.SetBool("isWalking", true);
                 hasCompass = false;
                 arriveMagnet = true;
             }
-            //if (currentX < targetX)
-            //{
-            //    transform.localScale = new Vector3(1f, 1f, 1f);
-            //    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-            //}
-            //else if (currentX > targetX)
-            //{
-            //    transform.localScale = new Vector3(-1f, 1f, 1f);
-            //    transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            //}
-            //else
-            //{
-            //    anim.SetBool("hasCompass", false);
-            //    hasCompass = false;
-            //    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //}
         }
     }
 
-
-    /// <summary>
-    /// 人物掉落到边界则回溯
-    /// </summary>
-    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("DeadZone"))
+        if(other.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
         {
             OnIdleEvent();
             EventHandler.isMoving = !EventHandler.isMoving;
         }
+        if(other.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
+        {
+            LevelManager.Instance.OnReachCheckpoint();
+            gameObject.SetActive(false);
+            other.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 到达通关点，停止运动
+    /// </summary>
+    public void SetHorizontalVelocityZero()
+    {
+        rb.velocity = new Vector2(0f, rb.velocity.y);
     }
 }
