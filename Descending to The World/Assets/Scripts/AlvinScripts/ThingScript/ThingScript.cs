@@ -23,9 +23,19 @@ public class ThingScript : MonoBehaviour
 
     public void OnClick()
     {
-        //Destroy(gameObject);
-        bool isSuccess = HandManager.instance.AddThingOS(thingOSType);
 
+        bool isSuccess = HandManager.instance.AddThingOS(thingOSType);
+        Destroy(gameObject);
     }
+
+    //public void OnClickAgain()
+    //{
+    //    HandManager.instance.gameObject.SetActive(false);
+    //}
+
+    //public void OnClickAgain()
+    //{
+    //    bool isSuccessAgain = HandManager.instance.MoveThingOS(thingOSType);
+    //}
 
 }

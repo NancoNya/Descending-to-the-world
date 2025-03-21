@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MilkyWayTrigger : MonoBehaviour
 {
-    public GameObject Moon;
-    public GameObject gameObject;
+    private GameObject Moon;
+    private GameObject gameObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,5 @@ public class MilkyWayTrigger : MonoBehaviour
     {
         if(Moon.activeSelf) gameObject.SetActive(true);
         else gameObject.SetActive(false);
-        
     }
 }

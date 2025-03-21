@@ -6,6 +6,8 @@ public class PlayerControllerScript : MonoBehaviour
     private float speed = 8.0f;//火箭筒速度
     private float timer = 0f;
     private bool canAddSpeed = false;
+    private GameObject Moon;
+    private GameObject MilkyWay;
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
@@ -34,12 +36,21 @@ public class PlayerControllerScript : MonoBehaviour
 
     void Start()
     {
+        Moon = GameObject.Find("Moon");
+        MilkyWay = GameObject.Find("MilkyWayCollision");
+        //if (Moon.activeSelf) MilkyWay.SetActive(true);
+        //else MilkyWay.SetActive(false);
         // 订阅点击时钟触发的事件
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
+    private void Update()
+    {
 
+        if (Moon.activeSelf) MilkyWay.SetActive(true);
+        else MilkyWay.SetActive(false);
+    }
     private void FixedUpdate()
     {
         // 移动, 在地面上,未到达磁石位置

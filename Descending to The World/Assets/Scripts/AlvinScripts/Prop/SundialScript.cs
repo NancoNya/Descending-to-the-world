@@ -8,7 +8,7 @@ public class SundialScript : MonoBehaviour
     public bool isInvincible;
     public float invincibleTimer;
     public float invincibleTime = 2.0f;
-    public GameObject Moon;
+    private GameObject Moon;
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,15 +30,16 @@ public class SundialScript : MonoBehaviour
     void Start()
     {
         Moon = GameObject.Find("Moon");
-        if (Moon) { Sun_Moon = 1; }
-        else if(!Moon) {Sun_Moon = 0;}
+        if (Moon.activeSelf) { Sun_Moon = 1; }
+        else { Sun_Moon = 0; }
         isInvincible = false;
-        Moon.SetActive (false);
+        Moon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Moon = GameObject.Find("Moon");
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
