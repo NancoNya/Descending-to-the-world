@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5873775633649554991
 Transform:
   m_ObjectHideFlags: 0
@@ -217,7 +217,6 @@ GameObject:
   - component: {fileID: 7873022183092019290}
   - component: {fileID: 6560812878055546065}
   - component: {fileID: 3732304631121937370}
-  - component: {fileID: 7188089526185378475}
   - component: {fileID: 8589920388515871162}
   m_Layer: 0
   m_Name: MilkyWayButton
@@ -351,20 +350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thingOSType: 4
---- !u!114 &7188089526185378475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107059481444228682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea64924dca6ca0a409b9d8552b3bfcd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Moon: {fileID: 0}
-  gameObject: {fileID: 4148772725131819022}
 --- !u!61 &8589920388515871162
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ TagManager:
   - DeadZone
   - Rocket
   - CheckPoint
+  - Cloud
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class HandManager : MonoBehaviour
     public Button seismographButton;
     public Button seismometerButton;
     public Button kongMingLanternButton;
-    public Button sundialButton;
+    //public Button sundialButton;
     public Button milkyWayButton;
     public Button compassButton;
     public Button magnetButton;
@@ -39,7 +39,7 @@ public class HandManager : MonoBehaviour
         buttonMap[ThingOSType.Seismograph] = seismographButton;
         buttonMap[ThingOSType.Seismometer] = seismometerButton;
         buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton;
-        buttonMap[ThingOSType.Sundial] = sundialButton;
+        //buttonMap[ThingOSType.Sundial] = sundialButton;
         buttonMap[ThingOSType.MilkyWay] = milkyWayButton;
         buttonMap[ThingOSType.Compass] = compassButton;
         buttonMap[ThingOSType.Magnet] = magnetButton;
