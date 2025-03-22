@@ -36,6 +36,11 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void GameBackToSky()
+    {
+        SceneManager.LoadScene(1);
+    }
     private void Start()
     {
         //PauseMenu.SetActive(false);

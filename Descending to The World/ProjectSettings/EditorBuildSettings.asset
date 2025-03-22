@@ -9,9 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/AlvinSceneTest/MainMenu.unity
     guid: d94d5be91515f6e4a9646d4c14369106
   - enabled: 1
+    path: Assets/Scenes/AlvinSceneTest/SkyBigScene.unity
+    guid: e4d3ca72e96a90b42a54856f1fbc0ac6
+  - enabled: 1
     path: Assets/Scenes/AlvinSceneTest/PropColumn.unity
     guid: f1c2a58293ff0b444b277e54fcf70ea7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PauseMenu.unity
     guid: de4d6330b569b594e98af34cd8e9fc3f
+  - enabled: 1
+    path: Assets/Scenes/echoScene/echoScene.unity
+    guid: 1effe2184bbde0d4e83325d16fecc266
+  - enabled: 1
+    path: Assets/Scenes/echoScene/GameScene1.1.unity
+    guid: 0a098a695b4d87140bb3e83f2deb5a8f
+  - enabled: 0
+    path: Assets/Scenes/ZaoScene/1.1.unity
+    guid: 036b73b31f1b81f49951685e5b112a8b
+  - enabled: 0
+    path: Assets/Scenes/ZaoScene/2.1.unity
+    guid: c1f0278e273fd9642813d744bb4c8d6e
+  - enabled: 0
+    path: Assets/Scenes/ZaoScene/2.2.unity
+    guid: d93011ab8d543ca4b9cb68500e792563
   m_configObjects: {}

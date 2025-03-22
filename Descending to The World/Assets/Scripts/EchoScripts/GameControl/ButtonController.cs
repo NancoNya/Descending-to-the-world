@@ -3,7 +3,9 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
+    [Header("道具")]  // 后续需要修改逻辑
     public GenerateCompass generateCompass;
+    [Header("计时器")]
     public LevelTimer levelTimer;
 
     private void Start()
