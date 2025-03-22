@@ -14,28 +14,16 @@ public enum ThingOSType
     Rocket
 }
 
-
-
 public class ThingScript : MonoBehaviour
 {
     public ThingOSType thingOSType = ThingOSType.Seismometer;
-    //public ThingOSType thingOSType = ThingOSType.Seismometer;
 
     public void OnClick()
     {
-
         bool isSuccess = HandManager.instance.AddThingOS(thingOSType);
-        Destroy(gameObject);
+        if (isSuccess)
+        {
+            gameObject.SetActive(false);
+        }
     }
-
-    //public void OnClickAgain()
-    //{
-    //    HandManager.instance.gameObject.SetActive(false);
-    //}
-
-    //public void OnClickAgain()
-    //{
-    //    bool isSuccessAgain = HandManager.instance.MoveThingOS(thingOSType);
-    //}
-
 }

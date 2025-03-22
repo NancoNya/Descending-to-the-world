@@ -1,122 +1,226 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandManager : MonoBehaviour
 {
     public static HandManager instance { get; private set; }
 
     public List<ThingOnScene> ThingOnSceneList;
-    public List<ThingPickUp> ThingPickUpList;
     public ThingOnScene currentThing;
-    public ThingPickUp currentPickUp;
+    public Dictionary<ThingOSType, Button> buttonMap = new Dictionary<ThingOSType, Button>();
+
+    // 为每个道具类型提供公共的按钮接口
+    public Button seismographButton;
+    public Button seismometerButton;
+    public Button kongMingLanternButton;
+    public Button sundialButton;
+    public Button milkyWayButton;
+    public Button compassButton;
+    public Button magnetButton;
+    public Button rocketButton;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogError("HandManager 单例实例已经存在！");
+            return;
+        }
         instance = this;
+        Debug.Log("HandManager 单例实例初始化成功");
+    }
+
+    private void Start()
+    {
+        // 将每个按钮添加到 buttonMap 字典中
+        buttonMap[ThingOSType.Seismograph] = seismographButton;
+        buttonMap[ThingOSType.Seismometer] = seismometerButton;
+        buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton;
+        buttonMap[ThingOSType.Sundial] = sundialButton;
+        buttonMap[ThingOSType.MilkyWay] = milkyWayButton;
+        buttonMap[ThingOSType.Compass] = compassButton;
+        buttonMap[ThingOSType.Magnet] = magnetButton;
+        buttonMap[ThingOSType.Rocket] = rocketButton;
+
+        // 检查字典是否正确初始化
+        foreach (var kvp in buttonMap)
+        {
+            if (kvp.Value != null)
+            {
+                Debug.Log($"成功将 {kvp.Key} 与按钮关联");
+            }
+            else
+            {
+                Debug.LogError($"未为 {kvp.Key} 关联有效的按钮");
+            }
+        }
     }
 
     public bool AddThingOS(ThingOSType thingOSType)
     {
-        if (currentThing != null) return false;
+        Debug.Log($"尝试添加 {thingOSType} 类型的道具");
+        if (currentThing != null)
+        {
+            Debug.Log("手中已有道具，无法添加");
+            return false;
+        }
         ThingOnScene thingOSPrefab = GetThingOSPrefab(thingOSType);
-        if (thingOSPrefab == null) {print("Null");return false;}
+        if (thingOSPrefab == null)
+        {
+            Debug.Log("未找到对应类型的道具预制体");
+            return false;
+        }
         currentThing = GameObject.Instantiate(thingOSPrefab);
+        Debug.Log($"成功添加 {thingOSType} 类型的道具");
+        if (buttonMap.ContainsKey(thingOSType))
+        {
+            buttonMap[thingOSType].gameObject.SetActive(false);
+        }
         return true;
     }
-
-    public bool AddThingOS(ThingPickUpType thingPickUpType)
-    {
-        if (currentPickUp != null) return false;
-        ThingPickUp thingPickUpPrefab = GetThingOSPrefab(thingPickUpType);
-        if (thingPickUpPrefab == null) { print("Null"); return false; }
-        currentPickUp = GameObject.Instantiate(thingPickUpPrefab);
-        return true;
-    }
-
-    //public bool MoveThingOS(ThingOSType thingOSType)
-    //{
-    //    if (currentThing != null) return false;
-    //    ThingOnScene thingOSPrefab = GetThingOSPrefab(thingOSType);
-    //    if (thingOSPrefab == null) { print("Null"); return false; }
-    //    currentThing = GameObject.Instantiate(thingOSPrefab);
-    //    return true;
-    //}
-
 
     private ThingOnScene GetThingOSPrefab(ThingOSType thingOSType)
     {
-        foreach(ThingOnScene thingOnScene in ThingOnSceneList)
-        if(thingOnScene.thingOSType == thingOSType)return thingOnScene;
+        foreach (ThingOnScene thingOnScene in ThingOnSceneList)
+            if (thingOnScene.thingOSType == thingOSType) return thingOnScene;
         return null;
     }
 
-    private ThingPickUp GetThingOSPrefab(ThingPickUpType thingPickUpType)
-    {
-        foreach (ThingPickUp thingPickUp in ThingPickUpList)
-            if (thingPickUp.thingPickUpType == thingPickUpType) return thingPickUp;
-        return null;
-    }
-
-    // Update is called once per frame
     void FollowCursor()
     {
-        if (currentThing == null) return;
-        Vector3 mouseWorldPosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
-        currentThing.transform.position = mouseWorldPosition;
-        Time.timeScale = 0;
-        
-
+        if (currentThing == null)
+        {
+            return;
+        }
+        if (currentThing.gameObject == null)
+        {
+            Debug.LogError("道具对象已被销毁，无法跟随鼠标！");
+            MarkThingAsDestroyed(currentThing.thingOSType);
+            return;
+        }
+        if (Camera.main == null)
+        {
+            Debug.LogError("未找到主相机！");
+            return;
+        }
+        try
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = 0;
+            currentThing.transform.position = mouseWorldPosition;
+            Time.timeScale = 0;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"跟随鼠标操作出错: {e.Message}");
+        }
     }
-    void FollowCursor2()
-    {
-        if (currentPickUp == null) return;
-        Vector3 mouseWorldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition2.z = 0;
-        currentPickUp.transform.position = mouseWorldPosition2;
-        Time.timeScale = 0;
-    }
 
-public void OnCellClick(Cell cell)
+    public void OnCellClick(Cell cell)
     {
-        if(currentThing == null) return;
-        //currentThing.transform.position = cell.transform.position;
+        Debug.Log("尝试将手中道具放置到单元格");
+        if (currentThing == null)
+        {
+            Debug.Log("手中没有道具，无法放置");
+            return;
+        }
         bool isSuccess = cell.AddThingOS(currentThing);
         if (isSuccess)
         {
+            Debug.Log("成功将道具放置到单元格");
             Time.timeScale = 1;
             currentThing = null;
         }
-    }
-
-public void OnCellClick2(Cell cell)
-    {
-        if (currentPickUp == null) return;
-        //currentThing.transform.position = cell.transform.position;
-        bool isSuccess = cell.AddThingOS(currentPickUp);
-        if (isSuccess)
+        else
         {
-            Time.timeScale = 1;
-            currentThing = null;
+            Debug.Log("无法将道具放置到单元格");
         }
     }
 
-    //public void OnCellClickAgain(Cell cell)
-    //{
-    //    if (currentThing != null) return;
-    //    //currentThing.transform.position = cell.transform.position;
-    //    bool isSuccessAgain = cell.MoveThingOS(currentThing);
-    //    if (isSuccessAgain)
-    //    {
-    //        Time.timeScale = 0;
-    //        foreach (ThingOnScene thingOnScene in ThingOnSceneList)
-    //            if (thingOnScene.name == cell.Name) { currentThing = thingOnScene; Debug.Log(thingOnScene.name); }
-    //    }
-    //}
+    public void PickUpThingFromCell(Cell cell)
+    {
+        if (instance == null)
+        {
+            Debug.LogError("HandManager 单例实例未初始化！");
+            return;
+        }
+        Debug.Log("尝试从单元格拾取道具");
+        if (currentThing != null)
+        {
+            Debug.Log($"手中已有道具: {currentThing.thingOSType}，无法拾取");
+            return;
+        }
+        if (cell == null)
+        {
+            Debug.LogError("传入的单元格对象为空！");
+            return;
+        }
+        if (cell.currentThing == null)
+        {
+            Debug.Log("单元格中没有道具，无法拾取");
+            return;
+        }
+        Debug.Log($"准备拾取单元格中的道具: {cell.currentThing.thingOSType}");
+        Debug.Log("开始执行拾取操作");
+        currentThing = cell.currentThing;
+        cell.currentThing = null;
+        Time.timeScale = 0;
+        Debug.Log("成功从单元格拾取道具");
+        if (currentThing != null)
+        {
+            Debug.Log($"当前手中道具: {currentThing.thingOSType}");
+            if (currentThing.gameObject == null)
+            {
+                Debug.LogError("道具对象已被销毁！");
+                MarkThingAsDestroyed(currentThing.thingOSType);
+            }
+            else
+            {
+                if (buttonMap.ContainsKey(currentThing.thingOSType))
+                {
+                    buttonMap[currentThing.thingOSType].gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("currentThing 未正确赋值！");
+        }
+    }
+
+    public void MarkThingAsDestroyed(ThingOSType thingOSType)
+    {
+        if (buttonMap.ContainsKey(thingOSType))
+        {
+            Debug.Log($"尝试激活 {thingOSType} 对应的按钮");
+            buttonMap[thingOSType].gameObject.SetActive(true);
+            if (buttonMap[thingOSType].gameObject.activeSelf)
+            {
+                Debug.Log($" {thingOSType} 对应的按钮已成功激活");
+            }
+            else
+            {
+                Debug.LogError($" {thingOSType} 对应的按钮激活失败");
+            }
+        }
+        else
+        {
+            Debug.LogError($"未找到 {thingOSType} 对应的按钮");
+        }
+    }
+
+    public void HandleDoubleClickThing(ThingOSType thingOSType, GameObject thingObject)
+    {
+        Debug.Log($"处理 {thingOSType} 类型道具的再次点击事件");
+        MarkThingAsDestroyed(thingOSType);
+        Destroy(thingObject);
+    }
 
     private void Update()
     {
         FollowCursor();
-        FollowCursor2();
     }
 }

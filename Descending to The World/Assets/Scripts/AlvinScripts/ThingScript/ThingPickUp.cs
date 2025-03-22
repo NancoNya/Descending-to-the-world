@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,23 +6,25 @@ using UnityEngine;
 public class ThingPickUp : MonoBehaviour
 {
 
-    public ThingPickUpType thingPickUpType = ThingPickUpType.Seismometer;
+    //public ThingPickUpType thingPickUpType = ThingPickUpType.Seismometer;
 
-    private Ray ray;
-    private RaycastHit hit;
-    public ThingPickUpType currentThingPickUpType;
-    public void OnClick()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                bool isSuccess = HandManager.instance.AddThingOS(thingPickUpType);
-                Destroy(gameObject);
-            }
-        }
-    }
+    //private Ray ray;
+    //private RaycastHit hit;
+    //public ThingPickUpType currentThingPickUpType;
+    //public void OnClick()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        if (Physics.Raycast(ray, out hit))
+    //        {
+    //            bool isSuccess = HandManager.instance.AddThingOS(thingPickUpType);
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //}
+
+
 }
             //public void OnClickAgain()
             //{

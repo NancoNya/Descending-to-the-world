@@ -36,8 +36,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     void Start()
     {
-        Moon = GameObject.Find("Moon");
-        MilkyWay = GameObject.Find("MilkyWayCollision");
+        //Moon = GameObject.Find("Moon");
+        //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
         // 订阅点击时钟触发的事件
@@ -48,8 +48,8 @@ public class PlayerControllerScript : MonoBehaviour
     private void Update()
     {
 
-        if (Moon.activeSelf) MilkyWay.SetActive(true);
-        else MilkyWay.SetActive(false);
+        //if (Moon.activeSelf) MilkyWay.SetActive(true);
+        //else MilkyWay.SetActive(false);
     }
     private void FixedUpdate()
     {
