@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: LevelInitialSO
   m_EditorClassIdentifier: 
   playerPositions:
-  - {x: -5.14, y: 3.87, z: 0}
-  - {x: -5.95, y: 3.85, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 302.4022, y: 325.71042, z: 6.4426045}
+  - {x: -6.31, y: 2.88, z: 0}
+  - {x: -8.23, y: 3.9, z: 0}

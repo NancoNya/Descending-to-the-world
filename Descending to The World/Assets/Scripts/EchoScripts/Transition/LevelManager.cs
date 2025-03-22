@@ -82,25 +82,33 @@ public class LevelManager : Singleton<LevelManager>
         Scene currentScene = SceneManager.GetActiveScene();
         yield return SceneManager.UnloadSceneAsync(currentScene);
         // 切换关卡
-        string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
         currentSmallLevel++;
-        SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        yield return loadOperation; // 等待加载完成
+
         // 设置新场景为激活场景
         Scene newScene = SceneManager.GetSceneByName(nextSceneName);
-        // SceneManager.SetActiveScene(newScene);
-        SceneManager.sceneLoaded += (Scene sc, LoadSceneMode loadSceneMode) =>
+        if (newScene.isLoaded) // 确保场景已加载
         {
             SceneManager.SetActiveScene(newScene);
-        };
+        }
+        else
+        {
+            Debug.LogError($"Scene {nextSceneName} not loaded!");
+            yield break;
+        }
         // 根据当前关卡索引设置人物初始位置
-        int index = (currentBigLevel - 1) * 3 + (currentSmallLevel - 1);
+        int index = ((currentBigLevel - 1) * 3 + (currentSmallLevel - 1)) + 1;
+        Debug.Log(currentSmallLevel);
         Debug.Log("索引" + index);
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
         {
-            Debug.Log("1");
             playerAnimator.gameObject.transform.position = levelInitialData.playerPositions[index];
-            Debug.Log("2");
+            playerAnimator.gameObject.SetActive(true);
         }
+        EventHandler.IdleEvent.Invoke();  // 设置为待机状态
+        EventHandler.isMoving = false;
         yield return Fade(0);
     }
 
@@ -148,7 +156,10 @@ public class LevelManager : Singleton<LevelManager>
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
         {
             playerAnimator.transform.position = levelInitialData.playerPositions[index];
+            playerAnimator.gameObject.SetActive(true);
         }
+        EventHandler.IdleEvent.Invoke();  // 设置为待机状态
+        EventHandler.isMoving = false;
         yield return Fade(0);
     }
 
