@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using TMPro;
+using UnityEditor.SearchService;
+using Scene = UnityEngine.SceneManagement.Scene;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -24,12 +26,13 @@ public class LevelManager : Singleton<LevelManager>
     public Button nextLevelButton;   // 通关大关卡，点击前往下一个大关卡
     public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
     public Canvas resultCanvas;   // 结算界面（通关大关卡时出现）
+    public LevelInitialSO levelInitialData;  // 人物进入小场景的初始数据（位置）
 
 
     private void Start()
     {
         resultCanvas.gameObject.SetActive(false);
-        nextLevelButton.onClick.AddListener(LoadNextBigLevel);
+        nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
 
         // 获取人物动画
         if (GameObject.FindWithTag("Player"))
@@ -60,17 +63,11 @@ public class LevelManager : Singleton<LevelManager>
         }
         else   // 到达第三个终点，显示结算界面
         {
-            Debug.Log("1");
             levelTimer.StopTimer();
-            Debug.Log("2");
             resultCanvas.gameObject.SetActive(true);
-            Debug.Log("3");
             ShowResultCanvas();
-            Debug.Log("4");
             currentBigLevel++;
-            Debug.Log("5");
             currentSmallLevel = 1;
-            Debug.Log("6");
         }
     }
 
@@ -81,56 +78,30 @@ public class LevelManager : Singleton<LevelManager>
     private System.Collections.IEnumerator FadeAndSwitchLevel()
     {
         yield return Fade(1);
-        //isFading = true;
-        //float elapsedTime = 0f;  // fade所处时间
-        //Color startColor = fadeImage.color;
-        //Color targetColor = Color.white;
-
-        //while (elapsedTime < fadeDuration)  // 渐隐
-        //{
-        //    fadeImage.color = Color.Lerp(startColor, targetColor, elapsedTime / fadeDuration);
-        //    elapsedTime += Time.deltaTime;
-        //    yield return null;
-        //}
-        //fadeImage.color = targetColor;
-
+        // 卸载当前场景
+        Scene currentScene = SceneManager.GetActiveScene();
+        yield return SceneManager.UnloadSceneAsync(currentScene);
         // 切换关卡
         string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
         currentSmallLevel++;
-        SceneManager.LoadScene(nextSceneName);
-        // 将人物设置到新关卡的初始位置
-        //playerAnimator.transform.position = levelData.smallLevelStartPositions[currentSmallLevel];
-
-        //elapsedTime = 0f;
-        //targetColor = Color.clear;
-
-        //while (elapsedTime < fadeDuration)   // 渐出
-        //{
-        //    fadeImage.color = Color.Lerp(startColor, targetColor, elapsedTime / fadeDuration);
-        //    elapsedTime += Time.deltaTime;
-        //    yield return null;
-        //}
-        //fadeImage.color = targetColor;
-        //isFading = false;
-        yield return Fade(0);
-    }
-
-    private IEnumerator Fade(float targetAlpha)
-    {
-        isFading = true;
-        fadeCanvasGroup.blocksRaycasts = true;
-
-        float speed = Mathf.Abs(fadeCanvasGroup.alpha - targetAlpha) / fadeDuration;
-
-        //持续更新透明度，不断调用Mathf.MoveTowards方法
-        while (!Mathf.Approximately(fadeCanvasGroup.alpha, targetAlpha))
+        SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        // 设置新场景为激活场景
+        Scene newScene = SceneManager.GetSceneByName(nextSceneName);
+        // SceneManager.SetActiveScene(newScene);
+        SceneManager.sceneLoaded += (Scene sc, LoadSceneMode loadSceneMode) =>
         {
-            fadeCanvasGroup.alpha = Mathf.MoveTowards(fadeCanvasGroup.alpha, targetAlpha, speed * Time.deltaTime);
-            yield return null;
+            SceneManager.SetActiveScene(newScene);
+        };
+        // 根据当前关卡索引设置人物初始位置
+        int index = (currentBigLevel - 1) * 3 + (currentSmallLevel - 1);
+        Debug.Log("索引" + index);
+        if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
+        {
+            Debug.Log("1");
+            playerAnimator.gameObject.transform.position = levelInitialData.playerPositions[index];
+            Debug.Log("2");
         }
-
-        isFading = false;
-        fadeCanvasGroup.blocksRaycasts = false;
+        yield return Fade(0);
     }
 
     /// <summary>
@@ -146,12 +117,60 @@ public class LevelManager : Singleton<LevelManager>
         // 可以在这里添加保存时间等结算逻辑
     }
 
-    private void LoadNextBigLevel()
+    /// <summary>
+    /// 大关卡切换
+    /// </summary>
+    private void StartLoadNextBigLevel()
     {
+        StartCoroutine(LoadNextBigLevel());
+    }
+
+    private System.Collections.IEnumerator LoadNextBigLevel()
+    {
+        yield return Fade(1);
+        // 卸载当前场景
+        Scene currentScene = SceneManager.GetActiveScene();
+        yield return SceneManager.UnloadSceneAsync(currentScene);
+
         resultCanvas.gameObject.SetActive(false);
         levelTimer.ResetTimer();
         currentSmallLevel = 1;
         string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        // 设置新场景为激活场景
+        Scene newScene = SceneManager.GetSceneByName(nextSceneName);
+        SceneManager.sceneLoaded += (Scene sc, LoadSceneMode loadSceneMode) =>
+        {
+            SceneManager.SetActiveScene(newScene);
+        };
+        // 根据当前关卡索引设置人物初始位置
+        int index = (currentBigLevel - 1) * 3 + (currentSmallLevel - 1);
+        if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
+        {
+            playerAnimator.transform.position = levelInitialData.playerPositions[index];
+        }
+        yield return Fade(0);
+    }
+
+    /// <summary>
+    /// 渐隐渐出
+    /// </summary>
+    /// <param name="targetAlpha">1是黑，0是透明</param>
+    /// <returns></returns>
+    private IEnumerator Fade(float targetAlpha)
+    {
+        isFading = true;
+        fadeCanvasGroup.blocksRaycasts = true;
+
+        float speed = Mathf.Abs(fadeCanvasGroup.alpha - targetAlpha) / fadeDuration;
+
+        //持续更新透明度，不断调用Mathf.MoveTowards方法
+        while (!Mathf.Approximately(fadeCanvasGroup.alpha, targetAlpha))
+        {
+            fadeCanvasGroup.alpha = Mathf.MoveTowards(fadeCanvasGroup.alpha, targetAlpha, speed * Time.deltaTime);
+            yield return null;
+        }
+        isFading = false;
+        fadeCanvasGroup.blocksRaycasts = false;
     }
 }
