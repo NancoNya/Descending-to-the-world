@@ -7,19 +7,35 @@ public class KongMingLantern : MonoBehaviour
     private float speed = 0.3f;
     private Rigidbody2D rb;
     private Rigidbody2D rb2;
+
+    [Header("孔明灯状态")]
     public bool isHit;
+    public bool canUse;  // 人物移动时孔明灯才能移动
     //public GameObject Moon;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        EventHandler.MovementEvent.AddListener(OnMovementEvent);
+        EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
+
+    private void OnDestroy()
+    {
+        EventHandler.MovementEvent.RemoveListener(OnMovementEvent);
+        EventHandler.IdleEvent.RemoveListener(OnIdleEvent);
+    }
+
     private void FixedUpdate()
     {
         //if (Moon)
+        if(canUse)
+        {
             rb.velocity = new Vector2(0, speed);
+            Debug.Log("kmd is moving");
+        }
         //else rb.velocity = new Vector2(0, 0);
-
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -44,5 +60,17 @@ public class KongMingLantern : MonoBehaviour
     {
         //Moon = GameObject.Find("Moon");
 
+    }
+
+    private void OnIdleEvent()
+    {
+        canUse = false;
+        Debug.Log("canUse:" + canUse);
+    }
+
+    private void OnMovementEvent()
+    {
+        canUse = true;
+        Debug.Log("canUse:" + canUse);
     }
 }

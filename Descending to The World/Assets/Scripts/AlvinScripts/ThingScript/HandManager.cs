@@ -22,6 +22,11 @@ public class HandManager : MonoBehaviour
     public Button magnetButton;
     public Button rocketButton;
 
+    // 孔明灯放置位置
+    //private Vector3? kongMingLanternPosition;
+    //[SerializeField]private Cell kmdClickedCell;
+    [SerializeField]private Transform clickedCellTransform;
+
     private void Awake()
     {
         if (instance != null)
@@ -35,6 +40,8 @@ public class HandManager : MonoBehaviour
 
     private void Start()
     {
+        EventHandler.IdleEvent.AddListener(OnIdleEvent);
+
         // 将每个按钮添加到 buttonMap 字典中
         buttonMap[ThingOSType.Seismograph] = seismographButton;
         buttonMap[ThingOSType.Seismometer] = seismometerButton;
@@ -55,6 +62,30 @@ public class HandManager : MonoBehaviour
             else
             {
                 Debug.LogError($"未为 {kvp.Key} 关联有效的按钮");
+            }
+        }
+    }
+
+    /// <summary>
+    /// ///////////////////////////////回溯时，场景中已放置的孔明灯回到对应Cell位置
+    /// </summary>
+    private void OnIdleEvent()
+    {
+        if (clickedCellTransform != null)
+        {
+            // 查找被点击的 Cell 的子物体中是否有孔明灯
+            foreach (Transform child in clickedCellTransform)
+            {
+                ThingOnScene thingOnScene = child.GetComponent<ThingOnScene>();
+                Debug.Log(thingOnScene);
+                if (thingOnScene != null && thingOnScene.thingOSType == ThingOSType.KongMingLantern)
+                {
+                    // 将孔明灯设置回到 Cell 的位置
+                    thingOnScene.transform.position = clickedCellTransform.position;
+                    Debug.Log("孔明灯已设置回到 Cell 的位置");
+                    thingOnScene.gameObject.GetComponent<KongMingLantern>().canUse = false;
+                    thingOnScene.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                }
             }
         }
     }
@@ -127,6 +158,16 @@ public class HandManager : MonoBehaviour
             Debug.Log("手中没有道具，无法放置");
             return;
         }
+
+        ///////////////////////////////////////// 检查手中的道具是否为孔明灯
+        if (currentThing.thingOSType == ThingOSType.KongMingLantern)
+        {
+            // 存储被点击的 Cell 的位置
+            clickedCellTransform = cell.transform;
+            Debug.Log(clickedCellTransform);
+            Debug.Log(cell.transform);
+        }
+
         bool isSuccess = cell.AddThingOS(currentThing);
         if (isSuccess)
         {
