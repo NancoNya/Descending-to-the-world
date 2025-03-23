@@ -87,8 +87,6 @@ public class PlayerControllerScript : MonoBehaviour
             canAddSpeed = false;
             rb.gravityScale = 3f;
         }
-
-
     }
 
     /// <summary>
@@ -164,6 +162,9 @@ public class PlayerControllerScript : MonoBehaviour
         //Vector2 currentVelocity = rb.velocity;
         //currentVelocity.x = moveSpeed;
         //rb.velocity = currentVelocity;
+
+        // 重置 timer 变量
+        timer = 0f;
 
         //调整sprite方向
         Vector3 theScale = transform.localScale;
