@@ -47,7 +47,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void Update()
     {
-
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
     }
@@ -68,13 +67,26 @@ public class PlayerControllerScript : MonoBehaviour
             FallDown();
         }
 
+        // 拾取司南
         if (hasCompass)
         {
             WalkAnim();
             MoveTowardsMagnet();
         }
-        if (canAddSpeed) { timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0); }
-        if (timer >= 0.8f){rb.velocity = new Vector2(moveSpeed,0); canAddSpeed = false;}
+
+        // 火箭加速
+        if (canAddSpeed) 
+        {
+            rb.gravityScale = 0f;
+            Debug.Log("重力：" + rb.gravityScale);
+            timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0); 
+        }
+        if (timer >= 0.8f)
+        {
+            rb.velocity = new Vector2(moveSpeed,0); 
+            canAddSpeed = false;
+            rb.gravityScale = 3f;
+        }
 
 
     }
@@ -92,12 +104,14 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     void OnIdleEvent()
     {
+        canAddSpeed = false;
         isMoving = false;
         hasCompass = false;
         arriveMagnet = false;
         ////////////////////anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
+        // rb.velocity = new Vector2(moveSpeed, 0f);
     }
 
 
@@ -140,7 +154,9 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void BackToInitial()
     {
-        rb.velocity = Vector2.zero;
+        rb.velocity = new Vector2(0f, 0f);
+        Debug.Log("水平速度：" + rb.velocity.x);
+        //rb.velocity = Vector2.zero;
         transform.position = initialPosition;
 
         isFacingRight = true;
@@ -153,7 +169,6 @@ public class PlayerControllerScript : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x = Mathf.Abs(theScale.x);
         transform.localScale = theScale;
-
     }
 
     /// <summary>

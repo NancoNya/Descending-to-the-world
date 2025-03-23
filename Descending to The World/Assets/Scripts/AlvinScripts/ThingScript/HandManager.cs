@@ -67,7 +67,7 @@ public class HandManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ///////////////////////////////回溯时，场景中已放置的孔明灯回到对应Cell位置
+    /// 回溯时，场景中已放置的孔明灯回到对应Cell位置
     /// </summary>
     private void OnIdleEvent()
     {
@@ -82,7 +82,6 @@ public class HandManager : MonoBehaviour
                 {
                     // 将孔明灯设置回到 Cell 的位置
                     thingOnScene.transform.position = clickedCellTransform.position;
-                    Debug.Log("孔明灯已设置回到 Cell 的位置");
                     thingOnScene.gameObject.GetComponent<KongMingLantern>().canUse = false;
                     thingOnScene.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 }
@@ -159,7 +158,7 @@ public class HandManager : MonoBehaviour
             return;
         }
 
-        ///////////////////////////////////////// 检查手中的道具是否为孔明灯
+        // 检查手中的道具是否为孔明灯
         if (currentThing.thingOSType == ThingOSType.KongMingLantern)
         {
             // 存储被点击的 Cell 的位置
