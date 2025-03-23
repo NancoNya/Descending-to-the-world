@@ -252,4 +252,27 @@ public class PlayerControllerScript : MonoBehaviour
             
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
+        {
+            OnIdleEvent();
+            EventHandler.isMoving = !EventHandler.isMoving;
+        }
+        if (other.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
+        {
+            LevelManager.Instance.OnReachCheckpoint();
+            gameObject.SetActive(false);
+            other.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 到达通关点，停止运动
+    /// </summary>
+    public void SetHorizontalVelocityZero()
+    {
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+    }
 }

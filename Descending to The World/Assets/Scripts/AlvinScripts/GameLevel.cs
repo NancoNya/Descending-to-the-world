@@ -8,11 +8,15 @@ public class GameLevel : MonoBehaviour
 {
     private int EscTime = 0;
     public GameObject PauseMenu;
-
+    Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
     //×¢ÒâÐÞ¸Ä¸ÃloadScene
     public void GameStart1()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
+        //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
+        //Scene scene = SceneManager.GetSceneByName("PropColumn");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+
     }
     public void GameStart2()
     {
