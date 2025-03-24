@@ -33,7 +33,6 @@ public class KongMingLantern : MonoBehaviour
         if(canUse)
         {
             rb.velocity = new Vector2(0, speed);
-            Debug.Log("kmd is moving");
         }
         //else rb.velocity = new Vector2(0, 0);
     }
@@ -56,6 +55,7 @@ public class KongMingLantern : MonoBehaviour
             //transform.position = new Vector3(currentPosition.x, newYPosition, 0);
         }
     }
+
     private void Update()
     {
         //Moon = GameObject.Find("Moon");
@@ -65,12 +65,10 @@ public class KongMingLantern : MonoBehaviour
     private void OnIdleEvent()
     {
         canUse = false;
-        Debug.Log("canUse:" + canUse);
     }
 
     private void OnMovementEvent()
     {
         canUse = true;
-        Debug.Log("canUse:" + canUse);
     }
 }

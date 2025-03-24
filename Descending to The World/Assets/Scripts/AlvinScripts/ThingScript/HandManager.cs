@@ -22,10 +22,8 @@ public class HandManager : MonoBehaviour
     public Button magnetButton;
     public Button rocketButton;
 
-    // 孔明灯放置位置
-    //private Vector3? kongMingLanternPosition;
-    //[SerializeField]private Cell kmdClickedCell;
-    [SerializeField]private Transform clickedCellTransform;
+    // 道具类型对应的Cell位置存储（火箭，孔明灯）
+    public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
     private void Awake()
     {
@@ -67,24 +65,46 @@ public class HandManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 回溯时，场景中已放置的孔明灯回到对应Cell位置
+    /// 回溯时，场景中已放置的孔明灯和火箭回到放置点
     /// </summary>
     private void OnIdleEvent()
     {
-        if (clickedCellTransform != null)
+        // 火箭复位
+        if (propCellDict.TryGetValue(ThingOSType.Rocket, out Transform rocketCell))
         {
-            // 查找被点击的 Cell 的子物体中是否有孔明灯
-            foreach (Transform child in clickedCellTransform)
+            RocketIdle(rocketCell);
+        }
+
+        // 孔明灯复位
+        if (propCellDict.TryGetValue(ThingOSType.KongMingLantern, out Transform kmdCell))
+        {
+            KongMingLanternIdle(kmdCell);
+        }
+    }
+    private void RocketIdle(Transform cellTransform)
+    {
+        foreach (Transform child in cellTransform)
+        {
+            ThingOnScene thing = child.GetComponent<ThingOnScene>();
+            if (thing != null &&
+                thing.thingOSType == ThingOSType.Rocket &&
+                !thing.gameObject.activeSelf)
             {
-                ThingOnScene thingOnScene = child.GetComponent<ThingOnScene>();
-                Debug.Log(thingOnScene);
-                if (thingOnScene != null && thingOnScene.thingOSType == ThingOSType.KongMingLantern)
-                {
-                    // 将孔明灯设置回到 Cell 的位置
-                    thingOnScene.transform.position = clickedCellTransform.position;
-                    thingOnScene.gameObject.GetComponent<KongMingLantern>().canUse = false;
-                    thingOnScene.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                }
+                thing.gameObject.SetActive(true);
+                thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
+            }
+        }
+    }
+    private void KongMingLanternIdle(Transform cellTransform)
+    {
+        foreach (Transform child in cellTransform)
+        {
+            ThingOnScene thing = child.GetComponent<ThingOnScene>();
+            if (thing != null &&
+                thing.thingOSType == ThingOSType.KongMingLantern)
+            {
+                thing.transform.position = cellTransform.position;
+                thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
             }
         }
     }
@@ -158,13 +178,11 @@ public class HandManager : MonoBehaviour
             return;
         }
 
-        // 检查手中的道具是否为孔明灯
-        if (currentThing.thingOSType == ThingOSType.KongMingLantern)
+        // 记录道具类型对应的Cell位置
+        if (currentThing.thingOSType == ThingOSType.KongMingLantern ||
+            currentThing.thingOSType == ThingOSType.Rocket)
         {
-            // 存储被点击的 Cell 的位置
-            clickedCellTransform = cell.transform;
-            Debug.Log(clickedCellTransform);
-            Debug.Log(cell.transform);
+            propCellDict[currentThing.thingOSType] = cell.transform;
         }
 
         bool isSuccess = cell.AddThingOS(currentThing);

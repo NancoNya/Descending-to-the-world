@@ -3,11 +3,12 @@ using UnityEngine;
 public class PlayerControllerScript : MonoBehaviour
 {
     [Header("AlvinScript")]
-    private float speed = 8.0f;//火箭筒速度
+    private float speed = 8.0f;  // 火箭筒速度
     private float timer = 0f;
     private bool canAddSpeed = false;
     private GameObject Moon;
     private GameObject MilkyWay;
+
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
@@ -77,15 +78,16 @@ public class PlayerControllerScript : MonoBehaviour
         // 火箭加速
         if (canAddSpeed) 
         {
-            rb.gravityScale = 0f;
             Debug.Log("重力：" + rb.gravityScale);
-            timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0); 
+            timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0);
+            // TODO: 播放背火箭动画
         }
         if (timer >= 0.8f)
         {
             rb.velocity = new Vector2(moveSpeed,0); 
             canAddSpeed = false;
             rb.gravityScale = 3f;
+            // TODO: 播放走路动画
         }
     }
 
@@ -109,7 +111,6 @@ public class PlayerControllerScript : MonoBehaviour
         ////////////////////anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
-        // rb.velocity = new Vector2(moveSpeed, 0f);
     }
 
 
@@ -119,8 +120,6 @@ public class PlayerControllerScript : MonoBehaviour
     public void StartWalking()
     {
         rb.velocity = new Vector2(moveSpeed, 0f);
-        //Debug.Log(moveSpeed);
-        //Debug.Log(rb.velocity.x);
     }
 
     /// <summary>
@@ -153,8 +152,6 @@ public class PlayerControllerScript : MonoBehaviour
     public void BackToInitial()
     {
         rb.velocity = new Vector2(0f, 0f);
-        Debug.Log("水平速度：" + rb.velocity.x);
-        //rb.velocity = Vector2.zero;
         transform.position = initialPosition;
 
         isFacingRight = true;
@@ -181,7 +178,6 @@ public class PlayerControllerScript : MonoBehaviour
         if(collision.gameObject.CompareTag("Obstacle"))FlipDirection();
         if (collision.gameObject.CompareTag("Rocket"))
         {
-            
             canAddSpeed = true;
         }
     }
@@ -228,7 +224,6 @@ public class PlayerControllerScript : MonoBehaviour
         if (magnet != null)
         {
             hasCompass = true;
-            //Debug.Log(hasCompass);
         }
     }
 
@@ -252,7 +247,6 @@ public class PlayerControllerScript : MonoBehaviour
             }
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
-            // transform.position = new Vector3(newX, transform.position.y, transform.position.z);
             rb.MovePosition(new Vector2(newX, rb.position.y));
             // 判断是否到达目标位置
             if (Mathf.Abs(currentX - targetX) < positionThreshold)
