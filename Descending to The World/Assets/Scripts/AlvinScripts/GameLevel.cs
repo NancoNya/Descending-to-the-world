@@ -10,9 +10,20 @@ public class GameLevel : MonoBehaviour
     public GameObject PauseMenu;
     Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
     //×¢ÒâÐÞ¸Ä¸ÃloadScene
+    public void Next()
+    {
+        Scene scene = SceneManager.GetSceneByName("GroundBingScene");
+        SceneManager.LoadScene("GroundBigScene");
+    }
+    public void Back()
+    {
+        Scene scene = SceneManager.GetSceneByName("SkyBingScene");
+        SceneManager.LoadScene("SkyBigScene");
+    }
     public void GameStart1()
     {
-        SceneManager.LoadScene(4);
+        Scene scene = SceneManager.GetSceneByName("1.1");
+        SceneManager.LoadScene("1.1");
         //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
         //Scene scene = SceneManager.GetSceneByName("PropColumn");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
@@ -20,37 +31,79 @@ public class GameLevel : MonoBehaviour
     }
     public void GameStart2()
     {
-        SceneManager.LoadScene(2);
+        Scene scene = SceneManager.GetSceneByName("2.1");
+        SceneManager.LoadScene("2.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
     }
 
     public void GameStart3()
     {
-        SceneManager.LoadScene(2);
-    }
-
-    public void GameStart5()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void GameStart6()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void GameStart7()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void GameStart8()
-    {
-        SceneManager.LoadScene(2);
+        Scene scene = SceneManager.GetSceneByName("3.1");
+        SceneManager.LoadScene("3.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
     }
 
     public void GameStart4()
     {
-        SceneManager.LoadScene(2);
+        Scene scene = SceneManager.GetSceneByName("4.1");
+        SceneManager.LoadScene("4.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart5()
+    {
+        Scene scene = SceneManager.GetSceneByName("5.1");
+        SceneManager.LoadScene("5.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart6()
+    {
+        Scene scene = SceneManager.GetSceneByName("6.1");
+        SceneManager.LoadScene("6.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart7()
+    {
+        Scene scene = SceneManager.GetSceneByName("7.1");
+        SceneManager.LoadScene("7.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart8()
+    {
+        Scene scene = SceneManager.GetSceneByName("8.1");
+        SceneManager.LoadScene("8.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart9()
+    {
+        Scene scene = SceneManager.GetSceneByName("9.1");
+        SceneManager.LoadScene("9.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart10()
+    {
+        Scene scene = SceneManager.GetSceneByName("10.1");
+        SceneManager.LoadScene("10.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart11()
+    {
+        Scene scene = SceneManager.GetSceneByName("11.1");
+        SceneManager.LoadScene("11.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+    }
+
+    public void GameStart12()
+    {
+        Scene scene = SceneManager.GetSceneByName("12.1");
+        SceneManager.LoadScene("12.1");
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
     }
 
     public void GameExit()

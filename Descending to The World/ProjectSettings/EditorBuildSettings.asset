@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/AlvinSceneTest/SkyBigScene.unity
     guid: e4d3ca72e96a90b42a54856f1fbc0ac6
   - enabled: 1
+    path: Assets/Scenes/AlvinSceneTest/GroundBigScene.unity
+    guid: 1523db563e16b884088e14fc6a123732
+  - enabled: 1
     path: Assets/Scenes/AlvinSceneTest/PropColumn.unity
     guid: f1c2a58293ff0b444b277e54fcf70ea7
   - enabled: 0
@@ -26,12 +29,51 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZaoScene/1.1.unity
     guid: 036b73b31f1b81f49951685e5b112a8b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ZaoScene/2.1.unity
     guid: c1f0278e273fd9642813d744bb4c8d6e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ZaoScene/2.2.unity
     guid: d93011ab8d543ca4b9cb68500e792563
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/3.1.unity
+    guid: eddca08b46808f44b9a8bdb3e44e5928
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/3.2.unity
+    guid: db001d36b766ad14eb7dd0b10f012692
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/3.3.unity
+    guid: 357cdf2d63cd9734aa225a365c3b98ce
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/4.1.unity
+    guid: c215b2fc43455394a92292159178795c
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/4.2.unity
+    guid: 2da4d72f8fdad664cac645c6964e5660
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/5.1.unity
+    guid: 40be8dbf92d84ca46928d16ffad20a6c
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/5.2.unity
+    guid: db494a1f3481ed74e8861b49d928cba9
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/5.3.unity
+    guid: 8b8f44f33002abe4ab5f444bc9ed4742
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/6.1.unity
+    guid: 1e8b2ee22eb96e54987fe967d18c4b39
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/6.2.unity
+    guid: 9db7fc8c29726044d85a02d6983be7d4
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/6.3.unity
+    guid: 858958eded1e5434f976cfe99dd86530
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/7.1.unity
+    guid: 9d415c9be9b0d4748acf6db8c4669334
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/7.2.unity
+    guid: 5cb0e86dc45d5c24daa5bfb3daaee120
   - enabled: 1
     path: Assets/Scenes/echoScene/Persistent.unity
     guid: f15831c4cf0af09459c043203e82c61c
