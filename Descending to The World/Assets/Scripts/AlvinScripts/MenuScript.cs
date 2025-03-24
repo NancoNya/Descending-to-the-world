@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,9 +9,11 @@ public class MenuScript : MonoBehaviour
 {
     private int EscTime = 0;
     public GameObject PauseMenu;
+
     public void GameStart()
     {
-        SceneManager.LoadScene(1);
+        Scene scene = SceneManager.GetSceneByName("SkyBigScene");
+        SceneManager.LoadScene("SkyBigScene");
     }
 
     public void GameExit()
@@ -22,14 +25,14 @@ public class MenuScript : MonoBehaviour
     {
         PauseMenu.SetActive(true);
         Time.timeScale = 0;
-        
+
     }
 
     public void GameContinue()
     {
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
-        
+
     }
 
     public void GameBack()
@@ -41,10 +44,7 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    private void Start()
-    {
-        //PauseMenu.SetActive(false);
-    }
+
     private void Update()
     {
         EscTime %= 2;

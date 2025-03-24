@@ -12,12 +12,12 @@ public class GameLevel : MonoBehaviour
     //×¢ÒâÐÞ¸Ä¸ÃloadScene
     public void Next()
     {
-        Scene scene = SceneManager.GetSceneByName("GroundBingScene");
+        Scene scene = SceneManager.GetSceneByName("GroundBigScene");
         SceneManager.LoadScene("GroundBigScene");
     }
     public void Back()
     {
-        Scene scene = SceneManager.GetSceneByName("SkyBingScene");
+        Scene scene = SceneManager.GetSceneByName("SkyBigScene");
         SceneManager.LoadScene("SkyBigScene");
     }
     public void GameStart1()
