@@ -16,7 +16,8 @@ public class CompassScript : MonoBehaviour
             if (player != null)
             {
                 player.PickUpCompass();
-                Destroy(gameObject);
+                // Destroy(gameObject);
+                this.gameObject.SetActive(false);
             }
         }
     }

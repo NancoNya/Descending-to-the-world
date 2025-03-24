@@ -13,7 +13,7 @@ public class GenerateCompass : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(compassPrefab, compassPosition, Quaternion.identity);
+        // Instantiate(compassPrefab, compassPosition, Quaternion.identity);
     }
 
     public void RespawnCompass()

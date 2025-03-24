@@ -16,9 +16,12 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("状态")]
     public bool isMoving;
     public Vector3 faceDir;
-    public bool hasCompass = false;
+    public bool hasCompass = false;  // 是否拿着磁石
     public bool arriveMagnet = false;
-    
+    // public bool afterArriveMagnet = false;
+    public bool moveToMagnet = false;  // 是否正在向磁石移动
+    [SerializeField]private float currentDirection; // 记录向磁石移动时的移动方向
+
     private GameObject magnet;
     private float positionThreshold = 0.01f; // 坐标差值
 
@@ -53,9 +56,10 @@ public class PlayerControllerScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        // 移动, 在地面上,未到达磁石位置
+        // 移动, 在地面上,未到达磁石状态
         if(isMoving && physicsCheckScript.isGround && !arriveMagnet)
         {
+            currentDirection = 5f;  // PS: 根据最终人物图片大小调整
             //Debug.Log("fixupdate");
             WalkAnim();
             StartWalking();
@@ -68,11 +72,18 @@ public class PlayerControllerScript : MonoBehaviour
             FallDown();
         }
 
-        // 拾取司南
-        if (hasCompass)
+        // 如果场景中存在磁石，则向磁石移动
+        if (hasCompass && moveToMagnet) 
+        {
+            MoveTowardsMagnet();  // PS：动画播放已在PickUpCompass()中执行
+        }
+
+        // 到达磁石后，按当前移动方向继续移动
+        if (isMoving && physicsCheckScript.isGround && arriveMagnet)
         {
             WalkAnim();
-            MoveTowardsMagnet();
+            // rb.velocity = new Vector2(currentDirection * moveSpeed, 0f);
+            StartWalking();
         }
 
         // 火箭加速
@@ -104,10 +115,13 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     void OnIdleEvent()
     {
+        currentDirection = 5f;  // PS: 根据最终人物图片大小调整
         canAddSpeed = false;
         isMoving = false;
         hasCompass = false;
-        arriveMagnet = false;
+        // arriveMagnet = false;
+        //afterArriveMagnet = false;
+        moveToMagnet = false;
         ////////////////////anim.SetBool("hasCompass", false);
         IdleAnim();
         BackToInitial();
@@ -119,7 +133,7 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void StartWalking()
     {
-        rb.velocity = new Vector2(moveSpeed, 0f);
+            rb.velocity = new Vector2((currentDirection / 5) * moveSpeed, 0f);  // PS: 根据最终人物图片大小调整
     }
 
     /// <summary>
@@ -137,15 +151,21 @@ public class PlayerControllerScript : MonoBehaviour
     public void WalkAnim()
     {
         ///////////anim.SetBool("isWalking", true);
+        ///anim.SetBool("hasCompass",false);
     }
 
     public void IdleAnim()
     {
         ///////////anim.SetBool("isWalking", false);
+        //////anim.SetBool("hasCompass",false);
         //Debug.Log("idle");
     }
 
-
+    public void CompassAnim()
+    {
+        // anim.SetBool("hasCompass",true);
+        // anim.SetBool("isWalking", false);
+    }
     /// <summary>
     /// Player移动时点击时钟，回到初始位置
     /// </summary>
@@ -175,7 +195,10 @@ public class PlayerControllerScript : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Obstacle"))FlipDirection();
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            FlipDirection();
+        }
         if (collision.gameObject.CompareTag("Rocket"))
         {
             canAddSpeed = true;
@@ -210,20 +233,21 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void PickUpCompass()
     {
-        // hasCompass = true;
-        ///////anim.SetBool("hasCompass", true);
+        hasCompass = true;
+        ///////CompassAnim();
         FindMagnet();
     }
 
     /// <summary>
-    /// 拾取司南后寻找磁石。若找到磁石，向磁石方向移动；未找到则保持拿司南的动画
+    /// 拾取司南后寻找磁石。
     /// </summary>
     private void FindMagnet()
     {
         magnet = GameObject.FindWithTag("Magnet");
         if (magnet != null)
         {
-            hasCompass = true;
+            //hasCompass = true;
+            moveToMagnet = true;
         }
     }
 
@@ -238,13 +262,21 @@ public class PlayerControllerScript : MonoBehaviour
             float currentX = transform.position.x;
 
             // 计算移动方向
-            float direction = (Mathf.Sign(targetX - currentX))*5;
+            //float direction = (Mathf.Sign(targetX - currentX))*5;
+
+            // 计算移动方向 
+            currentDirection = (Mathf.Sign(targetX - currentX)) * 5;  // PS: 根据最终人物图片大小调整
 
             // 设置sprite朝向
-            if (direction != 0)
+            if (currentDirection != 0)
             {
-                transform.localScale = new Vector3(direction, 5f, 1f);
+                transform.localScale = new Vector3(currentDirection, 5f, 1f);  // PS: 根据最终人物图片大小调整
             }
+            //// 设置sprite朝向
+            //if (currentDirection != 0)
+            //{
+            //    transform.localScale = new Vector3(direction, 5f, 1f);
+            //}
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
             rb.MovePosition(new Vector2(newX, rb.position.y));
@@ -253,11 +285,13 @@ public class PlayerControllerScript : MonoBehaviour
             {
                 //Debug.Log("arrive");
                 // 到达目标位置，停止移动并播放待机动画
-                rb.velocity = Vector2.zero;
+                // rb.velocity = Vector2.zero;
                 ////////////////////////////anim.SetBool("hasCompass", false);
                 ////////////////////////////anim.SetBool("isWalking", false);
                 hasCompass = false;
+                // TODO 动画切换：拿司南到走路
                 arriveMagnet = true;
+                moveToMagnet = false;
             }
             
         }

@@ -35,7 +35,7 @@ public class ButtonController : MonoBehaviour
         GameObject compass = GameObject.FindWithTag("Compass");
         if (compass == null)
         {
-            generateCompass.RespawnCompass();
+            // generateCompass.RespawnCompass();
         }
     }
 }
