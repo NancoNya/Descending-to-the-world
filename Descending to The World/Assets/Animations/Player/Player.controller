@@ -186,6 +186,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isWalking
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: hasCompass
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: hasRocket
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 756695127958752214}
   m_Solo: 0

@@ -3025,7 +3025,7 @@ Transform:
   m_GameObject: {fileID: 1040755256}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.06, y: -0.8800001, z: 0}
+  m_LocalPosition: {x: 2.036, y: -0.8800001, z: 0}
   m_LocalScale: {x: 3.0645227, y: 0.35525724, z: 4.9001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3329,7 +3329,7 @@ MonoBehaviour:
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
   currentDirection: 0
-  hasCompass: 0
+  holdCompass: 0
   arriveMagnet: 0
   moveToMagnet: 0
 --- !u!114 &1123996479
@@ -4265,7 +4265,7 @@ Transform:
   m_GameObject: {fileID: 1470057432}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.13, y: -0.8699999, z: 0}
+  m_LocalPosition: {x: -4.06, y: -0.88, z: 0}
   m_LocalScale: {x: 3.0645227, y: 0.35525724, z: 4.9001}
   m_ConstrainProportionsScale: 0
   m_Children: []

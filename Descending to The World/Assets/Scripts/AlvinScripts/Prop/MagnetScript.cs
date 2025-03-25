@@ -8,7 +8,7 @@ public class MagnetScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bool isHoldingCompass = collision.gameObject.GetComponent<PlayerControllerScript>().hasCompass;
+        bool isHoldingCompass = collision.gameObject.GetComponent<PlayerControllerScript>().holdCompass;
 
         if (collision.gameObject.CompareTag("Player") && isHoldingCompass)
         {
