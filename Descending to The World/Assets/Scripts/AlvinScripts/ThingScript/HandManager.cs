@@ -69,78 +69,139 @@ public class HandManager : MonoBehaviour
     /// </summary>
     private void OnIdleEvent()
     {
-        // 火箭复位
-        if (propCellDict.TryGetValue(ThingOSType.Rocket, out Transform rocketCell))
-        {
-            RocketIdle(rocketCell);
-        }
+        // 定义需要复位的道具类型数组
+        ThingOSType[] thingOSTypes = {
+            ThingOSType.Rocket,
+            ThingOSType.KongMingLantern,
+            ThingOSType.Compass,
+            ThingOSType.Magnet
+        };
 
-        // 孔明灯复位
-        if (propCellDict.TryGetValue(ThingOSType.KongMingLantern, out Transform kmdCell))
+        // 遍历道具类型，进行复位操作
+        foreach (ThingOSType type in thingOSTypes)
         {
-            KongMingLanternIdle(kmdCell);
+            if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            {
+                ResetThingOnScene(type, cellTransform);
+            }
         }
-        // 司南复位
-        if (propCellDict.TryGetValue(ThingOSType.Compass, out Transform compassCell))
-        {
-            CompassIdle(compassCell);
-        }
-        // 磁石复位
-        if (propCellDict.TryGetValue(ThingOSType.Magnet, out Transform magnetCell))
-        {
-            MagnetIdle(magnetCell);
-        }
+        //// 火箭复位
+        //if (propCellDict.TryGetValue(ThingOSType.Rocket, out Transform rocketCell))
+        //{
+        //    RocketIdle(rocketCell);
+        //}
+
+        //// 孔明灯复位
+        //if (propCellDict.TryGetValue(ThingOSType.KongMingLantern, out Transform kmdCell))
+        //{
+        //    KongMingLanternIdle(kmdCell);
+        //}
+        //// 司南复位
+        //if (propCellDict.TryGetValue(ThingOSType.Compass, out Transform compassCell))
+        //{
+        //    CompassIdle(compassCell);
+        //}
+        //// 磁石复位
+        //if (propCellDict.TryGetValue(ThingOSType.Magnet, out Transform magnetCell))
+        //{
+        //    MagnetIdle(magnetCell);
+        //}
     }
 
-    private void MagnetIdle(Transform cellTransform)   ///// 磁石回溯复位
+    /// <summary>
+    /// 通用道具复位方法
+    /// </summary>
+    /// <param name="thingOSType">需要复位的道具类型</param>
+    /// <param name="cellTransform">道具所在单元格的Transform</param>
+    private void ResetThingOnScene(ThingOSType thingOSType, Transform cellTransform)
     {
         foreach (Transform child in cellTransform)
         {
             ThingOnScene thing = child.GetComponent<ThingOnScene>();
-            if (thing != null && thing.thingOSType == ThingOSType.Magnet && !thing.gameObject.activeSelf)
+            if (thing != null && thing.thingOSType == thingOSType)
             {
-                thing.transform.position = cellTransform.position;
-                thing.gameObject.SetActive(true);
+                switch (thingOSType)
+                {
+                    case ThingOSType.Rocket:
+                        if (!thing.gameObject.activeSelf)
+                        {
+                            thing.gameObject.SetActive(true);
+                        }
+                        break;
+                    case ThingOSType.KongMingLantern:
+                        thing.transform.position = cellTransform.position;
+                        thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
+                        break;
+                    case ThingOSType.Compass:
+                        if (!thing.gameObject.activeSelf)
+                        {
+                            thing.transform.position = cellTransform.position;
+                            thing.gameObject.SetActive(true);
+                        }
+                        break;
+                    case ThingOSType.Magnet:
+                        if (!thing.gameObject.activeSelf)
+                        {
+                            thing.transform.position = cellTransform.position;
+                            thing.gameObject.SetActive(true);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
 
-    private void CompassIdle(Transform cellTransform)   ///// 司南回溯复位
-    {
-        foreach (Transform child in cellTransform)
-        {
-            ThingOnScene thing = child.GetComponent<ThingOnScene>(); 
-            if (thing != null && thing.thingOSType == ThingOSType.Compass && !thing.gameObject.activeSelf)
-            {
-                thing.transform.position = cellTransform.position;
-                thing.gameObject.SetActive(true);
-            }
-        }
-    }
+    //private void MagnetIdle(Transform cellTransform)   ///// 磁石回溯复位
+    //{
+    //    foreach (Transform child in cellTransform)
+    //    {
+    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
+    //        if (thing != null && thing.thingOSType == ThingOSType.Magnet && !thing.gameObject.activeSelf)
+    //        {
+    //            thing.transform.position = cellTransform.position;
+    //            thing.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
 
-    private void RocketIdle(Transform cellTransform)   ///// 火箭回溯复位
-    {
-        foreach (Transform child in cellTransform)
-        {
-            ThingOnScene thing = child.GetComponent<ThingOnScene>();
-            if (thing != null && thing.thingOSType == ThingOSType.Rocket && !thing.gameObject.activeSelf)
-            {
-                thing.gameObject.SetActive(true);
-            }
-        }
-    }
-    private void KongMingLanternIdle(Transform cellTransform)   ///// 孔明灯回溯复位
-    {
-        foreach (Transform child in cellTransform)
-        {
-            ThingOnScene thing = child.GetComponent<ThingOnScene>();
-            if (thing != null && thing.thingOSType == ThingOSType.KongMingLantern)
-            {
-                thing.transform.position = cellTransform.position;
-                thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
-            }
-        }
-    }
+    //private void CompassIdle(Transform cellTransform)   ///// 司南回溯复位
+    //{
+    //    foreach (Transform child in cellTransform)
+    //    {
+    //        ThingOnScene thing = child.GetComponent<ThingOnScene>(); 
+    //        if (thing != null && thing.thingOSType == ThingOSType.Compass && !thing.gameObject.activeSelf)
+    //        {
+    //            thing.transform.position = cellTransform.position;
+    //            thing.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
+
+    //private void RocketIdle(Transform cellTransform)   ///// 火箭回溯复位
+    //{
+    //    foreach (Transform child in cellTransform)
+    //    {
+    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
+    //        if (thing != null && thing.thingOSType == ThingOSType.Rocket && !thing.gameObject.activeSelf)
+    //        {
+    //            thing.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
+    //private void KongMingLanternIdle(Transform cellTransform)   ///// 孔明灯回溯复位
+    //{
+    //    foreach (Transform child in cellTransform)
+    //    {
+    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
+    //        if (thing != null && thing.thingOSType == ThingOSType.KongMingLantern)
+    //        {
+    //            thing.transform.position = cellTransform.position;
+    //            thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
+    //        }
+    //    }
+    //}
 
     public bool AddThingOS(ThingOSType thingOSType)
     {

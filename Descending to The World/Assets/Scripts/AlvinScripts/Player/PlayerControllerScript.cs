@@ -227,9 +227,7 @@ public class PlayerControllerScript : MonoBehaviour
         //Vector3 theScale = transform.localScale;
         //theScale.x = Mathf.Sign(moveSpeed) * enlargeScale;
         //transform.localScale = theScale;
-        Debug.Log(moveSpeed);
         moveSpeed = -moveSpeed;
-        Debug.Log(moveSpeed);
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = moveSpeed;
         rb.velocity = currentVelocity;
