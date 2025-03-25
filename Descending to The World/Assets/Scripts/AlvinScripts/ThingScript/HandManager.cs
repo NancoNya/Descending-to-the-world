@@ -12,9 +12,8 @@ public class HandManager : MonoBehaviour
     public ThingOnScene currentThing;
     public Dictionary<ThingOSType, Button> buttonMap = new Dictionary<ThingOSType, Button>();
 
-    // ÎªÃ¿¸öµÀ¾ßÀàĞÍÌá¹©¹«¹²µÄ°´Å¥½Ó¿Ú
+    // ä¸ºæ¯ä¸ªé“å…·ç±»å‹æä¾›å…¬å…±çš„æŒ‰é’®æ¥å£
     public Button seismographButton;
-    public Button seismometerButton;
     public Button kongMingLanternButton;
     //public Button sundialButton;
     public Button milkyWayButton;
@@ -22,27 +21,26 @@ public class HandManager : MonoBehaviour
     public Button magnetButton;
     public Button rocketButton;
 
-    // µÀ¾ßÀàĞÍ¶ÔÓ¦µÄCellÎ»ÖÃ´æ´¢£¨»ğ¼ı£¬¿×Ã÷µÆ,Ë¾ÄÏ£©
+    // é“å…·ç±»å‹å¯¹åº”çš„Cellä½ç½®å­˜å‚¨ï¼ˆç«ç®­ï¼Œå­”æ˜ç¯,å¸å—ï¼‰
     public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
     private void Awake()
     {
         if (instance != null)
         {
-            Debug.LogError("HandManager µ¥ÀıÊµÀıÒÑ¾­´æÔÚ£¡");
+            Debug.LogError("HandManager å•ä¾‹å®ä¾‹å·²ç»å­˜åœ¨ï¼");
             return;
         }
         instance = this;
-        Debug.Log("HandManager µ¥ÀıÊµÀı³õÊ¼»¯³É¹¦");
+        Debug.Log("HandManager å•ä¾‹å®ä¾‹åˆå§‹åŒ–æˆåŠŸ");
     }
 
     private void Start()
     {
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
 
-        // ½«Ã¿¸ö°´Å¥Ìí¼Óµ½ buttonMap ×ÖµäÖĞ
+        // å°†æ¯ä¸ªæŒ‰é’®æ·»åŠ åˆ° buttonMap å­—å…¸ä¸­
         buttonMap[ThingOSType.Seismograph] = seismographButton;
-        buttonMap[ThingOSType.Seismometer] = seismometerButton;
         buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton;
         //buttonMap[ThingOSType.Sundial] = sundialButton;
         buttonMap[ThingOSType.MilkyWay] = milkyWayButton;
@@ -50,26 +48,26 @@ public class HandManager : MonoBehaviour
         buttonMap[ThingOSType.Magnet] = magnetButton;
         buttonMap[ThingOSType.Rocket] = rocketButton;
 
-        // ¼ì²é×ÖµäÊÇ·ñÕıÈ·³õÊ¼»¯
+        // æ£€æŸ¥å­—å…¸æ˜¯å¦æ­£ç¡®åˆå§‹åŒ–
         foreach (var kvp in buttonMap)
         {
             if (kvp.Value != null)
             {
-                Debug.Log($"³É¹¦½« {kvp.Key} Óë°´Å¥¹ØÁª");
+                Debug.Log($"æˆåŠŸå°† {kvp.Key} ä¸æŒ‰é’®å…³è”");
             }
             else
             {
-                Debug.LogError($"Î´Îª {kvp.Key} ¹ØÁªÓĞĞ§µÄ°´Å¥");
+                Debug.LogError($"æœªä¸º {kvp.Key} å…³è”æœ‰æ•ˆçš„æŒ‰é’®");
             }
         }
     }
 
     /// <summary>
-    /// »ØËİÊ±£¬³¡¾°ÖĞÒÑ·ÅÖÃµÄ¿×Ã÷µÆ¡¢»ğ¼ı¡¢Ë¾ÄÏ¡£´ÅÊ¯¶¼»Øµ½·ÅÖÃµã
+    /// å›æº¯æ—¶ï¼Œåœºæ™¯ä¸­å·²æ”¾ç½®çš„å­”æ˜ç¯ã€ç«ç®­ã€å¸å—ã€‚ç£çŸ³éƒ½å›åˆ°æ”¾ç½®ç‚¹
     /// </summary>
     private void OnIdleEvent()
     {
-        // ¶¨ÒåĞèÒª¸´Î»µÄµÀ¾ßÀàĞÍÊı×é
+        // å®šä¹‰éœ€è¦å¤ä½çš„é“å…·ç±»å‹æ•°ç»„
         ThingOSType[] thingOSTypes = {
             ThingOSType.Rocket,
             ThingOSType.KongMingLantern,
@@ -77,7 +75,7 @@ public class HandManager : MonoBehaviour
             ThingOSType.Magnet
         };
 
-        // ±éÀúµÀ¾ßÀàĞÍ£¬½øĞĞ¸´Î»²Ù×÷
+        // éå†é“å…·ç±»å‹ï¼Œè¿›è¡Œå¤ä½æ“ä½œ
         foreach (ThingOSType type in thingOSTypes)
         {
             if (propCellDict.TryGetValue(type, out Transform cellTransform))
@@ -85,23 +83,23 @@ public class HandManager : MonoBehaviour
                 ResetThingOnScene(type, cellTransform);
             }
         }
-        //// »ğ¼ı¸´Î»
+        //// ç«ç®­å¤ä½
         //if (propCellDict.TryGetValue(ThingOSType.Rocket, out Transform rocketCell))
         //{
         //    RocketIdle(rocketCell);
         //}
 
-        //// ¿×Ã÷µÆ¸´Î»
+        //// å­”æ˜ç¯å¤ä½
         //if (propCellDict.TryGetValue(ThingOSType.KongMingLantern, out Transform kmdCell))
         //{
         //    KongMingLanternIdle(kmdCell);
         //}
-        //// Ë¾ÄÏ¸´Î»
+        //// å¸å—å¤ä½
         //if (propCellDict.TryGetValue(ThingOSType.Compass, out Transform compassCell))
         //{
         //    CompassIdle(compassCell);
         //}
-        //// ´ÅÊ¯¸´Î»
+        //// ç£çŸ³å¤ä½
         //if (propCellDict.TryGetValue(ThingOSType.Magnet, out Transform magnetCell))
         //{
         //    MagnetIdle(magnetCell);
@@ -109,10 +107,10 @@ public class HandManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Í¨ÓÃµÀ¾ß¸´Î»·½·¨
+    /// é€šç”¨é“å…·å¤ä½æ–¹æ³•
     /// </summary>
-    /// <param name="thingOSType">ĞèÒª¸´Î»µÄµÀ¾ßÀàĞÍ</param>
-    /// <param name="cellTransform">µÀ¾ßËùÔÚµ¥Ôª¸ñµÄTransform</param>
+    /// <param name="thingOSType">éœ€è¦å¤ä½çš„é“å…·ç±»å‹</param>
+    /// <param name="cellTransform">é“å…·æ‰€åœ¨å•å…ƒæ ¼çš„Transform</param>
     private void ResetThingOnScene(ThingOSType thingOSType, Transform cellTransform)
     {
         foreach (Transform child in cellTransform)
@@ -130,7 +128,7 @@ public class HandManager : MonoBehaviour
                         break;
                     case ThingOSType.KongMingLantern:
                         thing.transform.position = cellTransform.position;
-                        thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Í£Ö¹ÔË¶¯
+                        thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // åœæ­¢è¿åŠ¨
                         break;
                     case ThingOSType.Compass:
                         if (!thing.gameObject.activeSelf)
@@ -153,7 +151,7 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    //private void MagnetIdle(Transform cellTransform)   ///// ´ÅÊ¯»ØËİ¸´Î»
+    //private void MagnetIdle(Transform cellTransform)   ///// ç£çŸ³å›æº¯å¤ä½
     //{
     //    foreach (Transform child in cellTransform)
     //    {
@@ -166,7 +164,7 @@ public class HandManager : MonoBehaviour
     //    }
     //}
 
-    //private void CompassIdle(Transform cellTransform)   ///// Ë¾ÄÏ»ØËİ¸´Î»
+    //private void CompassIdle(Transform cellTransform)   ///// å¸å—å›æº¯å¤ä½
     //{
     //    foreach (Transform child in cellTransform)
     //    {
@@ -179,7 +177,7 @@ public class HandManager : MonoBehaviour
     //    }
     //}
 
-    //private void RocketIdle(Transform cellTransform)   ///// »ğ¼ı»ØËİ¸´Î»
+    //private void RocketIdle(Transform cellTransform)   ///// ç«ç®­å›æº¯å¤ä½
     //{
     //    foreach (Transform child in cellTransform)
     //    {
@@ -190,7 +188,7 @@ public class HandManager : MonoBehaviour
     //        }
     //    }
     //}
-    //private void KongMingLanternIdle(Transform cellTransform)   ///// ¿×Ã÷µÆ»ØËİ¸´Î»
+    //private void KongMingLanternIdle(Transform cellTransform)   ///// å­”æ˜ç¯å›æº¯å¤ä½
     //{
     //    foreach (Transform child in cellTransform)
     //    {
@@ -198,27 +196,27 @@ public class HandManager : MonoBehaviour
     //        if (thing != null && thing.thingOSType == ThingOSType.KongMingLantern)
     //        {
     //            thing.transform.position = cellTransform.position;
-    //            thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Í£Ö¹ÔË¶¯
+    //            thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // åœæ­¢è¿åŠ¨
     //        }
     //    }
     //}
 
     public bool AddThingOS(ThingOSType thingOSType)
     {
-        Debug.Log($"³¢ÊÔÌí¼Ó {thingOSType} ÀàĞÍµÄµÀ¾ß");
+        Debug.Log($"å°è¯•æ·»åŠ  {thingOSType} ç±»å‹çš„é“å…·");
         if (currentThing != null)
         {
-            Debug.Log("ÊÖÖĞÒÑÓĞµÀ¾ß£¬ÎŞ·¨Ìí¼Ó");
+            Debug.Log("æ‰‹ä¸­å·²æœ‰é“å…·ï¼Œæ— æ³•æ·»åŠ ");
             return false;
         }
         ThingOnScene thingOSPrefab = GetThingOSPrefab(thingOSType);
         if (thingOSPrefab == null)
         {
-            Debug.Log("Î´ÕÒµ½¶ÔÓ¦ÀàĞÍµÄµÀ¾ßÔ¤ÖÆÌå");
+            Debug.Log("æœªæ‰¾åˆ°å¯¹åº”ç±»å‹çš„é“å…·é¢„åˆ¶ä½“");
             return false;
         }
         currentThing = GameObject.Instantiate(thingOSPrefab);
-        Debug.Log($"³É¹¦Ìí¼Ó {thingOSType} ÀàĞÍµÄµÀ¾ß");
+        Debug.Log($"æˆåŠŸæ·»åŠ  {thingOSType} ç±»å‹çš„é“å…·");
         if (buttonMap.ContainsKey(thingOSType))
         {
             buttonMap[thingOSType].gameObject.SetActive(false);
@@ -241,13 +239,13 @@ public class HandManager : MonoBehaviour
         }
         if (currentThing.gameObject == null)
         {
-            Debug.LogError("µÀ¾ß¶ÔÏóÒÑ±»Ïú»Ù£¬ÎŞ·¨¸úËæÊó±ê£¡");
+            Debug.LogError("é“å…·å¯¹è±¡å·²è¢«é”€æ¯ï¼Œæ— æ³•è·Ÿéšé¼ æ ‡ï¼");
             MarkThingAsDestroyed(currentThing.thingOSType);
             return;
         }
         if (Camera.main == null)
         {
-            Debug.LogError("Î´ÕÒµ½Ö÷Ïà»ú£¡");
+            Debug.LogError("æœªæ‰¾åˆ°ä¸»ç›¸æœºï¼");
             return;
         }
         try
@@ -259,20 +257,20 @@ public class HandManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError($"¸úËæÊó±ê²Ù×÷³ö´í: {e.Message}");
+            Debug.LogError($"è·Ÿéšé¼ æ ‡æ“ä½œå‡ºé”™: {e.Message}");
         }
     }
 
     public void OnCellClick(Cell cell)
     {
-        Debug.Log("³¢ÊÔ½«ÊÖÖĞµÀ¾ß·ÅÖÃµ½µ¥Ôª¸ñ");
+        Debug.Log("å°è¯•å°†æ‰‹ä¸­é“å…·æ”¾ç½®åˆ°å•å…ƒæ ¼");
         if (currentThing == null)
         {
-            Debug.Log("ÊÖÖĞÃ»ÓĞµÀ¾ß£¬ÎŞ·¨·ÅÖÃ");
+            Debug.Log("æ‰‹ä¸­æ²¡æœ‰é“å…·ï¼Œæ— æ³•æ”¾ç½®");
             return;
         }
 
-        //////// ¼ÇÂ¼µÀ¾ßÀàĞÍ¶ÔÓ¦µÄCellÎ»ÖÃ
+        //////// è®°å½•é“å…·ç±»å‹å¯¹åº”çš„Cellä½ç½®
         if (currentThing.thingOSType == ThingOSType.KongMingLantern || currentThing.thingOSType == ThingOSType.Rocket || currentThing.thingOSType == ThingOSType.Compass || currentThing.thingOSType == ThingOSType.Magnet)
         {
             propCellDict[currentThing.thingOSType] = cell.transform;
@@ -281,13 +279,13 @@ public class HandManager : MonoBehaviour
         bool isSuccess = cell.AddThingOS(currentThing);
         if (isSuccess)
         {
-            Debug.Log("³É¹¦½«µÀ¾ß·ÅÖÃµ½µ¥Ôª¸ñ");
+            Debug.Log("æˆåŠŸå°†é“å…·æ”¾ç½®åˆ°å•å…ƒæ ¼");
             Time.timeScale = 1;
             currentThing = null;
         }
         else
         {
-            Debug.Log("ÎŞ·¨½«µÀ¾ß·ÅÖÃµ½µ¥Ôª¸ñ");
+            Debug.Log("æ— æ³•å°†é“å…·æ”¾ç½®åˆ°å•å…ƒæ ¼");
         }
     }
 
@@ -295,37 +293,37 @@ public class HandManager : MonoBehaviour
     {
         if (instance == null)
         {
-            Debug.LogError("HandManager µ¥ÀıÊµÀıÎ´³õÊ¼»¯£¡");
+            Debug.LogError("HandManager å•ä¾‹å®ä¾‹æœªåˆå§‹åŒ–ï¼");
             return;
         }
-        Debug.Log("³¢ÊÔ´Óµ¥Ôª¸ñÊ°È¡µÀ¾ß");
+        Debug.Log("å°è¯•ä»å•å…ƒæ ¼æ‹¾å–é“å…·");
         if (currentThing != null)
         {
-            Debug.Log($"ÊÖÖĞÒÑÓĞµÀ¾ß: {currentThing.thingOSType}£¬ÎŞ·¨Ê°È¡");
+            Debug.Log($"æ‰‹ä¸­å·²æœ‰é“å…·: {currentThing.thingOSType}ï¼Œæ— æ³•æ‹¾å–");
             return;
         }
         if (cell == null)
         {
-            Debug.LogError("´«ÈëµÄµ¥Ôª¸ñ¶ÔÏóÎª¿Õ£¡");
+            Debug.LogError("ä¼ å…¥çš„å•å…ƒæ ¼å¯¹è±¡ä¸ºç©ºï¼");
             return;
         }
         if (cell.currentThing == null)
         {
-            Debug.Log("µ¥Ôª¸ñÖĞÃ»ÓĞµÀ¾ß£¬ÎŞ·¨Ê°È¡");
+            Debug.Log("å•å…ƒæ ¼ä¸­æ²¡æœ‰é“å…·ï¼Œæ— æ³•æ‹¾å–");
             return;
         }
-        Debug.Log($"×¼±¸Ê°È¡µ¥Ôª¸ñÖĞµÄµÀ¾ß: {cell.currentThing.thingOSType}");
-        Debug.Log("¿ªÊ¼Ö´ĞĞÊ°È¡²Ù×÷");
+        Debug.Log($"å‡†å¤‡æ‹¾å–å•å…ƒæ ¼ä¸­çš„é“å…·: {cell.currentThing.thingOSType}");
+        Debug.Log("å¼€å§‹æ‰§è¡Œæ‹¾å–æ“ä½œ");
         currentThing = cell.currentThing;
         cell.currentThing = null;
         Time.timeScale = 0;
-        Debug.Log("³É¹¦´Óµ¥Ôª¸ñÊ°È¡µÀ¾ß");
+        Debug.Log("æˆåŠŸä»å•å…ƒæ ¼æ‹¾å–é“å…·");
         if (currentThing != null)
         {
-            Debug.Log($"µ±Ç°ÊÖÖĞµÀ¾ß: {currentThing.thingOSType}");
+            Debug.Log($"å½“å‰æ‰‹ä¸­é“å…·: {currentThing.thingOSType}");
             if (currentThing.gameObject == null)
             {
-                Debug.LogError("µÀ¾ß¶ÔÏóÒÑ±»Ïú»Ù£¡");
+                Debug.LogError("é“å…·å¯¹è±¡å·²è¢«é”€æ¯ï¼");
                 MarkThingAsDestroyed(currentThing.thingOSType);
             }
             else
@@ -338,7 +336,7 @@ public class HandManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("currentThing Î´ÕıÈ·¸³Öµ£¡");
+            Debug.LogError("currentThing æœªæ­£ç¡®èµ‹å€¼ï¼");
         }
     }
 
@@ -346,26 +344,26 @@ public class HandManager : MonoBehaviour
     {
         if (buttonMap.ContainsKey(thingOSType))
         {
-            Debug.Log($"³¢ÊÔ¼¤»î {thingOSType} ¶ÔÓ¦µÄ°´Å¥");
+            Debug.Log($"å°è¯•æ¿€æ´» {thingOSType} å¯¹åº”çš„æŒ‰é’®");
             buttonMap[thingOSType].gameObject.SetActive(true);
             if (buttonMap[thingOSType].gameObject.activeSelf)
             {
-                Debug.Log($" {thingOSType} ¶ÔÓ¦µÄ°´Å¥ÒÑ³É¹¦¼¤»î");
+                Debug.Log($" {thingOSType} å¯¹åº”çš„æŒ‰é’®å·²æˆåŠŸæ¿€æ´»");
             }
             else
             {
-                Debug.LogError($" {thingOSType} ¶ÔÓ¦µÄ°´Å¥¼¤»îÊ§°Ü");
+                Debug.LogError($" {thingOSType} å¯¹åº”çš„æŒ‰é’®æ¿€æ´»å¤±è´¥");
             }
         }
         else
         {
-            Debug.LogError($"Î´ÕÒµ½ {thingOSType} ¶ÔÓ¦µÄ°´Å¥");
+            Debug.LogError($"æœªæ‰¾åˆ° {thingOSType} å¯¹åº”çš„æŒ‰é’®");
         }
     }
 
     public void HandleDoubleClickThing(ThingOSType thingOSType, GameObject thingObject)
     {
-        Debug.Log($"´¦Àí {thingOSType} ÀàĞÍµÀ¾ßµÄÔÙ´Îµã»÷ÊÂ¼ş");
+        Debug.Log($"å¤„ç† {thingOSType} ç±»å‹é“å…·çš„å†æ¬¡ç‚¹å‡»äº‹ä»¶");
         MarkThingAsDestroyed(thingOSType);
         Destroy(thingObject);
     }

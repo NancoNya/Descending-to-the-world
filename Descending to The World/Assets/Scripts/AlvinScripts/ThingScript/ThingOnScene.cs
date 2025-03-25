@@ -6,25 +6,25 @@ using static ThingScript;
 
 public class ThingOnScene : MonoBehaviour
 {
-    public ThingOSType thingOSType = ThingOSType.Seismometer;
+    public ThingOSType thingOSType = ThingOSType.Seismograph;
     private bool hasBeenPickedUp = false;
 
     public void OnClick()
     {
         if (HandManager.instance == null)
         {
-            Debug.LogError("HandManager µ¥ÀıÊµÀıÎ´³õÊ¼»¯£¡");
+            Debug.LogError("HandManager å•ä¾‹å®ä¾‹æœªåˆå§‹åŒ–ï¼");
             return;
         }
 
         if (hasBeenPickedUp)
         {
-            Debug.Log($"ÔÙ´Îµã»÷ÁË {thingOSType} ÀàĞÍµÄµÀ¾ß£¬µ÷ÓÃ HandManager ´¦Àí");
+            Debug.Log($"å†æ¬¡ç‚¹å‡»äº† {thingOSType} ç±»å‹çš„é“å…·ï¼Œè°ƒç”¨ HandManager å¤„ç†");
             HandManager.instance.HandleDoubleClickThing(thingOSType, gameObject);
         }
         else
         {
-            Debug.Log($"Ê×´Îµã»÷ÁË {thingOSType} ÀàĞÍµÄµÀ¾ß£¬³¢ÊÔÌí¼Óµ½ÊÖÖĞ");
+            Debug.Log($"é¦–æ¬¡ç‚¹å‡»äº† {thingOSType} ç±»å‹çš„é“å…·ï¼Œå°è¯•æ·»åŠ åˆ°æ‰‹ä¸­");
             bool added = HandManager.instance.AddThingOS(thingOSType);
             if (added)
             {
@@ -38,17 +38,17 @@ public class ThingOnScene : MonoBehaviour
     {
         if (HandManager.instance == null)
         {
-            Debug.LogError("HandManager µ¥ÀıÊµÀıÎ´³õÊ¼»¯£¡");
+            Debug.LogError("HandManager å•ä¾‹å®ä¾‹æœªåˆå§‹åŒ–ï¼");
             return;
         }
-        Debug.Log($"ÔÚµ¥Ôª¸ñÖĞµã»÷ÁË {thingOSType} ÀàĞÍµÄµÀ¾ß");
+        Debug.Log($"åœ¨å•å…ƒæ ¼ä¸­ç‚¹å‡»äº† {thingOSType} ç±»å‹çš„é“å…·");
         Cell cell = GetComponentInParent<Cell>();
         if (cell == null)
         {
-            Debug.LogError("Î´ÕÒµ½¸¸µ¥Ôª¸ñ¶ÔÏó");
+            Debug.LogError("æœªæ‰¾åˆ°çˆ¶å•å…ƒæ ¼å¯¹è±¡");
             return;
         }
-        Debug.Log("×¼±¸µ÷ÓÃ HandManager µÄ PickUpThingFromCell ·½·¨");
+        Debug.Log("å‡†å¤‡è°ƒç”¨ HandManager çš„ PickUpThingFromCell æ–¹æ³•");
         HandManager.instance.PickUpThingFromCell(cell);
         StartCoroutine(DestroyAfterPickup());
     }
@@ -56,7 +56,7 @@ public class ThingOnScene : MonoBehaviour
     private IEnumerator DestroyAfterPickup()
     {
         yield return new WaitForEndOfFrame();
-        Debug.Log($"Ïú»ÙµÀ¾ß: {thingOSType}");
+        Debug.Log($"é”€æ¯é“å…·: {thingOSType}");
         HandManager.instance.MarkThingAsDestroyed(thingOSType);
         Destroy(gameObject);
     }

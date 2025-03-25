@@ -5,7 +5,6 @@ using UnityEngine;
 public enum ThingOSType
 {
     Seismograph,
-    Seismometer,
     KongMingLantern,
     Sundial,
     MilkyWay,
@@ -16,7 +15,7 @@ public enum ThingOSType
 
 public class ThingScript : MonoBehaviour
 {
-    public ThingOSType thingOSType = ThingOSType.Seismometer;
+    public ThingOSType thingOSType = ThingOSType.Seismograph;
 
     public void OnClick()
     {
