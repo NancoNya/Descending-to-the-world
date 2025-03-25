@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8483688027401061077}
   - component: {fileID: 4846834752966436534}
   - component: {fileID: 7733985031510003173}
-  - component: {fileID: 8987876925728827167}
+  - component: {fileID: 3024881376446370018}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Rocket
@@ -234,7 +234,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.19082436}
   m_EdgeRadius: 0
---- !u!114 &8987876925728827167
+--- !u!114 &3024881376446370018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
