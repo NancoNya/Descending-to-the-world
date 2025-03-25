@@ -3177,7 +3177,8 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   hasCompass: 0
   arriveMagnet: 0
-  moveToCompass: 0
+  moveToMagnet: 0
+  currentDirection: 0
 --- !u!114 &1123996479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,8 +3199,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  leftOffset: {x: -0.48, y: 0.13}
-  rightOffset: {x: 0.48, y: 0.13}
+  leftOffset: {x: -0.48, y: -0.25}
+  rightOffset: {x: 0.48, y: -0.23}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64

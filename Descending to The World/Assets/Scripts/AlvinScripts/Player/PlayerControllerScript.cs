@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
+    private int enlargeScale = 5;   // sprite的scale放大倍数
 
     [Header("状态")]
     public bool isMoving;
@@ -59,7 +61,7 @@ public class PlayerControllerScript : MonoBehaviour
         // 移动, 在地面上,未到达磁石状态
         if(isMoving && physicsCheckScript.isGround && !arriveMagnet)
         {
-            currentDirection = 5f;  // PS: 根据最终人物图片大小调整
+            currentDirection = 1f;  // PS: 根据最终人物图片大小调整
             //Debug.Log("fixupdate");
             WalkAnim();
             StartWalking();
@@ -115,7 +117,7 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     void OnIdleEvent()
     {
-        currentDirection = 5f;  // PS: 根据最终人物图片大小调整
+        currentDirection = 1f;  // PS: 根据最终人物图片大小调整
         canAddSpeed = false;
         isMoving = false;
         hasCompass = false;
@@ -133,7 +135,7 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void StartWalking()
     {
-            rb.velocity = new Vector2((currentDirection / 5) * moveSpeed, 0f);  // PS: 根据最终人物图片大小调整
+            rb.velocity = new Vector2(currentDirection * moveSpeed, 0f);  // PS: 根据最终人物图片大小调整
     }
 
     /// <summary>
@@ -197,52 +199,66 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            FlipDirection();
+            if((physicsCheckScript.touchLeftWall || physicsCheckScript.touchRightWall))
+                FlipDirection();
         }
         if (collision.gameObject.CompareTag("Rocket"))
         {
             canAddSpeed = true;
         }
     }
-    
+
     /// <summary>
     /// 转换移动方向
     /// </summary>
     private void FlipDirection()
     {
+        //Vector2 currentVelocity = rb.velocity;
+
+        //moveSpeed = -moveSpeed;
+        //currentDirection = Mathf.Sign(moveSpeed);
+
+        //currentVelocity.x = moveSpeed;
+        //rb.velocity = currentVelocity;
+        //isFacingRight = !isFacingRight;
+        ////FlipSprite();
+
+        //// sprite翻转
+        //Vector3 theScale = transform.localScale;
+        //theScale.x = Mathf.Sign(moveSpeed) * enlargeScale;
+        //transform.localScale = theScale;
+        Debug.Log(moveSpeed);
         moveSpeed = -moveSpeed;
+        Debug.Log(moveSpeed);
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = moveSpeed;
         rb.velocity = currentVelocity;
         isFacingRight = !isFacingRight;
-        FlipSprite();
-    }
 
-    /// <summary>
-    /// 人物sprite翻转
-    /// </summary>
-    private void FlipSprite()
-    {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
 
     /// <summary>
-    /// 拾取司南
+    /// 人物sprite翻转
+    /// </summary>
+    //private void FlipSprite()
+    //{
+    //    Vector3 theScale = transform.localScale;
+    //    theScale.x *= -1;
+    //    transform.localScale = theScale;
+    //}
+
+    /// <summary>
+    /// 拾取司南，查找场景中有无磁石
     /// </summary>
     public void PickUpCompass()
     {
         hasCompass = true;
         ///////CompassAnim();
-        FindMagnet();
-    }
-
-    /// <summary>
-    /// 拾取司南后寻找磁石。
-    /// </summary>
-    private void FindMagnet()
-    {
+        // FindMagnet();
+        // 拾取后寻找磁石
         magnet = GameObject.FindWithTag("Magnet");
         if (magnet != null)
         {
@@ -250,6 +266,19 @@ public class PlayerControllerScript : MonoBehaviour
             moveToMagnet = true;
         }
     }
+
+    /// <summary>
+    /// 拾取司南后寻找磁石。
+    /// </summary>
+    //private void FindMagnet()
+    //{
+    //    magnet = GameObject.FindWithTag("Magnet");
+    //    if (magnet != null)
+    //    {
+    //        //hasCompass = true;
+    //        moveToMagnet = true;
+    //    }
+    //}
 
     /// <summary>
     /// 向磁石移动
@@ -265,12 +294,15 @@ public class PlayerControllerScript : MonoBehaviour
             //float direction = (Mathf.Sign(targetX - currentX))*5;
 
             // 计算移动方向 
-            currentDirection = (Mathf.Sign(targetX - currentX)) * 5;  // PS: 根据最终人物图片大小调整
+            currentDirection = Mathf.Sign(targetX - currentX);  // PS: 根据最终人物图片大小调整
 
             // 设置sprite朝向
             if (currentDirection != 0)
             {
-                transform.localScale = new Vector3(currentDirection, 5f, 1f);  // PS: 根据最终人物图片大小调整
+                Vector3 theScale = transform.localScale;
+                theScale.x = currentDirection * enlargeScale;
+                transform.localScale = theScale;
+                //transform.localScale = new Vector3(currentDirection * enlargeScale, enlargeScale, 1f);  // PS: 根据最终人物图片大小调整
             }
             //// 设置sprite朝向
             //if (currentDirection != 0)

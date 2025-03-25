@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -5734557096201531410}
   - component: {fileID: 2708684386347518348}
   - component: {fileID: 797314875487418541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Seismometer
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
