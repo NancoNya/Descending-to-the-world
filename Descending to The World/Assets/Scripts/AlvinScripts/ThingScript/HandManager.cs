@@ -83,27 +83,6 @@ public class HandManager : MonoBehaviour
                 ResetThingOnScene(type, cellTransform);
             }
         }
-        //// 火箭复位
-        //if (propCellDict.TryGetValue(ThingOSType.Rocket, out Transform rocketCell))
-        //{
-        //    RocketIdle(rocketCell);
-        //}
-
-        //// 孔明灯复位
-        //if (propCellDict.TryGetValue(ThingOSType.KongMingLantern, out Transform kmdCell))
-        //{
-        //    KongMingLanternIdle(kmdCell);
-        //}
-        //// 司南复位
-        //if (propCellDict.TryGetValue(ThingOSType.Compass, out Transform compassCell))
-        //{
-        //    CompassIdle(compassCell);
-        //}
-        //// 磁石复位
-        //if (propCellDict.TryGetValue(ThingOSType.Magnet, out Transform magnetCell))
-        //{
-        //    MagnetIdle(magnetCell);
-        //}
     }
 
     /// <summary>
@@ -150,56 +129,6 @@ public class HandManager : MonoBehaviour
             }
         }
     }
-
-    //private void MagnetIdle(Transform cellTransform)   ///// 磁石回溯复位
-    //{
-    //    foreach (Transform child in cellTransform)
-    //    {
-    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
-    //        if (thing != null && thing.thingOSType == ThingOSType.Magnet && !thing.gameObject.activeSelf)
-    //        {
-    //            thing.transform.position = cellTransform.position;
-    //            thing.gameObject.SetActive(true);
-    //        }
-    //    }
-    //}
-
-    //private void CompassIdle(Transform cellTransform)   ///// 司南回溯复位
-    //{
-    //    foreach (Transform child in cellTransform)
-    //    {
-    //        ThingOnScene thing = child.GetComponent<ThingOnScene>(); 
-    //        if (thing != null && thing.thingOSType == ThingOSType.Compass && !thing.gameObject.activeSelf)
-    //        {
-    //            thing.transform.position = cellTransform.position;
-    //            thing.gameObject.SetActive(true);
-    //        }
-    //    }
-    //}
-
-    //private void RocketIdle(Transform cellTransform)   ///// 火箭回溯复位
-    //{
-    //    foreach (Transform child in cellTransform)
-    //    {
-    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
-    //        if (thing != null && thing.thingOSType == ThingOSType.Rocket && !thing.gameObject.activeSelf)
-    //        {
-    //            thing.gameObject.SetActive(true);
-    //        }
-    //    }
-    //}
-    //private void KongMingLanternIdle(Transform cellTransform)   ///// 孔明灯回溯复位
-    //{
-    //    foreach (Transform child in cellTransform)
-    //    {
-    //        ThingOnScene thing = child.GetComponent<ThingOnScene>();
-    //        if (thing != null && thing.thingOSType == ThingOSType.KongMingLantern)
-    //        {
-    //            thing.transform.position = cellTransform.position;
-    //            thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
-    //        }
-    //    }
-    //}
 
     public bool AddThingOS(ThingOSType thingOSType)
     {

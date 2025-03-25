@@ -133,7 +133,6 @@ MonoBehaviour:
   isInvincible: 0
   invincibleTimer: 0
   invincibleTime: 2
-  Moon: {fileID: 0}
 --- !u!61 &4429467711961219709
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9293c944b6b65df45908a34de49962be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 3
+  thingOSType: 2
 --- !u!61 &2529260905465284165
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -249,4 +248,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965f87419eadb5a4da46fa1465b13c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 3
+  thingOSType: 2
