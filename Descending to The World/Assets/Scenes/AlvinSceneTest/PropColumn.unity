@@ -3329,6 +3329,9 @@ MonoBehaviour:
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
   currentDirection: 0
+  waitTime: 0.5
+  waitTimeCounter: 0.5
+  wait: 0
   holdCompass: 0
   arriveMagnet: 0
   moveToMagnet: 0

@@ -16,9 +16,16 @@ public class PlayerControllerScript : MonoBehaviour
 
     [Header("移动状态")]
     [SerializeField]private bool isMoving;
+    [SerializeField] private bool isTurning = false;
     [SerializeField]private Vector3 faceDir;
     [SerializeField]private float currentDirection;  // 记录当前移动方向
     private bool canAddSpeed = false;
+
+    [Header("计时器")]
+    public float waitTime = 1f;
+    public float waitTimeCounter = 1f;
+    public bool wait;
+    private bool hasFlipped = false;
 
     [Header("道具持有状态")]
     public bool holdCompass = false;  // 是否拿着磁石
@@ -54,6 +61,7 @@ public class PlayerControllerScript : MonoBehaviour
     private void Update()
     {
         currentDirection = Mathf.Sign(rb.velocity.x);
+        TimeCounter();
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
     }
@@ -62,9 +70,7 @@ public class PlayerControllerScript : MonoBehaviour
         
         if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,未到达磁石状态
         {
-            //WalkAnim();
             anim.SetBool("isWalking", true);
-            // currentDirection = 1f;
             StartWalking();
         }
         else if (!physicsCheckScript.isGround)    // 不在地面上则自由落体
@@ -80,21 +86,17 @@ public class PlayerControllerScript : MonoBehaviour
 
         if (isMoving && physicsCheckScript.isGround && arriveMagnet)   // 到达磁石后，按当前移动方向继续移动
         {
-            //Debug.Log();
-            //WalkAnim();
             anim.SetBool("isWalking", true);
             StartWalking();
         }
 
         if (canAddSpeed)   // 火箭加速
         {
-            //RocketAnim();
             anim.SetBool("hasRocket", true);
             timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0);
         }
         if (timer >= 0.8f)   // 加速时间结束 
         {
-            //WalkAnim();
             anim.SetBool("hasRocket", false);
             anim.SetBool("isWalking", true);
             rb.velocity = new Vector2(moveSpeed,0); 
@@ -139,11 +141,9 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void FallDown()
     {
-        // anim.SetBool("isWalking", false);
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = 0;
         rb.velocity = currentVelocity;
-        //IdleAnim();
     }
 
     //public void WalkAnim()
@@ -185,9 +185,6 @@ public class PlayerControllerScript : MonoBehaviour
 
         isFacingRight = true;
         moveSpeed = Mathf.Abs(moveSpeed);
-        //Vector2 currentVelocity = rb.velocity;
-        //currentVelocity.x = moveSpeed;
-        //rb.velocity = currentVelocity;
 
         // 重置 timer 变量
         timer = 0f;
@@ -196,24 +193,6 @@ public class PlayerControllerScript : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x = Mathf.Abs(theScale.x);
         transform.localScale = theScale;
-        //IdleAnim();
-    }
-
-    /// <summary>
-    /// 碰撞到墙壁或地动仪翻转
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            if((physicsCheckScript.touchLeftWall || physicsCheckScript.touchRightWall))
-                FlipDirection();
-        }
-        if (collision.gameObject.CompareTag("Rocket"))
-        {
-            canAddSpeed = true;
-        }
     }
 
     /// <summary>
@@ -221,26 +200,13 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     private void FlipDirection()
     {
-        //Vector2 currentVelocity = rb.velocity;
-
-        //moveSpeed = -moveSpeed;
-        //currentDirection = Mathf.Sign(moveSpeed);
-
-        //currentVelocity.x = moveSpeed;
-        //rb.velocity = currentVelocity;
-        //isFacingRight = !isFacingRight;
-        ////FlipSprite();
-
-        //// sprite翻转
-        //Vector3 theScale = transform.localScale;
-        //theScale.x = Mathf.Sign(moveSpeed) * enlargeScale;
-        //transform.localScale = theScale;
+        // 翻转运动方向
         moveSpeed = -moveSpeed;
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = moveSpeed;
         rb.velocity = currentVelocity;
         isFacingRight = !isFacingRight;
-
+        // 翻转sprite
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
@@ -253,7 +219,6 @@ public class PlayerControllerScript : MonoBehaviour
     {
         anim.SetBool("hasCompass", true);
         holdCompass = true;
-        //CompassAnim();
         // 拾取司南后寻找磁石
         magnet = GameObject.FindWithTag("Magnet");
         if (magnet != null)
@@ -289,8 +254,7 @@ public class PlayerControllerScript : MonoBehaviour
             // 判断是否到达目标位置
             if (Mathf.Abs(currentX - targetX) < positionThreshold)
             {
-                //WalkAnim();
-                // TODO 动画切换：拿司南到走路
+                // 动画切换：拿司南到走路
                 anim.SetBool("hasCompass", false);
                 anim.SetBool("isWalking", false);
                 holdCompass = false;
@@ -316,6 +280,43 @@ public class PlayerControllerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 碰撞到墙壁或地动仪翻转
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (((physicsCheckScript.touchLeftWall && currentDirection < 0) || (physicsCheckScript.touchRightWall) && currentDirection > 0))
+            {
+                wait = true;
+                hasFlipped = false;
+            }
+        }
+        if (collision.gameObject.CompareTag("Rocket"))
+        {
+            canAddSpeed = true;
+        }
+    }
+    
+    public void TimeCounter()
+    {
+        if (wait)
+        { 
+            if(!hasFlipped)
+            {
+                FlipDirection();
+                hasFlipped = true;
+            }
+            waitTimeCounter -= Time.deltaTime;
+            if (waitTimeCounter <= 0)
+            {
+                wait = false;
+                waitTimeCounter = waitTime;
+            }
+        }
+    }
     /// <summary>
     /// 到达通关点，停止运动
     /// </summary>
