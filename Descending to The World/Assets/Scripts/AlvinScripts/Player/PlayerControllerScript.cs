@@ -16,16 +16,16 @@ public class PlayerControllerScript : MonoBehaviour
 
     [Header("移动状态")]
     [SerializeField]private bool isMoving;
-    [SerializeField] private bool isTurning = false;
+    //[SerializeField] private bool isTurning = false;
     [SerializeField]private Vector3 faceDir;
-    [SerializeField]private float currentDirection;  // 记录当前移动方向
+    public float currentDirection;  // 记录当前移动方向
     private bool canAddSpeed = false;
 
     [Header("计时器")]
     public float waitTime = 1f;
     public float waitTimeCounter = 1f;
     public bool wait;
-    private bool hasFlipped = false;
+    public bool hasFlipped = false;
 
     [Header("道具持有状态")]
     public bool holdCompass = false;  // 是否拿着磁石
@@ -60,7 +60,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void Update()
     {
-        currentDirection = Mathf.Sign(rb.velocity.x);
+        // currentDirection = Mathf.Sign(rb.velocity.x);
         TimeCounter();
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
@@ -68,8 +68,9 @@ public class PlayerControllerScript : MonoBehaviour
     private void FixedUpdate()
     {
         
-        if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,未到达磁石状态
+        if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
+            //currentDirection = 1f;
             anim.SetBool("isWalking", true);
             StartWalking();
         }
@@ -111,6 +112,7 @@ public class PlayerControllerScript : MonoBehaviour
     void OnMovementEvent()
     {
         isMoving = true;
+        currentDirection = 1f;
     }
 
     /// <summary>
@@ -200,8 +202,9 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     private void FlipDirection()
     {
+        currentDirection = -currentDirection;
         // 翻转运动方向
-        moveSpeed = -moveSpeed;
+        //moveSpeed = -moveSpeed;
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = moveSpeed;
         rb.velocity = currentVelocity;
@@ -239,7 +242,7 @@ public class PlayerControllerScript : MonoBehaviour
 
             // 计算移动方向 
             currentDirection = Mathf.Sign(targetX - currentX);  // PS: 根据最终人物图片大小调整
-
+            
             // 设置sprite朝向
             if (currentDirection != 0)
             {
@@ -247,7 +250,7 @@ public class PlayerControllerScript : MonoBehaviour
                 theScale.x = currentDirection * enlargeScale;
                 transform.localScale = theScale;
             }
-           
+            
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
             rb.MovePosition(new Vector2(newX, rb.position.y));
@@ -261,7 +264,6 @@ public class PlayerControllerScript : MonoBehaviour
                 arriveMagnet = true;
                 moveToMagnet = false;
             }
-            
         }
     }
 
@@ -292,6 +294,7 @@ public class PlayerControllerScript : MonoBehaviour
             {
                 wait = true;
                 hasFlipped = false;
+                //FlipDirection();
             }
         }
         if (collision.gameObject.CompareTag("Rocket"))
@@ -299,12 +302,12 @@ public class PlayerControllerScript : MonoBehaviour
             canAddSpeed = true;
         }
     }
-    
+
     public void TimeCounter()
     {
         if (wait)
-        { 
-            if(!hasFlipped)
+        {
+            if (!hasFlipped)
             {
                 FlipDirection();
                 hasFlipped = true;
