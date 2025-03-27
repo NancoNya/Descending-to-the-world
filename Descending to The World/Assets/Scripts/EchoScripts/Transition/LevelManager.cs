@@ -52,12 +52,12 @@ public class LevelManager : Singleton<LevelManager>
         if (player != null)   // 停止人物移动，播放鼓掌动画
         {
             player.SetHorizontalVelocityZero();
-            player.ClapAnim();
+            //player.ClapAnim();
         }
         else
             Debug.Log("did't find PlayerController");
 
-        if (currentSmallLevel < 3 && !isFading)   // 到达第一或第二个小关卡的终点，且不处于fade状态，直接传送至下一个小关卡。
+        if (currentSmallLevel < 2 && !isFading)   // 到达第一或第二个小关卡的终点，且不处于fade状态，直接传送至下一个小关卡。
         {
             StartCoroutine(FadeAndSwitchLevel());
         }
@@ -99,7 +99,7 @@ public class LevelManager : Singleton<LevelManager>
             yield break;
         }
         // 根据当前关卡索引设置人物初始位置
-        int index = ((currentBigLevel - 1) * 3 + (currentSmallLevel - 1)) + 1;
+        int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
         Debug.Log(currentSmallLevel);
         Debug.Log("索引" + index);
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
@@ -152,7 +152,7 @@ public class LevelManager : Singleton<LevelManager>
             SceneManager.SetActiveScene(newScene);
         };
         // 根据当前关卡索引设置人物初始位置
-        int index = (currentBigLevel - 1) * 3 + (currentSmallLevel - 1);
+        int index = (currentBigLevel - 1) * 2 + (currentSmallLevel - 1);
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
         {
             playerAnimator.transform.position = levelInitialData.playerPositions[index];

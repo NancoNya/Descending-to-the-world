@@ -22,8 +22,8 @@ public class PlayerControllerScript : MonoBehaviour
     private bool canAddSpeed = false;
 
     [Header("¼ÆÊ±Æ÷")]
-    public float waitTime = 1f;
-    public float waitTimeCounter = 1f;
+    [SerializeField]private float waitTime = 1f;
+    [SerializeField]private float waitTimeCounter = 1f;
     public bool wait;
     public bool hasFlipped = false;
 
@@ -293,6 +293,7 @@ public class PlayerControllerScript : MonoBehaviour
             if (((physicsCheckScript.touchLeftWall && currentDirection < 0) || (physicsCheckScript.touchRightWall) && currentDirection > 0))
             {
                 wait = true;
+                Debug.Log("wait"+wait);
                 hasFlipped = false;
                 //FlipDirection();
             }
@@ -305,6 +306,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     public void TimeCounter()
     {
+
         if (wait)
         {
             if (!hasFlipped)
