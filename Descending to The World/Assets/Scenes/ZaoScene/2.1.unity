@@ -274,10 +274,15 @@ MonoBehaviour:
   currentThing: {fileID: 0}
   seismographButton: {fileID: 855463151}
   kongMingLanternButton: {fileID: 0}
+  seismographButton1: {fileID: 0}
+  kongMingLanternButton1: {fileID: 0}
+  seismographButton2: {fileID: 0}
+  kongMingLanternButton2: {fileID: 0}
   milkyWayButton: {fileID: 0}
   compassButton: {fileID: 0}
   magnetButton: {fileID: 0}
   rocketButton: {fileID: 0}
+  rocketButton1: {fileID: 0}
 --- !u!4 &24991764
 Transform:
   m_ObjectHideFlags: 0
@@ -2767,11 +2772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8655457307878397739, guid: 6c4b79abac7ae884187b6ebdd4f06f73, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 32
+      value: 26.4
       objectReference: {fileID: 0}
     - target: {fileID: 8655457307878397739, guid: 6c4b79abac7ae884187b6ebdd4f06f73, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -47
+      value: -46.4
       objectReference: {fileID: 0}
     - target: {fileID: 8655457307878397739, guid: 6c4b79abac7ae884187b6ebdd4f06f73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

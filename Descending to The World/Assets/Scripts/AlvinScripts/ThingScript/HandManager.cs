@@ -15,11 +15,16 @@ public class HandManager : MonoBehaviour
     // 为每个道具类型提供公共的按钮接口
     public Button seismographButton;
     public Button kongMingLanternButton;
+    public Button seismographButton1;
+    public Button kongMingLanternButton1;
+    public Button seismographButton2;
+    public Button kongMingLanternButton2;
     //public Button sundialButton;
     public Button milkyWayButton;
     public Button compassButton;
     public Button magnetButton;
     public Button rocketButton;
+    public Button rocketButton1;
 
     // 道具类型对应的Cell位置存储（火箭，孔明灯,司南）
     public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
@@ -47,6 +52,14 @@ public class HandManager : MonoBehaviour
         buttonMap[ThingOSType.Compass] = compassButton;
         buttonMap[ThingOSType.Magnet] = magnetButton;
         buttonMap[ThingOSType.Rocket] = rocketButton;
+        buttonMap[ThingOSType.Seismograph] = seismographButton1;
+        buttonMap[ThingOSType.Seismograph] = seismographButton2;
+        buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton1;
+        buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton2;
+        buttonMap[ThingOSType.MilkyWay] = milkyWayButton;
+        buttonMap[ThingOSType.Compass] = compassButton;
+        buttonMap[ThingOSType.Magnet] = magnetButton;
+        buttonMap[ThingOSType.Rocket] = rocketButton1;
 
         // 检查字典是否正确初始化
         foreach (var kvp in buttonMap)
