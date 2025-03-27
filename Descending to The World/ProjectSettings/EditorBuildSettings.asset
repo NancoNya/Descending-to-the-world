@@ -75,6 +75,33 @@ EditorBuildSettings:
     path: Assets/Scenes/ZaoScene/7.2.unity
     guid: 5cb0e86dc45d5c24daa5bfb3daaee120
   - enabled: 1
+    path: Assets/Scenes/ZaoScene/8.1.unity
+    guid: 80c3a497be1a05d4aaf5e3b34fbf03a0
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/8.2.unity
+    guid: 562d5a3f13830c149900ac3c5b81488e
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/9.1.unity
+    guid: f5a6a3e6f06009e4280e49a829f6e9f9
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/9.2.unity
+    guid: cc95ccfe699603c4f990a86946abe21f
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/10.1.unity
+    guid: 554db1393b316b14f9d36d598540b142
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/10.2.unity
+    guid: 5ea952928dc5f96459023784ea93bdd9
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/11.1.unity
+    guid: 442f9c484614ff54a90a1ed832e5f40c
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/11.2.unity
+    guid: 080d66d4b0751c3499521d9f4a5c0a73
+  - enabled: 1
+    path: Assets/Scenes/ZaoScene/12.1.unity
+    guid: dfc528d682c3cdb46acefcf372fec65e
+  - enabled: 1
     path: Assets/Scenes/echoScene/Persistent.unity
     guid: f15831c4cf0af09459c043203e82c61c
   - enabled: 1
