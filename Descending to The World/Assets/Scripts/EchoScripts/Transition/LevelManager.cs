@@ -83,7 +83,7 @@ public class LevelManager : Singleton<LevelManager>
         yield return SceneManager.UnloadSceneAsync(currentScene);
         // 切换关卡
         currentSmallLevel++;
-        string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
+        string nextSceneName = $"{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
         yield return loadOperation; // 等待加载完成
 
@@ -143,7 +143,7 @@ public class LevelManager : Singleton<LevelManager>
         resultCanvas.gameObject.SetActive(false);
         levelTimer.ResetTimer();
         currentSmallLevel = 1;
-        string nextSceneName = $"GameScene{currentBigLevel}.{currentSmallLevel}";
+        string nextSceneName = $"{currentBigLevel}.{currentSmallLevel}";
         SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
         // 设置新场景为激活场景
         Scene newScene = SceneManager.GetSceneByName(nextSceneName);
