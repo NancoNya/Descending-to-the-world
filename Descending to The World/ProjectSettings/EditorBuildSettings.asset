@@ -30,19 +30,19 @@ EditorBuildSettings:
     path: Assets/Scenes/ZaoScene/1.1.unity
     guid: 036b73b31f1b81f49951685e5b112a8b
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/2.1.unity
+    path: Assets/Scenes/ZaoScene/1.2.unity
     guid: c1f0278e273fd9642813d744bb4c8d6e
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/2.2.unity
+    path: Assets/Scenes/ZaoScene/2.1.unity
     guid: d93011ab8d543ca4b9cb68500e792563
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/3.1.unity
+    path: Assets/Scenes/ZaoScene/2.2.unity
     guid: eddca08b46808f44b9a8bdb3e44e5928
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/3.2.unity
+    path: Assets/Scenes/ZaoScene/3.1.unity
     guid: db001d36b766ad14eb7dd0b10f012692
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/3.3.unity
+    path: Assets/Scenes/ZaoScene/3.2.unity
     guid: 357cdf2d63cd9734aa225a365c3b98ce
   - enabled: 1
     path: Assets/Scenes/ZaoScene/4.1.unity
@@ -57,7 +57,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ZaoScene/5.2.unity
     guid: db494a1f3481ed74e8861b49d928cba9
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/5.3.unity
+    path: Assets/Scenes/ZaoScene/6.1.unity
     guid: 8b8f44f33002abe4ab5f444bc9ed4742
   - enabled: 1
     path: Assets/Scenes/ZaoScene/6.1.unity
@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ZaoScene/6.2.unity
     guid: 9db7fc8c29726044d85a02d6983be7d4
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/6.3.unity
+    path: Assets/Scenes/ZaoScene/12.1.unity
     guid: 858958eded1e5434f976cfe99dd86530
   - enabled: 1
     path: Assets/Scenes/ZaoScene/7.1.unity
@@ -99,7 +99,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ZaoScene/11.2.unity
     guid: 080d66d4b0751c3499521d9f4a5c0a73
   - enabled: 1
-    path: Assets/Scenes/ZaoScene/12.1.unity
+    path: Assets/Scenes/ZaoScene/12.2.unity
     guid: dfc528d682c3cdb46acefcf372fec65e
   - enabled: 1
     path: Assets/Scenes/echoScene/Persistent.unity
