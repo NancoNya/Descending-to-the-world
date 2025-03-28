@@ -12,7 +12,7 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
-    private float enlargeScale = 5f;   // sprite的scale放大倍数
+    private float enlargeScale = 1.7f;   // sprite的scale放大倍数
 
     [Header("移动状态")]
     [SerializeField]private bool isMoving;
@@ -269,26 +269,22 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
-        {
-            OnIdleEvent();
-            EventHandler.isMoving = !EventHandler.isMoving;
-        }
-        if (other.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
-        {
-            LevelManager.Instance.OnReachCheckpoint();
-            gameObject.SetActive(false);
-            other.enabled = false;
-        }
+        //if (other.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
+        //{
+        //    OnIdleEvent();
+        //    EventHandler.isMoving = !EventHandler.isMoving;
+        //}
+        //if (other.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
+        //{
+        //    LevelManager.Instance.OnReachCheckpoint();
+        //    gameObject.SetActive(false);
+        //    other.enabled = false;
+        //}
     }
 
-    /// <summary>
-    /// 碰撞到墙壁或地动仪翻转
-    /// </summary>
-    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))   // 人物碰到墙或地动仪
         {
             if (((physicsCheckScript.touchLeftWall && currentDirection < 0) || (physicsCheckScript.touchRightWall) && currentDirection > 0))
             {
@@ -298,9 +294,21 @@ public class PlayerControllerScript : MonoBehaviour
                 //FlipDirection();
             }
         }
-        if (collision.gameObject.CompareTag("Rocket"))
+        if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
             canAddSpeed = true;
+        }
+        if (collision.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
+        {
+            OnIdleEvent();
+            EventHandler.isMoving = !EventHandler.isMoving;
+        }
+        if (collision.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
+        {
+            LevelManager.Instance.OnReachCheckpoint();
+            Debug.Log("1");
+            collision.gameObject.SetActive(false);
+            //collision.gameObject.enabled = false;
         }
     }
 
