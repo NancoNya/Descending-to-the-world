@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6866007427132648596}
   - component: {fileID: 150822824899222786}
   m_Layer: 5
-  m_Name: KongMingLantern 1
+  m_Name: KongMingLantern 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965f87419eadb5a4da46fa1465b13c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 3
+  thingOSType: 4
 --- !u!114 &150822824899222786
 MonoBehaviour:
   m_ObjectHideFlags: 0

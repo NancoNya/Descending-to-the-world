@@ -52,14 +52,14 @@ public class HandManager : MonoBehaviour
         buttonMap[ThingOSType.Compass] = compassButton;
         buttonMap[ThingOSType.Magnet] = magnetButton;
         buttonMap[ThingOSType.Rocket] = rocketButton;
-        buttonMap[ThingOSType.Seismograph] = seismographButton1;
-        buttonMap[ThingOSType.Seismograph] = seismographButton2;
-        buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton1;
-        buttonMap[ThingOSType.KongMingLantern] = kongMingLanternButton2;
+        buttonMap[ThingOSType.Seismograph1] = seismographButton1;
+        buttonMap[ThingOSType.Seismograph2] = seismographButton2;
+        buttonMap[ThingOSType.KongMingLantern1] = kongMingLanternButton1;
+        buttonMap[ThingOSType.KongMingLantern2] = kongMingLanternButton2;
         buttonMap[ThingOSType.MilkyWay] = milkyWayButton;
         buttonMap[ThingOSType.Compass] = compassButton;
         buttonMap[ThingOSType.Magnet] = magnetButton;
-        buttonMap[ThingOSType.Rocket] = rocketButton1;
+        buttonMap[ThingOSType.Rocket1] = rocketButton1;
 
         // 检查字典是否正确初始化
         foreach (var kvp in buttonMap)

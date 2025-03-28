@@ -5,12 +5,17 @@ using UnityEngine;
 public enum ThingOSType
 {
     Seismograph,
+    Seismograph1,
+    Seismograph2,
     KongMingLantern,
+    KongMingLantern1,
+    KongMingLantern2,
     Sundial,
     MilkyWay,
     Compass,
     Magnet,
-    Rocket
+    Rocket,
+    Rocket1
 }
 
 public class ThingScript : MonoBehaviour

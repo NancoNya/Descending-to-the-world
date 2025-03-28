@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9293c944b6b65df45908a34de49962be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 1
+  thingOSType: 3
 --- !u!61 &7248290345186115341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965f87419eadb5a4da46fa1465b13c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingOSType: 1
+  thingOSType: 3
 --- !u!1 &7440934990772224622
 GameObject:
   m_ObjectHideFlags: 0
