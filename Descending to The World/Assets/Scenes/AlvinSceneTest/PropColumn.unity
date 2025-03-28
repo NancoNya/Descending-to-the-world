@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &170885117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &225188997
 Transform:
   m_ObjectHideFlags: 0
@@ -898,7 +898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &289949792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1056,7 +1056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &293472520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,7 +1508,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 359812678}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: GameBack
+        m_MethodName: GameExitMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1709,7 +1709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &500479668
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2975,7 +2975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1040755257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4218,7 +4218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1470057433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4676,7 +4676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1594973293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4699,10 +4699,15 @@ MonoBehaviour:
   currentThing: {fileID: 0}
   seismographButton: {fileID: 1470374471}
   kongMingLanternButton: {fileID: 1905313209}
+  seismographButton1: {fileID: 0}
+  kongMingLanternButton1: {fileID: 0}
+  seismographButton2: {fileID: 0}
+  kongMingLanternButton2: {fileID: 0}
   milkyWayButton: {fileID: 1639363318}
   compassButton: {fileID: 1593878129}
   magnetButton: {fileID: 937730249}
   rocketButton: {fileID: 989857399}
+  rocketButton1: {fileID: 0}
 --- !u!4 &1594973294
 Transform:
   m_ObjectHideFlags: 0
@@ -4770,7 +4775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74f288a667244e45b2acee33d0f4084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseMenu: {fileID: 0}
+  PauseMenu: {fileID: 1455156962}
 --- !u!114 &1599402576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4817,7 +4822,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1599402575}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: GameBackToSky
+        m_MethodName: GameBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

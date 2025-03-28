@@ -12,12 +12,12 @@ public class GameLevel : MonoBehaviour
     //×¢ÒâÐÞ¸Ä¸ÃloadScene
     public void Next()
     {
-        Scene scene = SceneManager.GetSceneByName("GroundBigScene");
+        //Scene scene = SceneManager.GetSceneByName("GroundBigScene");
         SceneManager.LoadScene("GroundBigScene");
     }
     public void Back()
     {
-        Scene scene = SceneManager.GetSceneByName("SkyBigScene");
+        //Scene scene = SceneManager.GetSceneByName("SkyBigScene");
         SceneManager.LoadScene("SkyBigScene");
     }
     public void GameStart1()
@@ -111,39 +111,39 @@ public class GameLevel : MonoBehaviour
         Application.Quit();
     }
 
-    public void GamePause()
-    {
-        PauseMenu.SetActive(true);
-        Time.timeScale = 0;
+    //public void GamePause()
+    //{
+    //    PauseMenu.SetActive(true);
+    //    Time.timeScale = 0;
         
-    }
+    //}
 
-    public void GameContinue()
-    {
-        Time.timeScale = 1;
-        PauseMenu.SetActive(false);
+    //public void GameContinue()
+    //{
+    //    Time.timeScale = 1;
+    //    PauseMenu.SetActive(false);
         
-    }
+    //}
 
-    public void GameBack()
-    {
-        SceneManager.LoadScene(0);
-    }
-    private void Start()
-    {
-        //PauseMenu.SetActive(false);
-    }
-    private void Update()
-    {
-        EscTime %= 2;
-        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
-        {
-            EscTime++;
-            GamePause();
-        }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1)
-        {
-            EscTime++;
-            GameContinue();
-        }
-    }
+    //public void GameBack()
+    //{
+    //    SceneManager.LoadScene(0);
+    //}
+    //private void Start()
+    //{
+    //    //PauseMenu.SetActive(false);
+    //}
+    //private void Update()
+    //{
+    //    EscTime %= 2;
+    //    if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
+    //    {
+    //        EscTime++;
+    //        GamePause();
+    //    }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1)
+    //    {
+    //        EscTime++;
+    //        GameContinue();
+    //    }
+    //}
 }

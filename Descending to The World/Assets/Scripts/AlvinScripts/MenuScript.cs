@@ -16,6 +16,7 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("SkyBigScene");
     }
 
+
     public void GameExit()
     {
         Application.Quit();
@@ -37,13 +38,18 @@ public class MenuScript : MonoBehaviour
 
     public void GameBack()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("SkyBigScene");
     }
 
-    public void GameBackToSky()
+    public void GameExitMain()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainMenu");
     }
+
+    //public void GameBackToSky()
+    //{
+    //    SceneManager.LoadScene("SkyBigScene");
+    //}
 
     private void Update()
     {
