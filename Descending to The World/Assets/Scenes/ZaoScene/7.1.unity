@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 16148813}
   - component: {fileID: 16148814}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,9 +218,9 @@ GameObject:
   - component: {fileID: 20362568}
   - component: {fileID: 20362567}
   - component: {fileID: 20362569}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,9 +330,9 @@ GameObject:
   - component: {fileID: 74608285}
   - component: {fileID: 74608286}
   - component: {fileID: 74608287}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,9 +460,9 @@ GameObject:
   - component: {fileID: 75940067}
   - component: {fileID: 75940068}
   - component: {fileID: 75940069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -713,9 +713,9 @@ GameObject:
   m_Component:
   - component: {fileID: 187080219}
   - component: {fileID: 187080220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1495,9 +1495,9 @@ GameObject:
   - component: {fileID: 375018071}
   - component: {fileID: 375018072}
   - component: {fileID: 375018073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1736,9 +1736,9 @@ GameObject:
   m_Component:
   - component: {fileID: 415845986}
   - component: {fileID: 415845987}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2130,9 +2130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 530872069}
   - component: {fileID: 530872070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2501,9 +2501,9 @@ GameObject:
   - component: {fileID: 618344973}
   - component: {fileID: 618344972}
   - component: {fileID: 618344974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2613,9 +2613,9 @@ GameObject:
   - component: {fileID: 619250097}
   - component: {fileID: 619250096}
   - component: {fileID: 619250098}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2957,9 +2957,9 @@ GameObject:
   m_Component:
   - component: {fileID: 678610608}
   - component: {fileID: 678610609}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3251,9 +3251,9 @@ GameObject:
   - component: {fileID: 783380261}
   - component: {fileID: 783380264}
   - component: {fileID: 783380263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3407,9 +3407,9 @@ GameObject:
   m_Component:
   - component: {fileID: 789457088}
   - component: {fileID: 789457089}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3868,9 +3868,9 @@ GameObject:
   - component: {fileID: 1006507886}
   - component: {fileID: 1006507889}
   - component: {fileID: 1006507888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4497,9 +4497,9 @@ GameObject:
   - component: {fileID: 1146267740}
   - component: {fileID: 1146267741}
   - component: {fileID: 1146267742}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4627,9 +4627,9 @@ GameObject:
   - component: {fileID: 1157256167}
   - component: {fileID: 1157256168}
   - component: {fileID: 1157256169}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5006,9 +5006,9 @@ GameObject:
   - component: {fileID: 1217290133}
   - component: {fileID: 1217290132}
   - component: {fileID: 1217290134}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5179,9 +5179,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1226147217}
   - component: {fileID: 1226147218}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5263,9 +5263,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1232747448}
   - component: {fileID: 1232747449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5501,9 +5501,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1255279985}
   - component: {fileID: 1255279986}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6045,9 +6045,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1405196242}
   - component: {fileID: 1405196243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6339,9 +6339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1516762494}
   - component: {fileID: 1516762495}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6672,9 +6672,9 @@ GameObject:
   - component: {fileID: 1565672207}
   - component: {fileID: 1565672206}
   - component: {fileID: 1565672208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6783,9 +6783,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1586581940}
   - component: {fileID: 1586581941}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6867,9 +6867,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1608944184}
   - component: {fileID: 1608944185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6951,9 +6951,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1609452037}
   - component: {fileID: 1609452038}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7099,9 +7099,9 @@ GameObject:
   - component: {fileID: 1629448411}
   - component: {fileID: 1629448414}
   - component: {fileID: 1629448413}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7686,9 +7686,9 @@ GameObject:
   - component: {fileID: 1766739706}
   - component: {fileID: 1766739705}
   - component: {fileID: 1766739707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8089,9 +8089,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1890895745}
   - component: {fileID: 1890895746}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8359,9 +8359,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2056929159}
   - component: {fileID: 2056929160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
