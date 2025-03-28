@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 29072812}
   - component: {fileID: 29072813}
   - component: {fileID: 29072814}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -815,9 +815,9 @@ GameObject:
   - component: {fileID: 202350663}
   - component: {fileID: 202350664}
   - component: {fileID: 202350665}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,118 +942,6 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202350661}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!1 &208320396
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 208320398}
-  - component: {fileID: 208320397}
-  - component: {fileID: 208320399}
-  m_Layer: 0
-  m_Name: xin podik (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &208320397
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208320396}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fd715c1df9543ad4b94e98cc27f87262, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &208320398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208320396}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.98, y: 3.9, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &208320399
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208320396}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -1270,9 +1158,9 @@ GameObject:
   - component: {fileID: 330928799}
   - component: {fileID: 330928800}
   - component: {fileID: 330928801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1382,9 +1270,9 @@ GameObject:
   - component: {fileID: 342020320}
   - component: {fileID: 342020321}
   - component: {fileID: 342020322}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1866,9 +1754,9 @@ GameObject:
   - component: {fileID: 404178492}
   - component: {fileID: 404178493}
   - component: {fileID: 404178494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1979,9 +1867,9 @@ GameObject:
   - component: {fileID: 409028191}
   - component: {fileID: 409028193}
   - component: {fileID: 409028194}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2268,9 +2156,9 @@ GameObject:
   - component: {fileID: 476114283}
   - component: {fileID: 476114284}
   - component: {fileID: 476114285}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2380,9 +2268,9 @@ GameObject:
   - component: {fileID: 484969664}
   - component: {fileID: 484969665}
   - component: {fileID: 484969666}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2492,9 +2380,9 @@ GameObject:
   - component: {fileID: 504284042}
   - component: {fileID: 504284043}
   - component: {fileID: 504284044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2574,118 +2462,6 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504284041}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!1 &549224615
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 549224617}
-  - component: {fileID: 549224616}
-  - component: {fileID: 549224618}
-  m_Layer: 0
-  m_Name: xin podik
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &549224616
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549224615}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fd715c1df9543ad4b94e98cc27f87262, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &549224617
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549224615}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.86, y: 3.9, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &549224618
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549224615}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -2828,9 +2604,9 @@ GameObject:
   - component: {fileID: 591339882}
   - component: {fileID: 591339883}
   - component: {fileID: 591339884}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2940,9 +2716,9 @@ GameObject:
   - component: {fileID: 659697294}
   - component: {fileID: 659697293}
   - component: {fileID: 659697295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3058,9 +2834,9 @@ GameObject:
   - component: {fileID: 673099337}
   - component: {fileID: 673099338}
   - component: {fileID: 673099339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3324,9 +3100,9 @@ GameObject:
   - component: {fileID: 749435906}
   - component: {fileID: 749435907}
   - component: {fileID: 749435908}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3622,9 +3398,9 @@ GameObject:
   - component: {fileID: 807196169}
   - component: {fileID: 807196170}
   - component: {fileID: 807196171}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4242,6 +4018,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7245152708061239972, guid: f0cf76ab392c10b4e9dc6fabae2c3e73, type: 3}
   m_PrefabInstance: {fileID: 908582088}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &922148773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1241337823389751885, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_Name
+      value: xin podik (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
 --- !u!1001 &981448714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4676,118 +4509,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7245152708061239972, guid: f0cf76ab392c10b4e9dc6fabae2c3e73, type: 3}
   m_PrefabInstance: {fileID: 1144810233}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1150804562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1150804564}
-  - component: {fileID: 1150804563}
-  - component: {fileID: 1150804565}
-  m_Layer: 0
-  m_Name: xin podik (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1150804563
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150804562}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fd715c1df9543ad4b94e98cc27f87262, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1150804564
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150804562}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.54, y: -1.11, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1150804565
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150804562}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1170208392
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,9 +4520,9 @@ GameObject:
   - component: {fileID: 1170208393}
   - component: {fileID: 1170208394}
   - component: {fileID: 1170208395}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4973,9 +4694,9 @@ GameObject:
   - component: {fileID: 1183757287}
   - component: {fileID: 1183757288}
   - component: {fileID: 1183757289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5085,9 +4806,9 @@ GameObject:
   - component: {fileID: 1197801772}
   - component: {fileID: 1197801773}
   - component: {fileID: 1197801774}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5259,9 +4980,9 @@ GameObject:
   - component: {fileID: 1238208473}
   - component: {fileID: 1238208474}
   - component: {fileID: 1238208475}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5371,9 +5092,9 @@ GameObject:
   - component: {fileID: 1249424785}
   - component: {fileID: 1249424786}
   - component: {fileID: 1249424787}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5597,9 +5318,9 @@ GameObject:
   - component: {fileID: 1279008158}
   - component: {fileID: 1279008159}
   - component: {fileID: 1279008160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5929,9 +5650,9 @@ GameObject:
   - component: {fileID: 1371276634}
   - component: {fileID: 1371276636}
   - component: {fileID: 1371276637}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6309,9 +6030,9 @@ GameObject:
   - component: {fileID: 1432350861}
   - component: {fileID: 1432350862}
   - component: {fileID: 1432350863}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6466,9 +6187,9 @@ GameObject:
   - component: {fileID: 1450163920}
   - component: {fileID: 1450163921}
   - component: {fileID: 1450163922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6578,9 +6299,9 @@ GameObject:
   - component: {fileID: 1459591294}
   - component: {fileID: 1459591295}
   - component: {fileID: 1459591296}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6691,9 +6412,9 @@ GameObject:
   - component: {fileID: 1463324024}
   - component: {fileID: 1463324026}
   - component: {fileID: 1463324027}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7032,9 +6753,9 @@ GameObject:
   - component: {fileID: 1660931216}
   - component: {fileID: 1660931217}
   - component: {fileID: 1660931218}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7178,6 +6899,63 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &1665567023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1241337823389751885, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_Name
+      value: xin podik (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
 --- !u!1001 &1666345576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7251,9 +7029,9 @@ GameObject:
   - component: {fileID: 1671410291}
   - component: {fileID: 1671410292}
   - component: {fileID: 1671410293}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7363,9 +7141,9 @@ GameObject:
   - component: {fileID: 1686483324}
   - component: {fileID: 1686483325}
   - component: {fileID: 1686483326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7475,9 +7253,9 @@ GameObject:
   - component: {fileID: 1707947624}
   - component: {fileID: 1707947625}
   - component: {fileID: 1707947626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7712,9 +7490,9 @@ GameObject:
   - component: {fileID: 1750497420}
   - component: {fileID: 1750497421}
   - component: {fileID: 1750497422}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8156,9 +7934,9 @@ GameObject:
   - component: {fileID: 1835252268}
   - component: {fileID: 1835252269}
   - component: {fileID: 1835252270}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8269,9 +8047,9 @@ GameObject:
   - component: {fileID: 1838451441}
   - component: {fileID: 1838451442}
   - component: {fileID: 1838451443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuqiang (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8626,9 +8404,9 @@ GameObject:
   - component: {fileID: 1888634994}
   - component: {fileID: 1888634995}
   - component: {fileID: 1888634996}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8953,6 +8731,63 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &1917279044
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1241337823389751885, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_Name
+      value: xin podik (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
 --- !u!1001 &1955635573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9179,6 +9014,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &2000109434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1241337823389751885, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_Name
+      value: xin podik (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878912025104466628, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cbefa30bb817bb4b82c9a5ba3810ec8, type: 3}
 --- !u!1 &2048364649
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,9 +9083,9 @@ GameObject:
   - component: {fileID: 2048364651}
   - component: {fileID: 2048364652}
   - component: {fileID: 2048364653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9399,118 +9291,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7245152708061239972, guid: f0cf76ab392c10b4e9dc6fabae2c3e73, type: 3}
   m_PrefabInstance: {fileID: 2061512200}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2096525753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2096525755}
-  - component: {fileID: 2096525754}
-  - component: {fileID: 2096525756}
-  m_Layer: 0
-  m_Name: xin podik (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &2096525754
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096525753}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fd715c1df9543ad4b94e98cc27f87262, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &2096525755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096525753}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 1.4, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2096525756
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096525753}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &2102547988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9708,9 +9488,9 @@ GameObject:
   - component: {fileID: 2143921710}
   - component: {fileID: 2143921711}
   - component: {fileID: 2143921712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9822,10 +9602,10 @@ SceneRoots:
   - {fileID: 1463324025}
   - {fileID: 1371276635}
   - {fileID: 409028192}
-  - {fileID: 549224617}
-  - {fileID: 208320398}
-  - {fileID: 2096525755}
-  - {fileID: 1150804564}
+  - {fileID: 1665567023}
+  - {fileID: 2000109434}
+  - {fileID: 1917279044}
+  - {fileID: 922148773}
   - {fileID: 1899653020}
   - {fileID: 1838459650}
   - {fileID: 1300547891}
