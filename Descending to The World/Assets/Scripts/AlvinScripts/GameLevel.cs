@@ -8,7 +8,7 @@ public class GameLevel : MonoBehaviour
 {
     private int EscTime = 0;
     public GameObject PauseMenu;
-    Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
+    //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
     //×¢ÒâÐÞ¸Ä¸ÃloadScene
     public void Next()
     {

@@ -20,6 +20,7 @@ public class MenuScript : MonoBehaviour
     public void GameSetting()
     {
         Setting.SetActive(true);
+        Debug.Log("is click");
     }
 
     public void GameSettingBack()
@@ -61,6 +62,10 @@ public class MenuScript : MonoBehaviour
     //    SceneManager.LoadScene("SkyBigScene");
     //}
 
+    private void Start()
+    {
+        Setting.SetActive(false);
+    }
     private void Update()
     {
         EscTime %= 2;

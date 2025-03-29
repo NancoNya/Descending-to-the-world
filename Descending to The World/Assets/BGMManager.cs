@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using System.Threading.Tasks;
 
 public class BGMManager : MonoBehaviour
 {
-    // 单例模式，方便在其他脚本中访问
     public static BGMManager instance;
+    public bool isMusicAllowedToPlay = true;
+    private float lastVolume; // 新增变量用于记录上一次的音量
 
-    private AudioSource[] bgmSources;
+    private MusicController[] musicControllers;
 
     private void Awake()
     {
@@ -13,49 +17,85 @@ public class BGMManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
         }
 
-        // 获取场景中所有带有AudioSource的物体
-        bgmSources = FindObjectsOfType<AudioSource>();
+        UpdateMusicControllers();
     }
 
-    // 播放BGM
+    private async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 延迟 0.5 秒（可根据实际情况调整）
+        await Task.Delay(500);
+        lastVolume = GetCurrentVolume(); // 记录当前音量
+        UpdateMusicControllers();
+        SetBGMVolume(lastVolume); // 恢复之前的音量设置
+
+        // 允许 MusicController 自动播放
+        foreach (MusicController controller in musicControllers)
+        {
+            controller.AllowAutoPlay();
+        }
+    }
+
+    private void UpdateMusicControllers()
+    {
+        musicControllers = FindObjectsOfType<MusicController>();
+        Debug.Log($"当前场景获取到 {musicControllers.Length} 个 MusicController 组件");
+    }
+
+    // 播放 BGM
     public void PlayBGM()
     {
-        foreach (AudioSource source in bgmSources)
+        isMusicAllowedToPlay = true;
+        foreach (MusicController controller in musicControllers)
         {
-            source.Play();
+            controller.audioSource.Play();
         }
     }
 
-    // 暂停BGM
+    // 暂停 BGM
     public void PauseBGM()
     {
-        foreach (AudioSource source in bgmSources)
+        isMusicAllowedToPlay = false;
+        foreach (MusicController controller in musicControllers)
         {
-            source.Pause();
+            controller.audioSource.Pause();
         }
     }
 
-    // 停止BGM
+    // 停止 BGM
     public void StopBGM()
     {
-        foreach (AudioSource source in bgmSources)
+        isMusicAllowedToPlay = false;
+        foreach (MusicController controller in musicControllers)
         {
-            source.Stop();
+            controller.audioSource.Stop();
         }
     }
 
-    // 设置BGM音量
+    // 设置 BGM 音量
     public void SetBGMVolume(float volume)
     {
-        foreach (AudioSource source in bgmSources)
+        lastVolume = volume; // 更新记录的音量
+        foreach (MusicController controller in musicControllers)
         {
-            source.volume = volume;
+            controller.SetVolume(volume);
+            Debug.Log($"已将 {controller.gameObject.name} 的音量设置为 {volume}，实际音量：{controller.audioSource.volume}");
         }
+    }
+
+    // 获取当前音量
+    public float GetCurrentVolume()
+    {
+        if (musicControllers.Length > 0)
+        {
+            return musicControllers[0].audioSource.volume;
+        }
+        return 0f;
     }
 }
