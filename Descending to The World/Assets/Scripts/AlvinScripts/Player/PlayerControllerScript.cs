@@ -40,6 +40,10 @@ public class PlayerControllerScript : MonoBehaviour
     private PhysicsCheckScript physicsCheckScript;
     private bool isFacingRight = true;
 
+    [Header("机关门")]
+    public GameObject door1;
+    public GameObject door2;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +57,11 @@ public class PlayerControllerScript : MonoBehaviour
         //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
+        door1 = GameObject.Find("door 1");
+        door2 = GameObject.Find("door 2");
+        if (door1 == null && door2 == null)
+            Debug.Log("该关卡中不存在机关门");
+
         // 订阅点击时钟触发的事件
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
@@ -128,6 +137,11 @@ public class PlayerControllerScript : MonoBehaviour
         arriveMagnet = false;
         anim.SetBool("hasCompass", false);
         BackToInitial();
+
+        if (door1 != null)
+            door1.SetActive(true);
+        if (door2 != null)
+            door2.SetActive(true);
     }
 
     /// <summary>
@@ -280,6 +294,10 @@ public class PlayerControllerScript : MonoBehaviour
         //    gameObject.SetActive(false);
         //    other.enabled = false;
         //}
+        if (other.gameObject == door1 || other.gameObject == door2)
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

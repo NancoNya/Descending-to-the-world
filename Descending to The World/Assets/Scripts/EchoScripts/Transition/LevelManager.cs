@@ -12,9 +12,6 @@ public class LevelManager : Singleton<LevelManager>
     [Header("计时器")]
     public LevelTimer levelTimer;
 
-    [Header("人物动画")]
-    private Animator playerAnimator;
-
     [Header("小关卡切换 渐隐渐出")]
     public float fadeDuration;  // 渐隐渐出的持续时间
     [SerializeField]private bool isFading;
@@ -23,6 +20,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private int currentBigLevel = 1;   // 所处大关卡
     [SerializeField] private int currentSmallLevel = 1;   // 所处小关卡
     public LevelInitialSO levelInitialData;  // 人物进入小场景的初始数据（位置）
+    [SerializeField]private GameObject player;
     //public Button nextLevelButton;   // 通关大关卡，点击前往下一个大关卡
     //public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
     //public Canvas resultCanvas;   // 结算界面（通关大关卡时出现）
@@ -43,14 +41,14 @@ public class LevelManager : Singleton<LevelManager>
         // resultCanvas.gameObject.SetActive(false);
         nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
 
-        // 获取人物动画
-        if (GameObject.FindWithTag("Player"))
-        {
-            playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-            Debug.Log("player has been found");
-        }
-        else
-            Debug.Log("didn't find PlayerAnimator");
+        //// 获取人物动画
+        //if (GameObject.FindWithTag("Player"))
+        //{
+        //    playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        //    Debug.Log("player has been found");
+        //}
+        //else
+        //    Debug.Log("didn't find PlayerAnimator");
     }
 
     private void OnEnable()
@@ -65,30 +63,46 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // player = FindPlayerInScene();
         FindChildObjects();
         SetInitialStates();
-        /////// 获取result canvas
-        //GameObject canvasGameObject = GameObject.Find("CanvasName");
-        //if (canvasGameObject != null)
-        //{ 
-        //    resultCanvas = canvasGameObject.GetComponent<Canvas>();
-        //}
-        //if (this.resultCanvas != null)
-        //{
-        //    // 查找子物体并赋值
-        //    nextLevelButton = this.resultCanvas.transform.Find("NextLevelButton").GetComponent<Button>();
-        //    resultTimeText = this.resultCanvas.transform.Find("ResultTimeText").GetComponent<TextMeshProUGUI>();
-        //}
-        //else
-        //    Debug.Log("未找到resultcanvas");
-        /////// 获取fade canvasgroup
-        //GameObject fadeCanvasGroupObj = GameObject.Find("Fade Canvas");
-        //if(fadeCanvasGroupObj != null)
-        //{
-        //    fadeCanvasGroup = fadeCanvasGroupObj.GetComponent<CanvasGroup>();
-        //}
+        if (mode == LoadSceneMode.Additive)
+        {
+            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            // 遍历所有加载的场景
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene loadedScene = SceneManager.GetSceneAt(i);
+                if (loadedScene.name == "PropColumn")   // 检查是否加载了 PropColumn 场景
+                {
+                    Debug.Log("bbbbbbbbbbbbbbbbbbbbb");
+                    // 在 PropColumn 场景中查找 Player 物体
+                    GameObject[] rootObjects = loadedScene.GetRootGameObjects();
+                    foreach (GameObject rootObject in rootObjects)
+                    {
+                        Transform playerTransform = rootObject.transform.Find("Player");
+                        if (playerTransform != null)
+                        {
+                            player = playerTransform.gameObject;
+                            Debug.LogError("has found player in PropColumn scene ");
+                            break;
+                        }
+                    }
+                    break;
+                    //Debug.Log("111");
+                    //player = FindPlayerInScene(scene);   // 从 PropColumn 场景中查找名为 Player 的物体
+                    //if (player != null)
+                    //Debug.Log("成功从 PropColumn 场景中获取到 Player 物体。");
+                    //else
+                    //Debug.LogWarning("在 PropColumn 场景中未找到 Player 物体。");
+                }
+            }
+        }
     }
 
+    /// <summary>
+    /// 获取canvas子物体
+    /// </summary>
     private void FindChildObjects()
     {
         canvasFather = GameObject.Find("CanvasFather");
@@ -107,6 +121,9 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    /// <summary>
+    /// result canvas初始化 (非激活状态)
+    /// </summary>
     private void SetInitialStates()
     {
         if (resultCanvas != null)
@@ -114,6 +131,29 @@ public class LevelManager : Singleton<LevelManager>
         if (fadeCanvasGroup != null)
             fadeCanvasGroup.gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// 获取人物，用于场景传送
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <returns></returns>
+    //private GameObject FindPlayerInScene(Scene scene)
+    //{
+    //    GameObject[] rootObjects = scene.GetRootGameObjects();
+    //    foreach (GameObject rootObject in rootObjects)
+    //    {
+    //        Transform[] allChildren = rootObject.GetComponentsInChildren<Transform>(true);
+    //        foreach (Transform child in allChildren)
+    //        {
+    //            if (child.name == "Player")
+    //            {
+    //                Debug.Log("has found player in scene");
+    //                return child.gameObject;
+    //            }
+    //        }
+    //    }
+    //    return null;
+    //}
 
     /// <summary>
     /// 到达小关卡终点
@@ -177,10 +217,9 @@ public class LevelManager : Singleton<LevelManager>
         Debug.Log("索引" + index);
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
         {
-            Debug.Log("aaa");
-            playerAnimator.gameObject.transform.position = levelInitialData.playerPositions[index];
-            playerAnimator.gameObject.SetActive(true);
-            Debug.Log("bbb");
+            ///////////  TODO
+            player.gameObject.transform.position = levelInitialData.playerPositions[index];
+            player.gameObject.SetActive(true);
         }
         EventHandler.IdleEvent.Invoke();  // 设置为待机状态
         EventHandler.isMoving = false;
@@ -232,8 +271,8 @@ public class LevelManager : Singleton<LevelManager>
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
         {
             Debug.Log("aaa");
-            playerAnimator.transform.position = levelInitialData.playerPositions[index];
-            playerAnimator.gameObject.SetActive(true);
+            player.transform.position = levelInitialData.playerPositions[index];
+            player.gameObject.SetActive(true);
             Debug.Log("bbb");
         }
         EventHandler.IdleEvent.Invoke();  // 设置为待机状态
