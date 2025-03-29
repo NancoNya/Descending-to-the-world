@@ -71,7 +71,7 @@ public class LevelManager : Singleton<LevelManager>
                         if (playerTransform != null)
                         {
                             player = playerTransform.gameObject;
-                            Debug.Log("aaaaaaaaaaaaaaaaaaaa found player!!!!!!!!!!!!");
+                            Debug.Log("aaaaaaaaaaaaaaaaaaaa found player" + player);
                             SceneSwitchedEvent?.Invoke();
                             break;
                         }
@@ -99,7 +99,7 @@ public class LevelManager : Singleton<LevelManager>
 
         if(gameCanvas != null)
         {
-            levelTimer = gameCanvas.transform.GetChild(2).GetComponent<LevelTimer>();
+            levelTimer = gameCanvas.transform.GetChild(1).GetComponent<LevelTimer>();
         }
     }
 

@@ -28,7 +28,8 @@ public class GameLevel : MonoBehaviour
         //Scene scene = SceneManager.GetSceneByName("PropColumn");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
-
+        LevelManager.Instance.currentBigLevel = 1;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
     public void GameStart2()
     {
@@ -36,7 +37,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("2.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
-
+        LevelManager.Instance.currentBigLevel = 2;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart3()
@@ -45,7 +47,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("3.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
-
+        LevelManager.Instance.currentBigLevel = 3;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart4()
@@ -54,6 +57,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("4.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 4;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart5()
@@ -62,6 +67,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("5.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 5;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart6()
@@ -70,6 +77,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("6.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 6;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart7()
@@ -78,6 +87,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("7.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 7;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart8()
@@ -86,6 +97,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("8.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 8;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart9()
@@ -94,6 +107,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("9.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 9;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart10()
@@ -102,6 +117,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("10.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 10;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart11()
@@ -110,6 +127,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("11.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 11;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameStart12()
@@ -118,6 +137,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("12.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+        LevelManager.Instance.currentBigLevel = 12;
+        LevelManager.Instance.currentSmallLevel = 1;
     }
 
     public void GameExit()

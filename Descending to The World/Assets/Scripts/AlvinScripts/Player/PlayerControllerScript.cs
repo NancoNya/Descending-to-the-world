@@ -73,6 +73,16 @@ public class PlayerControllerScript : MonoBehaviour
         //    Debug.LogError("未能找到对应的初始位置");
     }
 
+    private void OnEnable()
+    {
+        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
+    }
+
+    private void OnDisable()
+    {
+        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
+    }
+
     void Start()
     {
         //Moon = GameObject.Find("Moon");
@@ -84,24 +94,15 @@ public class PlayerControllerScript : MonoBehaviour
         door2 = GameObject.Find("door 2");
         if (door1 == null && door2 == null)
             Debug.Log("该关卡中不存在机关门");
-
-        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
-        // 计算在 LevelInitialSO 中对应的索引（1.1从索引1开始）
-        //int index = (currentBigLevel - 1) * 2 + currentSmallLevel;
-
-
+        
         // 订阅点击时钟触发的事件
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
 
-    private void OnDestroy()
-    {
-        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
-    }
-
     private void UpdatePlayerPosition()
     {
+        Debug.Log("1111111111111111111");
         currentBigLevel = LevelManager.Instance.currentBigLevel;
         currentSmallLevel = LevelManager.Instance.currentSmallLevel;
 
@@ -109,13 +110,15 @@ public class PlayerControllerScript : MonoBehaviour
         Debug.Log("small " + currentSmallLevel);
 
         int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
-        Debug.Log(index);
+        Debug.Log("关卡初始位置索引" + index);
         // 从 LevelInitialSO 中获取对应索引的人物初始位置
         if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
         {
+            Debug.Log("ccccccccccccccccccccccccc enter");
             initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
             // 将人物设置在对应场景的初始位置
             transform.position = initialPosition;
+            Debug.Log("bbbbbbbbbbbbbbb set initial positon");
         }
         else
             Debug.LogError("未能找到对应的初始位置");
