@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
     public AudioSource audioSource;
-    // Start is called before the first frame update
-    void Start()
+
+    // 控制声音开关的方法
+    public void ToggleSound(bool isOn)
     {
-        
+        audioSource.mute = !isOn;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!audioSource.isPlaying && audioSource.clip != null)

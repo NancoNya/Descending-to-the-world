@@ -26,7 +26,7 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("1.1");
         //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
         //Scene scene = SceneManager.GetSceneByName("PropColumn");
-        SceneManager.LoadScene("PropColumn 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
         SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
 
     }
@@ -53,6 +53,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("4.1");
         SceneManager.LoadScene("4.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart5()
@@ -60,6 +61,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("5.1");
         SceneManager.LoadScene("5.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart6()
@@ -67,6 +69,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("6.1");
         SceneManager.LoadScene("6.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart7()
@@ -74,6 +77,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("7.1");
         SceneManager.LoadScene("7.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart8()
@@ -81,6 +85,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("8.1");
         SceneManager.LoadScene("8.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart9()
@@ -88,6 +93,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("9.1");
         SceneManager.LoadScene("9.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart10()
@@ -95,6 +101,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("10.1");
         SceneManager.LoadScene("10.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart11()
@@ -102,6 +109,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("11.1");
         SceneManager.LoadScene("11.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameStart12()
@@ -109,6 +117,7 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("12.1");
         SceneManager.LoadScene("12.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
     }
 
     public void GameExit()
@@ -116,18 +125,33 @@ public class GameLevel : MonoBehaviour
         Application.Quit();
     }
 
-    //public void GamePause()
-    //{
-    //    PauseMenu.SetActive(true);
-    //    Time.timeScale = 0;
-        
-    //}
+    public void GamePause()
+    {
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0;
 
-    //public void GameContinue()
-    //{
-    //    Time.timeScale = 1;
-    //    PauseMenu.SetActive(false);
-        
+    }
+
+    public void GameContinue()
+    {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false); }
+        private void Update()
+    {
+        EscTime %= 2;
+        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
+        {
+            EscTime++;
+            GamePause();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 1)
+        {
+            EscTime++;
+            GameContinue();
+        }
+    }
+}
+
     //}
 
     //public void GameBack()
@@ -151,4 +175,3 @@ public class GameLevel : MonoBehaviour
     //        GameContinue();
     //    }
     //}
-}

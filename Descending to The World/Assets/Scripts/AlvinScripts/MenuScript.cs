@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
+    public GameObject Setting;
     private int EscTime = 0;
     public GameObject PauseMenu;
 
@@ -16,6 +17,15 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("SkyBigScene");
     }
 
+    public void GameSetting()
+    {
+        Setting.SetActive(true);
+    }
+
+    public void GameSettingBack()
+    {
+        Setting.SetActive(false);
+    }
 
     public void GameExit()
     {
