@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public static class EventHandler
 {
@@ -28,11 +29,18 @@ public static class EventHandler
         isMoving = !isMoving;
     }
 
-    /// <summary>
-    /// 触发恢复坍塌地块的事件
-    /// </summary>
-    //public static void CallResetGroundEvent()
+    public static event System.Action SceneSwitchedEvent;
+
+    ///// <summary>
+    ///// 用于通知 PlayerControllerScript 更新位置
+    ///// </summary>
+    ///// <param name="scene"></param>
+    ///// <param name="mode"></param>
+    //public static void CallSceneSwitchedEvent(Scene scene, LoadSceneMode mode)
     //{
-    //    ResetGroundEvent.Invoke();
+    //    if (mode == LoadSceneMode.Additive)
+    //    {
+    //        SceneSwitchedEvent?.Invoke();
+    //    }
     //}
 }

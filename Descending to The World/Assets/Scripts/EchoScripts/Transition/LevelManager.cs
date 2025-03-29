@@ -17,13 +17,10 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]private bool isFading;
 
     [Header("大小关卡 切换数据")]
-    [SerializeField] private int currentBigLevel = 1;   // 所处大关卡
-    [SerializeField] private int currentSmallLevel = 1;   // 所处小关卡
+    public int currentBigLevel = 1;   // 所处大关卡
+    public int currentSmallLevel = 1;   // 所处小关卡
     public LevelInitialSO levelInitialData;  // 人物进入小场景的初始数据（位置）
     [SerializeField]private GameObject player;
-    //public Button nextLevelButton;   // 通关大关卡，点击前往下一个大关卡
-    //public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
-    //public Canvas resultCanvas;   // 结算界面（通关大关卡时出现）
 
     [Header("动态UI引用")]
     public GameObject canvasFather;
@@ -34,21 +31,10 @@ public class LevelManager : Singleton<LevelManager>
 
     public Button nextLevelButton;    // 通关大关卡，点击前往下一个大关卡
     public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
-    // public GameObject pauseMenu;
 
     private void Start()
     {
-        // resultCanvas.gameObject.SetActive(false);
         nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
-
-        //// 获取人物动画
-        //if (GameObject.FindWithTag("Player"))
-        //{
-        //    playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-        //    Debug.Log("player has been found");
-        //}
-        //else
-        //    Debug.Log("didn't find PlayerAnimator");
     }
 
     private void OnEnable()
@@ -61,6 +47,9 @@ public class LevelManager : Singleton<LevelManager>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    // 用于通知 PlayerControllerScript 更新位置
+    public static event System.Action SceneSwitchedEvent;
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // player = FindPlayerInScene();
@@ -68,33 +57,26 @@ public class LevelManager : Singleton<LevelManager>
         SetInitialStates();
         if (mode == LoadSceneMode.Additive)
         {
-            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
             // 遍历所有加载的场景
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Scene loadedScene = SceneManager.GetSceneAt(i);
                 if (loadedScene.name == "PropColumn")   // 检查是否加载了 PropColumn 场景
                 {
-                    Debug.Log("bbbbbbbbbbbbbbbbbbbbb");
                     // 在 PropColumn 场景中查找 Player 物体
                     GameObject[] rootObjects = loadedScene.GetRootGameObjects();
                     foreach (GameObject rootObject in rootObjects)
                     {
-                        Transform playerTransform = rootObject.transform.Find("Player");
+                        Transform playerTransform = rootObject.transform.Find("///Player");
                         if (playerTransform != null)
                         {
                             player = playerTransform.gameObject;
-                            Debug.LogError("has found player in PropColumn scene ");
+                            Debug.Log("aaaaaaaaaaaaaaaaaaaa found player!!!!!!!!!!!!");
+                            SceneSwitchedEvent?.Invoke();
                             break;
                         }
                     }
                     break;
-                    //Debug.Log("111");
-                    //player = FindPlayerInScene(scene);   // 从 PropColumn 场景中查找名为 Player 的物体
-                    //if (player != null)
-                    //Debug.Log("成功从 PropColumn 场景中获取到 Player 物体。");
-                    //else
-                    //Debug.LogWarning("在 PropColumn 场景中未找到 Player 物体。");
                 }
             }
         }
@@ -133,43 +115,11 @@ public class LevelManager : Singleton<LevelManager>
     }
 
     /// <summary>
-    /// 获取人物，用于场景传送
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <returns></returns>
-    //private GameObject FindPlayerInScene(Scene scene)
-    //{
-    //    GameObject[] rootObjects = scene.GetRootGameObjects();
-    //    foreach (GameObject rootObject in rootObjects)
-    //    {
-    //        Transform[] allChildren = rootObject.GetComponentsInChildren<Transform>(true);
-    //        foreach (Transform child in allChildren)
-    //        {
-    //            if (child.name == "Player")
-    //            {
-    //                Debug.Log("has found player in scene");
-    //                return child.gameObject;
-    //            }
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    /// <summary>
     /// 到达小关卡终点
     /// </summary>
     public void OnReachCheckpoint()
     {
         levelTimer.PauseTimer();
-        
-        //PlayerController player = FindObjectOfType<PlayerController>();
-        //if (player != null)   // 停止人物移动，播放鼓掌动画
-        //{
-        //    player.SetHorizontalVelocityZero();
-        //    //player.ClapAnim();
-        //}
-        //else
-        //    Debug.Log("did't find PlayerController");
 
         if (currentSmallLevel < 2 && !isFading)   // 到达第一或第二个小关卡的终点，且不处于fade状态，直接传送至下一个小关卡。
         {
@@ -212,15 +162,15 @@ public class LevelManager : Singleton<LevelManager>
             Debug.LogError($"Scene {nextSceneName} not loaded!");
             yield break;
         }
-        // 根据当前关卡索引设置人物初始位置
-        int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
-        Debug.Log("索引" + index);
-        if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
-        {
-            ///////////  TODO
-            player.gameObject.transform.position = levelInitialData.playerPositions[index];
-            player.gameObject.SetActive(true);
-        }
+        //// 根据当前关卡索引设置人物初始位置
+        //int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
+        //Debug.Log("索引" + index);
+        //if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
+        //{
+        //    ///////////  TODO
+        //    player.gameObject.transform.position = levelInitialData.playerPositions[index];
+        //    player.gameObject.SetActive(true);
+        //}
         EventHandler.IdleEvent.Invoke();  // 设置为待机状态
         EventHandler.isMoving = false;
         yield return Fade(0);

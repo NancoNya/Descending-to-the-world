@@ -44,11 +44,33 @@ public class PlayerControllerScript : MonoBehaviour
     public GameObject door1;
     public GameObject door2;
 
+    [Header("所处场景")]
+    public int currentBigLevel;
+    public int currentSmallLevel;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         physicsCheckScript = GetComponent<PhysicsCheckScript>();
+
+        //currentBigLevel = LevelManager.Instance.currentBigLevel;
+        //currentSmallLevel = LevelManager.Instance.currentSmallLevel;
+
+        //Debug.Log("big " + currentBigLevel);
+        //Debug.Log("small " + currentSmallLevel);
+
+        //int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
+        //Debug.Log(index);
+        //// 从 LevelInitialSO 中获取对应索引的人物初始位置
+        //if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
+        //{
+        //    initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
+        //    // 将人物设置在对应场景的初始位置
+        //    transform.position = initialPosition;
+        //}
+        //else
+        //    Debug.LogError("未能找到对应的初始位置");
     }
 
     void Start()
@@ -57,14 +79,46 @@ public class PlayerControllerScript : MonoBehaviour
         //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
+
         door1 = GameObject.Find("door 1");
         door2 = GameObject.Find("door 2");
         if (door1 == null && door2 == null)
             Debug.Log("该关卡中不存在机关门");
 
+        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
+        // 计算在 LevelInitialSO 中对应的索引（1.1从索引1开始）
+        //int index = (currentBigLevel - 1) * 2 + currentSmallLevel;
+
+
         // 订阅点击时钟触发的事件
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.SceneSwitchedEvent += UpdatePlayerPosition;
+    }
+
+    private void UpdatePlayerPosition()
+    {
+        currentBigLevel = LevelManager.Instance.currentBigLevel;
+        currentSmallLevel = LevelManager.Instance.currentSmallLevel;
+
+        Debug.Log("big " + currentBigLevel);
+        Debug.Log("small " + currentSmallLevel);
+
+        int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
+        Debug.Log(index);
+        // 从 LevelInitialSO 中获取对应索引的人物初始位置
+        if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
+        {
+            initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
+            // 将人物设置在对应场景的初始位置
+            transform.position = initialPosition;
+        }
+        else
+            Debug.LogError("未能找到对应的初始位置");
     }
 
     private void Update()
@@ -161,34 +215,6 @@ public class PlayerControllerScript : MonoBehaviour
         currentVelocity.x = 0;
         rb.velocity = currentVelocity;
     }
-
-    //public void WalkAnim()
-    //{
-    //    anim.SetBool("isWalking", true);
-    //    //anim.SetBool("hasCompass",false);
-    //    //anim.SetBool("hasRocket", false);
-    //}
-
-    //public void IdleAnim()
-    //{
-    //    anim.SetBool("isWalking", false);
-    //    anim.SetBool("hasCompass",false);
-    //    anim.SetBool("hasRocket", false);
-    //}
-
-    //public void CompassAnim()
-    //{
-    //    anim.SetBool("hasCompass",true);
-    //    anim.SetBool("isWalking", false);
-    //    anim.SetBool("hasRocket", false);
-    //}
-
-    //public void RocketAnim()
-    //{
-    //    anim.SetBool("hasRocket", true);
-    //    anim.SetBool("isWalking",false);
-    //    anim.SetBool("hasCompass", false);
-    //}
 
     /// <summary>
     /// Player移动时点击时钟，回到初始位置
