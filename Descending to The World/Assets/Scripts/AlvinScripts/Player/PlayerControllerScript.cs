@@ -289,7 +289,6 @@ public class PlayerControllerScript : MonoBehaviour
             if (((physicsCheckScript.touchLeftWall && currentDirection < 0) || (physicsCheckScript.touchRightWall) && currentDirection > 0))
             {
                 wait = true;
-                Debug.Log("wait"+wait);
                 hasFlipped = false;
                 //FlipDirection();
             }
@@ -306,7 +305,6 @@ public class PlayerControllerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
         {
             LevelManager.Instance.OnReachCheckpoint();
-            Debug.Log("1");
             collision.gameObject.SetActive(false);
             //collision.gameObject.enabled = false;
         }

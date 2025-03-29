@@ -26,7 +26,8 @@ public class GameLevel : MonoBehaviour
         SceneManager.LoadScene("1.1");
         //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
         //Scene scene = SceneManager.GetSceneByName("PropColumn");
-        SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("PropColumn 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
 
     }
     public void GameStart2()
@@ -34,6 +35,8 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("2.1");
         SceneManager.LoadScene("2.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+
     }
 
     public void GameStart3()
@@ -41,6 +44,8 @@ public class GameLevel : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName("3.1");
         SceneManager.LoadScene("3.1");
         SceneManager.LoadScene("PropColumn", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Persistent", LoadSceneMode.Additive);
+
     }
 
     public void GameStart4()
