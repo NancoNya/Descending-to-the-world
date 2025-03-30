@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
     public LevelTimer levelTimer;
 
     [Header("小关卡切换 渐隐渐出")]
-    public float fadeDuration;  // 渐隐渐出的持续时间
+    public float fadeDuration = 0.5f;  // 渐隐渐出的持续时间
     [SerializeField]private bool isFading;
 
     [Header("大小关卡 切换数据")]
@@ -38,12 +38,12 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start()
     {
-        
     }
 
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     private void OnDisable()
@@ -83,6 +83,11 @@ public class LevelManager : Singleton<LevelManager>
                 }
             }
         }
+        if (nextLevelButton != null)
+        {
+            nextLevelButton.onClick.RemoveAllListeners(); // 移除之前的所有监听器
+            nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
+        }
     }
 
     /// <summary>
@@ -108,8 +113,9 @@ public class LevelManager : Singleton<LevelManager>
         {
             resultTimeText = resultCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             nextLevelButton = resultCanvas.transform.GetChild(2).transform.GetChild(0).GetComponent<Button>();
+            Debug.Log("next name   " + nextLevelButton);
         }
-        nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
+        
     }
 
     /// <summary>
@@ -124,7 +130,7 @@ public class LevelManager : Singleton<LevelManager>
     }
 
     /// <summary>
-    /// 到达小关卡终点
+    /// 到达关卡终点
     /// </summary>
     public void OnReachCheckpoint()
     {
@@ -204,21 +210,35 @@ public class LevelManager : Singleton<LevelManager>
     /// </summary>
     private void StartLoadNextBigLevel()
     {
+        Debug.Log("startloadnextbiglevel");
         StartCoroutine(LoadNextBigLevel());
     }
 
     private System.Collections.IEnumerator LoadNextBigLevel()
     {
+        Debug.Log("loadnwxtbiglevel");
         yield return Fade(1);
         // 卸载当前场景
         Scene currentScene = SceneManager.GetActiveScene();
+        //Scene propScene = SceneManager.GetSceneByName()
         yield return SceneManager.UnloadSceneAsync(currentScene);
+
+        yield return SceneManager.UnloadSceneAsync("PropColumn");
 
         resultCanvas.gameObject.SetActive(false);
         levelTimer.ResetTimer();
         currentSmallLevel = 1;
         string nextSceneName = $"{currentBigLevel}.{currentSmallLevel}";
-        SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        // SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+
+        AsyncOperation mainLoadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+        yield return mainLoadOperation; // 等待主场景加载完成
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        // 以 Additive 模式加载名为 "PropColumn" 的场景
+        AsyncOperation propLoadOperation = SceneManager.LoadSceneAsync("PropColumn", LoadSceneMode.Additive);
+        yield return propLoadOperation; // 等待 PropColumn 场景加载完成
+
         // 设置新场景为激活场景
         Scene newScene = SceneManager.GetSceneByName(nextSceneName);
         SceneManager.sceneLoaded += (Scene sc, LoadSceneMode loadSceneMode) =>

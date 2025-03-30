@@ -1104,6 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 1962943692}
   PauseMenu: {fileID: 0}
+  HelpCanvas: {fileID: 0}
 --- !u!114 &282183131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,6 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 0}
   PauseMenu: {fileID: 0}
+  HelpCanvas: {fileID: 0}
 --- !u!114 &359812679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4528,7 +4530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1123996472
 Animator:
   serializedVersion: 5
@@ -4584,9 +4586,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.046295654, y: 0.018933237}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.48, y: 0.48}
+    border: {x: 0, y: 0.09483871, z: 0, w: 0}
+    pivot: {x: 0.49999994, y: 0.08147112}
+    oldSize: {x: 0.80008566, y: 1.1316129}
     newSize: {x: 0.48, y: 0.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4698,7 +4700,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -512811633, guid: 0ba7999e81c6149498f247c10bb2c541, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5a2925af3cfb0c4bac78e1735277a14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4718,7 +4720,7 @@ Transform:
   m_GameObject: {fileID: 1123996469}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.43, y: -1.27, z: 0}
+  m_LocalPosition: {x: -5.27, y: -2.175276, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5138,7 +5140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1270184194
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5243,6 +5245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 0}
   PauseMenu: {fileID: 1455156962}
+  HelpCanvas: {fileID: 0}
 --- !u!1 &1295918084
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,6 +5300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 1962943692}
   PauseMenu: {fileID: 1455156962}
+  HelpCanvas: {fileID: 0}
 --- !u!114 &1295918087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6671,6 +6675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 1962943692}
   PauseMenu: {fileID: 1455156962}
+  HelpCanvas: {fileID: 0}
 --- !u!114 &1599402576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8054,6 +8059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 1962943692}
   PauseMenu: {fileID: 1455156962}
+  HelpCanvas: {fileID: 0}
 --- !u!1 &1891329836
 GameObject:
   m_ObjectHideFlags: 0
@@ -9048,6 +9054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setting: {fileID: 1962943692}
   PauseMenu: {fileID: 1455156962}
+  HelpCanvas: {fileID: 0}
 --- !u!1 &2071082972
 GameObject:
   m_ObjectHideFlags: 0

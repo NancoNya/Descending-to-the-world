@@ -44,6 +44,10 @@ public class PlayerControllerScript : MonoBehaviour
     public GameObject door1;
     public GameObject door2;
 
+    [Header("按钮")]
+    public GameObject button1;
+    public GameObject button2;
+
     [Header("所处场景")]
     public int currentBigLevel;
     public int currentSmallLevel;
@@ -89,9 +93,10 @@ public class PlayerControllerScript : MonoBehaviour
         //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
-
-        door1 = GameObject.Find("door 1");
-        door2 = GameObject.Find("door 2");
+        button1 = GameObject.Find("button1");
+        button2 = GameObject.Find("button2");
+        door1 = GameObject.Find("door1");
+        door2 = GameObject.Find("door2");
         if (door1 == null && door2 == null)
             Debug.Log("该关卡中不存在机关门");
         
@@ -325,9 +330,19 @@ public class PlayerControllerScript : MonoBehaviour
         //    gameObject.SetActive(false);
         //    other.enabled = false;
         //}
-        if (other.gameObject == door1 || other.gameObject == door2)
+        if (other.gameObject == button1)
         {
-            other.gameObject.SetActive(false);
+            if (door1 != null)
+            {
+                door1.SetActive(false);
+            }
+        }
+        else if (other.gameObject == button2)
+        {
+            if (door2 != null)
+            {
+                door2.SetActive(false);
+            }
         }
     }
 

@@ -29,7 +29,7 @@ public static class EventHandler
         isMoving = !isMoving;
     }
 
-    public static event System.Action SceneSwitchedEvent;
+    //public static event System.Action SceneSwitchedEvent;
 
     ///// <summary>
     ///// 用于通知 PlayerControllerScript 更新位置
