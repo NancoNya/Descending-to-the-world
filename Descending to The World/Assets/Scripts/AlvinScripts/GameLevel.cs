@@ -8,8 +8,9 @@ public class GameLevel : MonoBehaviour
 {
     private int EscTime = 0;
     public GameObject PauseMenu;
+
     //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
-    //ע���޸ĸ�loadScene
+    //注意修改该loadScene
     public void Next()
     {
         //Scene scene = SceneManager.GetSceneByName("GroundBigScene");
@@ -171,6 +172,7 @@ public class GameLevel : MonoBehaviour
             GameContinue();
         }
     }
+
 }
 
     //}

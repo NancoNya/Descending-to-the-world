@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour
     public GameObject Setting;
     private int EscTime = 0;
     public GameObject PauseMenu;
+    public Canvas HelpCanvas;
 
     public void GameStart()
     {
@@ -69,11 +70,11 @@ public class MenuScript : MonoBehaviour
     private void Update()
     {
         EscTime %= 2;
-        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
+        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0&&!PauseMenu.activeSelf)
         {
             EscTime++;
             GamePause();
-        }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1)
+        }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1&&PauseMenu.activeSelf)
         {
             EscTime++;
             GameContinue();

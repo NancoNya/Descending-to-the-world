@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 using System.Threading.Tasks;
 
 public class BGMManager : MonoBehaviour
 {
     public static BGMManager instance;
     public bool isMusicAllowedToPlay = true;
-    private float lastVolume; // ĞÂÔö±äÁ¿ÓÃÓÚ¼ÇÂ¼ÉÏÒ»´ÎµÄÒôÁ¿
-
+    private float lastVolume;
     private MusicController[] musicControllers;
 
     private void Awake()
@@ -29,70 +27,85 @@ public class BGMManager : MonoBehaviour
 
     private async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ÑÓ³Ù 0.5 Ãë£¨¿É¸ù¾İÊµ¼ÊÇé¿öµ÷Õû£©
+        // å»¶è¿Ÿ 0.5 ç§’ï¼ˆå¯æ ¹æ®å®é™…æƒ…å†µè°ƒæ•´ï¼‰
         await Task.Delay(500);
-        lastVolume = GetCurrentVolume(); // ¼ÇÂ¼µ±Ç°ÒôÁ¿
+        lastVolume = GetCurrentVolume(); // è®°å½•å½“å‰éŸ³é‡
         UpdateMusicControllers();
-        SetBGMVolume(lastVolume); // »Ö¸´Ö®Ç°µÄÒôÁ¿ÉèÖÃ
+        SetBGMVolume(lastVolume); // æ¢å¤ä¹‹å‰çš„éŸ³é‡è®¾ç½®
 
-        // ÔÊĞí MusicController ×Ô¶¯²¥·Å
+        // å…è®¸ MusicController è‡ªåŠ¨æ’­æ”¾
         foreach (MusicController controller in musicControllers)
         {
-            controller.AllowAutoPlay();
+            if (controller.audioSource != null)
+            {
+                controller.AllowAutoPlay();
+            }
         }
     }
 
     private void UpdateMusicControllers()
     {
         musicControllers = FindObjectsOfType<MusicController>();
-        Debug.Log($"µ±Ç°³¡¾°»ñÈ¡µ½ {musicControllers.Length} ¸ö MusicController ×é¼ş");
+        Debug.Log($"å½“å‰åœºæ™¯è·å–åˆ° {musicControllers.Length} ä¸ª MusicController ç»„ä»¶");
     }
 
-    // ²¥·Å BGM
+    // æ’­æ”¾ BGM
     public void PlayBGM()
     {
         isMusicAllowedToPlay = true;
         foreach (MusicController controller in musicControllers)
         {
-            controller.audioSource.Play();
+            if (controller.audioSource != null)
+            {
+                controller.audioSource.Play();
+            }
         }
     }
 
-    // ÔİÍ£ BGM
+    // æš‚åœ BGM
     public void PauseBGM()
     {
         isMusicAllowedToPlay = false;
         foreach (MusicController controller in musicControllers)
         {
-            controller.audioSource.Pause();
+            if (controller.audioSource != null)
+            {
+                controller.audioSource.Pause();
+            }
         }
     }
 
-    // Í£Ö¹ BGM
+    // åœæ­¢ BGM
     public void StopBGM()
     {
         isMusicAllowedToPlay = false;
         foreach (MusicController controller in musicControllers)
         {
-            controller.audioSource.Stop();
+            if (controller.audioSource != null)
+            {
+                controller.audioSource.Stop();
+            }
         }
     }
 
-    // ÉèÖÃ BGM ÒôÁ¿
+    // è®¾ç½® BGM éŸ³é‡
     public void SetBGMVolume(float volume)
     {
-        lastVolume = volume; // ¸üĞÂ¼ÇÂ¼µÄÒôÁ¿
+        lastVolume = volume; // æ›´æ–°è®°å½•çš„éŸ³é‡
         foreach (MusicController controller in musicControllers)
         {
-            controller.SetVolume(volume);
-            Debug.Log($"ÒÑ½« {controller.gameObject.name} µÄÒôÁ¿ÉèÖÃÎª {volume}£¬Êµ¼ÊÒôÁ¿£º{controller.audioSource.volume}");
+            if (controller.audioSource != null)
+            {
+                controller.SetVolume(volume);
+                Debug.Log($"å·²å°† {controller.gameObject.name} çš„éŸ³é‡è®¾ç½®ä¸º {volume}ï¼Œå®é™…éŸ³é‡ï¼š{controller.audioSource.volume}");
+            }
         }
     }
 
-    // »ñÈ¡µ±Ç°ÒôÁ¿
+    // è·å–å½“å‰éŸ³é‡
     public float GetCurrentVolume()
     {
-        if (musicControllers.Length > 0)
+        if (musicControllers.Length > 0 && musicControllers[0].audioSource != null)
         {
             return musicControllers[0].audioSource.volume;
         }
