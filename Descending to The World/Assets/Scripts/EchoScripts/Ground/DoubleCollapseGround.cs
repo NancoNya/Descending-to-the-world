@@ -62,6 +62,7 @@ public class DoubleCollapseGround : MonoBehaviour
 
     public  void OnCollisionEnter2D(Collision2D collision)
     {
+
         //base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -76,7 +77,6 @@ public class DoubleCollapseGround : MonoBehaviour
             {
                 reachCount++;
                 this.gameObject.SetActive(false);
-                Debug.Log("remove doubleCollapseGround");
             }
         }
     }
