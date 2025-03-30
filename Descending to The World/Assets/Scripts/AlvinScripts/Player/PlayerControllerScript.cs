@@ -16,7 +16,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     [Header("移动状态")]
     [SerializeField]private bool isMoving;
-    //[SerializeField] private bool isTurning = false;
     [SerializeField]private Vector3 faceDir;
     public float currentDirection;  // 记录当前移动方向
     private bool canAddSpeed = false;
@@ -148,8 +147,10 @@ public class PlayerControllerScript : MonoBehaviour
         if (canAddSpeed)   // 火箭加速
         {
             anim.SetBool("hasRocket", true);
-            timer += Time.fixedDeltaTime; 
+            timer += Time.fixedDeltaTime;
+            rb.gravityScale = 0;
             rb.velocity = new Vector3(speed * currentDirection, 0, 0);
+            Debug.Log("aaaaaaaaaaaaaaaaaaa 重力" + rb.gravityScale);
         }
         if (timer >= 0.8f)   // 加速时间结束 
         {
@@ -157,7 +158,8 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             canAddSpeed = false;
-            rb.gravityScale = 3f;
+            rb.gravityScale = 5f;
+            Debug.Log("bbbbbbbbbbbbbbbbbbb 重力" + rb.gravityScale);
         }
     }
 
@@ -301,17 +303,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //if (other.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
-        //{
-        //    OnIdleEvent();
-        //    EventHandler.isMoving = !EventHandler.isMoving;
-        //}
-        //if (other.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点
-        //{
-        //    LevelManager.Instance.OnReachCheckpoint();
-        //    gameObject.SetActive(false);
-        //    other.enabled = false;
-        //}
         if (other.gameObject == button1)
         {
             if (door1 != null)
@@ -346,6 +337,7 @@ public class PlayerControllerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
         {
             OnIdleEvent();
+            EventHandler.CallTimerStopEvent();
             EventHandler.isMoving = !EventHandler.isMoving;
         }
         if (collision.gameObject.CompareTag("CheckPoint"))  // 到达小关卡终点

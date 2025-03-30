@@ -177,15 +177,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.LogError($"Scene {nextSceneName} not loaded!");
             yield break;
         }
-        //// 根据当前关卡索引设置人物初始位置
-        //int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
-        //Debug.Log("索引" + index);
-        //if (levelInitialData != null && index < levelInitialData.playerPositions.Length)
-        //{
-        //    ///////////  TODO
-        //    player.gameObject.transform.position = levelInitialData.playerPositions[index];
-        //    player.gameObject.SetActive(true);
-        //}
+        
         EventHandler.IdleEvent.Invoke();  // 设置为待机状态
         EventHandler.isMoving = false;
         yield return Fade(0);
@@ -231,12 +223,10 @@ public class LevelManager : Singleton<LevelManager>
 
         AsyncOperation mainLoadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
         yield return mainLoadOperation; // 等待主场景加载完成
-        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
         // 以 Additive 模式加载名为 "PropColumn" 的场景
         AsyncOperation propLoadOperation = SceneManager.LoadSceneAsync("PropColumn", LoadSceneMode.Additive);
         yield return propLoadOperation; // 等待 PropColumn 场景加载完成
-        Debug.Log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
         // 设置新场景为激活场景
         Scene newScene = SceneManager.GetSceneByName(nextSceneName);
@@ -247,7 +237,6 @@ public class LevelManager : Singleton<LevelManager>
         //    SceneManager.SetActiveScene(newScene);
         //    Debug.Log("enter!!!!!!!!!!!!!!");
         //};
-        Debug.Log("ccccccccccccccccccccccccc 激活完毕");
         // 根据当前关卡索引设置人物初始位置
         int index = (currentBigLevel - 1) * 2 + (currentSmallLevel - 1);
         if (levelInitialData != null && index < levelInitialData.playerPositions.Length)

@@ -7,6 +7,7 @@ public static class EventHandler
     public static UnityEvent MovementEvent = new UnityEvent();
     public static UnityEvent IdleEvent = new UnityEvent();
     public static UnityEvent ResetGroundEvent = new UnityEvent();
+    public static UnityEvent TimerStopEvent = new UnityEvent();
 
     public static bool isMoving = false;
 
@@ -29,18 +30,9 @@ public static class EventHandler
         isMoving = !isMoving;
     }
 
-    //public static event System.Action SceneSwitchedEvent;
-
-    ///// <summary>
-    ///// 用于通知 PlayerControllerScript 更新位置
-    ///// </summary>
-    ///// <param name="scene"></param>
-    ///// <param name="mode"></param>
-    //public static void CallSceneSwitchedEvent(Scene scene, LoadSceneMode mode)
-    //{
-    //    if (mode == LoadSceneMode.Additive)
-    //    {
-    //        SceneSwitchedEvent?.Invoke();
-    //    }
-    //}
+    public static void CallTimerStopEvent()
+    {
+        LevelManager levelManager = LevelManager.Instance;
+        levelManager.levelTimer.PauseTimer();
+    }
 }
