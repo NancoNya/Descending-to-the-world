@@ -2624,7 +2624,7 @@ GameObject:
   - component: {fileID: 462501515}
   m_Layer: 0
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2883,7 +2883,7 @@ GameObject:
   - component: {fileID: 535661504}
   m_Layer: 0
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3091,7 +3091,7 @@ GameObject:
   - component: {fileID: 584642043}
   m_Layer: 0
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3173,9 +3173,9 @@ GameObject:
   m_Component:
   - component: {fileID: 585440196}
   - component: {fileID: 585440197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3997,7 +3997,7 @@ GameObject:
   - component: {fileID: 784047212}
   m_Layer: 0
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4081,7 +4081,7 @@ GameObject:
   - component: {fileID: 801897193}
   m_Layer: 0
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4714,7 +4714,7 @@ GameObject:
   - component: {fileID: 898038369}
   m_Layer: 0
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4971,9 +4971,9 @@ GameObject:
   - component: {fileID: 980751539}
   - component: {fileID: 980751540}
   - component: {fileID: 980751541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5077,7 +5077,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.733119, y: -0.65041566}
+  m_Offset: {x: 3.733119, y: -0.62726474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5088,7 +5088,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.733763, y: 0.36623746}
+  m_Size: {x: 11.733763, y: 0.41253918}
   m_EdgeRadius: 0
 --- !u!1001 &998544865
 PrefabInstance:
@@ -5776,7 +5776,7 @@ GameObject:
   - component: {fileID: 1202485323}
   m_Layer: 0
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5920,9 +5920,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1228942360}
   - component: {fileID: 1228942361}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6006,7 +6006,7 @@ GameObject:
   - component: {fileID: 1243180484}
   m_Layer: 0
   m_Name: xin dik (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6088,9 +6088,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1288277345}
   - component: {fileID: 1288277346}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7232,9 +7232,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1526883138}
   - component: {fileID: 1526883139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7380,7 +7380,7 @@ GameObject:
   - component: {fileID: 1596351319}
   m_Layer: 0
   m_Name: xin dik (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8195,9 +8195,9 @@ GameObject:
   - component: {fileID: 1905995987}
   - component: {fileID: 1905995986}
   - component: {fileID: 1905995988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: xin dik
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8846,7 +8846,7 @@ GameObject:
   - component: {fileID: 2057822940}
   m_Layer: 0
   m_Name: xin dik (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9374,6 +9374,14 @@ PrefabInstance:
     - target: {fileID: 5075160832987641704, guid: ec833e5f1eb377341966690fe2a2d1d4, type: 3}
       propertyPath: m_Name
       value: xin podik2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558784305223105897, guid: ec833e5f1eb377341966690fe2a2d1d4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3888171
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558784305223105897, guid: ec833e5f1eb377341966690fe2a2d1d4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.617612
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

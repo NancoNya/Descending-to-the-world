@@ -30,18 +30,22 @@ public class PhysicsCheckScript : MonoBehaviour
 
     public void Check()
     {
-        // TODO  Physics2D.OverlapCapsule£¿
-        //isGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, checkRadius, groundLayer);
-
+        // isGround = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, checkRadius, groundLayer);
         touchLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, checkRadius, obstacleLayer);
         touchRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, checkRadius, obstacleLayer);
     }
 
     private void OnDrawGizmosSelected()
     {
-        //Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, checkRadius);
+        // Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

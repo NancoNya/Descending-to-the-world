@@ -57,24 +57,6 @@ public class PlayerControllerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         physicsCheckScript = GetComponent<PhysicsCheckScript>();
-
-        //currentBigLevel = LevelManager.Instance.currentBigLevel;
-        //currentSmallLevel = LevelManager.Instance.currentSmallLevel;
-
-        //Debug.Log("big " + currentBigLevel);
-        //Debug.Log("small " + currentSmallLevel);
-
-        //int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
-        //Debug.Log(index);
-        //// 从 LevelInitialSO 中获取对应索引的人物初始位置
-        //if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
-        //{
-        //    initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
-        //    // 将人物设置在对应场景的初始位置
-        //    transform.position = initialPosition;
-        //}
-        //else
-        //    Debug.LogError("未能找到对应的初始位置");
     }
 
     private void OnEnable()
@@ -110,8 +92,8 @@ public class PlayerControllerScript : MonoBehaviour
         currentBigLevel = LevelManager.Instance.currentBigLevel;
         currentSmallLevel = LevelManager.Instance.currentSmallLevel;
 
-        Debug.Log("big " + currentBigLevel);
-        Debug.Log("small " + currentSmallLevel);
+        Debug.Log("大关卡: " + currentBigLevel);
+        Debug.Log("小关卡: " + currentSmallLevel);
 
         int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
         Debug.Log("关卡初始位置索引" + index);
@@ -120,11 +102,9 @@ public class PlayerControllerScript : MonoBehaviour
         {
             if (this == null)
             {
-                Debug.Log("ccccccccccccccccccccccccc enter");
                 initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
                 // 将人物设置在对应场景的初始位置
                 transform.position = initialPosition;
-                Debug.Log("bbbbbbbbbbbbbbb set initial positon");
             }
         }
         else
@@ -138,6 +118,7 @@ public class PlayerControllerScript : MonoBehaviour
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
     }
+
     private void FixedUpdate()
     {
         
@@ -167,13 +148,14 @@ public class PlayerControllerScript : MonoBehaviour
         if (canAddSpeed)   // 火箭加速
         {
             anim.SetBool("hasRocket", true);
-            timer += Time.fixedDeltaTime; rb.velocity = new Vector3(speed, 0, 0);
+            timer += Time.fixedDeltaTime; 
+            rb.velocity = new Vector3(speed * currentDirection, 0, 0);
         }
         if (timer >= 0.8f)   // 加速时间结束 
         {
             anim.SetBool("hasRocket", false);
             anim.SetBool("isWalking", true);
-            rb.velocity = new Vector2(moveSpeed,0); 
+            rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             canAddSpeed = false;
             rb.gravityScale = 3f;
         }
