@@ -70,11 +70,11 @@ public class MenuScript : MonoBehaviour
     private void Update()
     {
         EscTime %= 2;
-        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0&&!PauseMenu.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
         {
             EscTime++;
             GamePause();
-        }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1&&PauseMenu.activeSelf)
+        }else if(Input.GetKeyDown(KeyCode.Escape)&&EscTime == 1)
         {
             EscTime++;
             GameContinue();

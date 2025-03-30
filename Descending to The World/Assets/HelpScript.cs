@@ -10,6 +10,7 @@ public class HelpScript : MonoBehaviour
     public GameObject Next1;
     public GameObject Next2;
     public GameObject Next3;
+    public GameObject Next4;
     public Canvas HelpCanvas;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class HelpScript : MonoBehaviour
         Next1.SetActive(true);
         Next2.SetActive(false);
         Next3.SetActive(false);
+        Next4.SetActive(false);
 
     }
 
@@ -30,6 +32,7 @@ public class HelpScript : MonoBehaviour
         Next2.SetActive(true);
         Next1.SetActive(false);
         Next3.SetActive(false);
+        Next4.SetActive(false);
 
     }
 
@@ -38,6 +41,7 @@ public class HelpScript : MonoBehaviour
         Next3.SetActive(true);
         Next2.SetActive(false);
         Next1.SetActive(false);
+        Next4.SetActive(false);
 
     }
 
@@ -49,6 +53,15 @@ public class HelpScript : MonoBehaviour
     public void HelpExit()
     {
         HelpCanvas.gameObject.SetActive(false);
+    }
+
+    public void NextHelp4()
+    {
+        Next4.SetActive(true);
+        Next2.SetActive(false);
+        Next1.SetActive(false);
+        Next3.SetActive(false);
+
     }
 
     private void Update()
