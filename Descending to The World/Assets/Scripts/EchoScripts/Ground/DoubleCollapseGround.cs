@@ -40,10 +40,15 @@ public class DoubleCollapseGround : MonoBehaviour
         //    gameObject.SetActive(true);
         Debug.Log("00000000000000000"+this.gameObject.activeInHierarchy);
         //this.gameObject.SetActive(true);
-        if (!this.gameObject.activeInHierarchy)
+        //查找所有坍塌地块
+        DoubleCollapseGround[] allDoubleCollapseGrounds = Resources.FindObjectsOfTypeAll<DoubleCollapseGround>();
+
+        foreach (DoubleCollapseGround doubleCollapseGround in allDoubleCollapseGrounds)
         {
-            // 如果处于关闭状态，将其设置为开启状态
-            gameObject.SetActive(true);
+            if (doubleCollapseGround.CompareTag("CollapseGround"))
+            {
+                doubleCollapseGround.gameObject.SetActive(true);
+            }
         }
     }
 
