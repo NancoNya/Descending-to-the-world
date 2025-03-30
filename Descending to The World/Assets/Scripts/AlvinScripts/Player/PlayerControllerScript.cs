@@ -102,7 +102,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void UpdatePlayerPosition()
     {
-        Debug.Log("1111111111111111111");
         currentBigLevel = LevelManager.Instance.currentBigLevel;
         currentSmallLevel = LevelManager.Instance.currentSmallLevel;
 
@@ -114,11 +113,14 @@ public class PlayerControllerScript : MonoBehaviour
         // 从 LevelInitialSO 中获取对应索引的人物初始位置
         if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
         {
-            Debug.Log("ccccccccccccccccccccccccc enter");
-            initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
-            // 将人物设置在对应场景的初始位置
-            transform.position = initialPosition;
-            Debug.Log("bbbbbbbbbbbbbbb set initial positon");
+            if (this == null)
+            {
+                Debug.Log("ccccccccccccccccccccccccc enter");
+                initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
+                // 将人物设置在对应场景的初始位置
+                transform.position = initialPosition;
+                Debug.Log("bbbbbbbbbbbbbbb set initial positon");
+            }
         }
         else
             Debug.LogError("未能找到对应的初始位置");

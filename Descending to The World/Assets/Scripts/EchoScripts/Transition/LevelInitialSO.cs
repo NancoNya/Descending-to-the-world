@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelInitialSO", menuName = "Level Data/Initial Settings")]
+[CreateAssetMenu(fileName = "LevelInitialSO", menuName = "ScriptableObject/LevelInitialSO")]
 public class LevelInitialSO : ScriptableObject
 {
     /// <summary>

@@ -24,7 +24,6 @@ public class LevelManager : Singleton<LevelManager>
 
     [Header("动态UI引用")]
     public GameObject canvasFather;
-
     public Canvas resultCanvas;   // 结算界面（通关大关卡时出现）
     public CanvasGroup fadeCanvasGroup;  // 调整alpha值实现遮挡
     public Canvas gameCanvas;
@@ -32,9 +31,14 @@ public class LevelManager : Singleton<LevelManager>
     public Button nextLevelButton;    // 通关大关卡，点击前往下一个大关卡
     public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
 
+    //override protected void Awake()
+    //{
+    //    levelInitialData = Resources.Load<LevelInitialSO>("LevelInitialSO");
+    //}
+
     private void Start()
     {
-        nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
+        
     }
 
     private void OnEnable()
@@ -71,7 +75,6 @@ public class LevelManager : Singleton<LevelManager>
                         if (playerTransform != null)
                         {
                             player = playerTransform.gameObject;
-                            Debug.Log("aaaaaaaaaaaaaaaaaaaa found player" + player);
                             SceneSwitchedEvent?.Invoke();
                             break;
                         }
@@ -101,6 +104,12 @@ public class LevelManager : Singleton<LevelManager>
         {
             levelTimer = gameCanvas.transform.GetChild(1).GetComponent<LevelTimer>();
         }
+        if(resultCanvas != null)
+        {
+            resultTimeText = resultCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            nextLevelButton = resultCanvas.transform.GetChild(2).transform.GetChild(0).GetComponent<Button>();
+        }
+        nextLevelButton.onClick.AddListener(StartLoadNextBigLevel);
     }
 
     /// <summary>
