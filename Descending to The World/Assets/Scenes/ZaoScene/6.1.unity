@@ -5051,8 +5051,6 @@ MonoBehaviour:
   - {fileID: 5438953828100592834, guid: a4f1ec167bafd2e4c964676df58199d8, type: 3}
   - {fileID: 2918794755852630294, guid: 78e8edfb72180fc40bfd50654c4068bd, type: 3}
   - {fileID: 4846834752966436534, guid: 491cfdec33f95344ba67c32905e1f198, type: 3}
-  - {fileID: 3010151765776397172, guid: f4c673a9c4e93e34da523e616f2b0aa7, type: 3}
-  - {fileID: 3010151765776397172, guid: 7bc7c087cbed0a5418e6e33c4c70d287, type: 3}
   currentThing: {fileID: 0}
   seismographButton: {fileID: 0}
   kongMingLanternButton: {fileID: 0}
