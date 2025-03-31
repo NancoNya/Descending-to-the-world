@@ -8,7 +8,7 @@ public class PhysicsCheckScript : MonoBehaviour
     public bool isGround;
     public bool touchLeftWall;
     public bool touchRightWall;
-    public bool isCloud;
+    public bool isLantern;
 
     [Header("检测通用数值")]
     public float checkRadius; // 物理检测范围大小
@@ -16,8 +16,6 @@ public class PhysicsCheckScript : MonoBehaviour
     [Header("地面监测")]
     public Vector2 bottomOffset; //检测偏移量
     public LayerMask groundLayer;
-    //public Vector2 bottomOffset1;
-    //public LayerMask cloudLayer;
 
     [Header("墙壁和地动仪检测")]
     public Vector2 leftOffset;
@@ -67,47 +65,17 @@ public class PhysicsCheckScript : MonoBehaviour
             isGround = false;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Cloud"))
-    //    {
-    //        //isGround = false;
-    //        isCloud = true;
-    //    }
-    //    else
-    //    {
-    //        isCloud = false;
-    //        //isGround = true;
-    //    }
-    //}
-
-    /// <summary>
-    /// 踩上彩云
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Cloud"))
+        if (collision.gameObject.CompareTag("Lantern"))
         {
-            //isGround = false;
-            isCloud = true;
-
-            // rb.velocity.y = collision.gameObject.GetComponent<Rigidbody2D>()?.velocity.y;
-            //transform.SetParent(collision.transform);
+            isLantern = true;
+            isGround = true;
         }
-        //else
-        //{
-        //    isCloud = false;
-        //    //isGround = true;
-        //}
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Cloud"))
+        else
         {
-            isCloud = false;
-            //transform.SetParent(null);
+            isLantern = false;
+            isGround = true;
         }
     }
 }

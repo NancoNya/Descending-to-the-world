@@ -18,6 +18,7 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField]private Vector3 faceDir;
     public float currentDirection;  // 记录当前移动方向
     private bool canAddSpeed = false;
+    public bool isLantern;
 
     [Header("计时器")]
     [SerializeField]private float waitTime = 1f;
@@ -41,10 +42,12 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("机关门")]
     public GameObject door1;
     public GameObject door2;
+    public GameObject door3;
 
     [Header("按钮")]
     public GameObject button1;
     public GameObject button2;
+    public GameObject button3;
 
     [Header("所处场景")]
     public int currentBigLevel;
@@ -75,9 +78,11 @@ public class PlayerControllerScript : MonoBehaviour
         //else MilkyWay.SetActive(false);
         button1 = GameObject.Find("button1");
         button2 = GameObject.Find("button2");
+        button3 = GameObject.Find("button3");
         door1 = GameObject.Find("door1");
         door2 = GameObject.Find("door2");
-        if (door1 == null && door2 == null)
+        door3 = GameObject.Find("door3");
+        if (door1 == null && door2 == null && door3 == null)
             Debug.Log("该关卡中不存在机关门");
         
         // 订阅点击时钟触发的事件
@@ -118,11 +123,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (physicsCheckScript.isCloud)
-        //{
-        //    rb.velocity = new Vector2(1, 0.3f);
-        //} 
-        if(isMoving && (physicsCheckScript.isGround || physicsCheckScript.isCloud) && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
+        if(isMoving && (physicsCheckScript.isGround || physicsCheckScript.isLantern) && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
             //currentDirection = 1f;
             anim.SetBool("isWalking", true);
@@ -158,17 +159,7 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             canAddSpeed = false;
-            rb.gravityScale = 5f;
-        }
-
-        if(physicsCheckScript.isCloud)   // 彩云（运动减速）
-        {
-            this.rb.gravityScale = 0;
-            // rb.velocity = new Vector2(currentDirection * moveSpeed * 0.5f, 0);
-        }
-        if(!physicsCheckScript.isCloud)
-        {
-            rb.gravityScale = 5f;
+            rb.gravityScale = 3f;
         }
     }
 
@@ -187,12 +178,14 @@ public class PlayerControllerScript : MonoBehaviour
     void OnIdleEvent()
     {
         currentDirection = 1f;
+        rb.gravityScale = 3f;
         canAddSpeed = false;
         isMoving = false;
         holdCompass = false;
         moveToMagnet = false;
         arriveMagnet = false;
-        physicsCheckScript.isCloud = false;
+        isLantern = false;
+        physicsCheckScript.isLantern = false;
         anim.SetBool("hasCompass", false);
         BackToInitial();
 
@@ -200,6 +193,8 @@ public class PlayerControllerScript : MonoBehaviour
             door1.SetActive(true);
         if (door2 != null)
             door2.SetActive(true);
+        if (door3 != null)
+            door3.SetActive(true);
     }
 
     /// <summary>
@@ -326,6 +321,13 @@ public class PlayerControllerScript : MonoBehaviour
                 door2.SetActive(false);
             }
         }
+        else if (other.gameObject == button3)
+        {
+            if (door3 != null)
+            {
+                door3.SetActive(false);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -336,19 +338,12 @@ public class PlayerControllerScript : MonoBehaviour
             {
                 wait = true;
                 hasFlipped = false;
-                //FlipDirection();
             }
         }
-        ///////////////////////////////////////////////////////////////////////  彩云
-        //if (collision.gameObject.CompareTag("Cloud"))
-        //{
-        //    this.rb.gravityScale = 0;
-        //    //float vectorY = collision.rigidbody.velocity.y;
-        //    //float vectorX = rb.velocity.x;
-        //    rb.velocity = new Vector2(moveSpeed * 0.05f * currentDirection, rb.velocity.y);
-        //}
-        //////////////////////////////////////////////////////////////////////////////////////////
-        if (collision.gameObject.CompareTag("Ground")) this.rb.gravityScale = 3;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            this.rb.gravityScale = 3;
+        }
         if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
             canAddSpeed = true;
@@ -364,7 +359,14 @@ public class PlayerControllerScript : MonoBehaviour
         {
             LevelManager.Instance.OnReachCheckpoint();
             collision.gameObject.SetActive(false);
-            //collision.gameObject.enabled = false;
+        }
+        if(physicsCheckScript.isLantern)
+        {
+            rb.gravityScale = 0;
+        }
+        if(!physicsCheckScript.isLantern && !canAddSpeed)
+        {
+            rb.gravityScale = 3f;
         }
     }
 
@@ -386,6 +388,7 @@ public class PlayerControllerScript : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// 到达通关点，停止运动
     /// </summary>

@@ -36,9 +36,6 @@ public class DoubleCollapseGround : MonoBehaviour
         reachCount = 0;
         firstReachCompleted = false;
         currentCooldown = 0f; // 重置冷却时间
-        //if (!this.gameObject.activeSelf)
-        //    gameObject.SetActive(true);
-        //this.gameObject.SetActive(true);
 
         //查找所有坍塌地块
         DoubleCollapseGround[] allDoubleCollapseGrounds = Resources.FindObjectsOfTypeAll<DoubleCollapseGround>();
@@ -62,8 +59,6 @@ public class DoubleCollapseGround : MonoBehaviour
 
     public  void OnCollisionEnter2D(Collision2D collision)
     {
-
-        //base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
             if (!firstReachCompleted && currentCooldown < 0.01f)

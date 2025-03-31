@@ -234,7 +234,6 @@ public class LevelManager : Singleton<LevelManager>
         //SceneManager.sceneLoaded += (Scene sc, LoadSceneMode loadSceneMode) =>
         //{
         //    SceneManager.SetActiveScene(newScene);
-        //    Debug.Log("enter!!!!!!!!!!!!!!");
         //};
         // 根据当前关卡索引设置人物初始位置
         int index = (currentBigLevel - 1) * 2 + (currentSmallLevel - 1);

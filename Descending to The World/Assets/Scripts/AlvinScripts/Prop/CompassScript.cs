@@ -16,23 +16,8 @@ public class CompassScript : MonoBehaviour
             if (player != null)
             {
                 player.PickUpCompass();
-                // Destroy(gameObject);
                 this.gameObject.SetActive(false);
             }
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        PickupCompass player = other.gameObject.GetComponent<PickupCompass>();
-    //        if (player != null)
-    //        {
-    //            player.PickUpCompass();
-    //            Destroy(gameObject);
-    //            Debug.Log("destroy");
-    //        }
-    //    }
-    //}
 }

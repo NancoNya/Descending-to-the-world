@@ -91,7 +91,10 @@ public class HandManager : MonoBehaviour
         ThingOSType[] thingOSTypes =
         {
             ThingOSType.Rocket,
+            ThingOSType.Rocket1,
             ThingOSType.KongMingLantern,
+            ThingOSType.KongMingLantern1,
+            ThingOSType.KongMingLantern2,
             ThingOSType.Compass,
             ThingOSType.Magnet
         };
@@ -115,7 +118,10 @@ public class HandManager : MonoBehaviour
         ThingOSType[] thingOSTypes = 
         {
             ThingOSType.Rocket,
+            ThingOSType.Rocket1,
             ThingOSType.KongMingLantern,
+            ThingOSType.KongMingLantern1,
+            ThingOSType.KongMingLantern2,
             ThingOSType.Compass,
             ThingOSType.Magnet
         };
@@ -150,7 +156,21 @@ public class HandManager : MonoBehaviour
                             thing.gameObject.SetActive(true);
                         }
                         break;
+                    case ThingOSType.Rocket1:
+                        if (!thing.gameObject.activeSelf)
+                        {
+                            thing.gameObject.SetActive(true);
+                        }
+                        break;
                     case ThingOSType.KongMingLantern:
+                        thing.transform.position = cellTransform.position;
+                        thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
+                        break;
+                    case ThingOSType.KongMingLantern1:
+                        thing.transform.position = cellTransform.position;
+                        thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
+                        break;
+                    case ThingOSType.KongMingLantern2:
                         thing.transform.position = cellTransform.position;
                         thing.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 停止运动
                         break;

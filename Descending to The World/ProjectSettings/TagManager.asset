@@ -15,6 +15,7 @@ TagManager:
   - Rocket
   - CheckPoint
   - Cloud
+  - Lantern
   layers:
   - Default
   - TransparentFX

@@ -40,7 +40,6 @@ public class CollapseGround : MonoBehaviour
     {
         //查找所有坍塌地块
         CollapseGround[] allCollapseGrounds = Resources.FindObjectsOfTypeAll<CollapseGround>();
-        Debug.Log(allCollapseGrounds);
         foreach (CollapseGround collapseGround in allCollapseGrounds)
         {
             if (collapseGround.CompareTag("CollapseGround"))
