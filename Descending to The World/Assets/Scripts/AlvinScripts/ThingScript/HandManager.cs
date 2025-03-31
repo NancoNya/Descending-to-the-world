@@ -43,6 +43,7 @@ public class HandManager : MonoBehaviour
     private void Start()
     {
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
+        EventHandler.ResetEvent.AddListener(OnResetEvent);
 
         // 将每个按钮添加到 buttonMap 字典中
         buttonMap[ThingOSType.Seismograph] = seismographButton;
@@ -75,13 +76,44 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        EventHandler.IdleEvent.RemoveListener(OnIdleEvent);
+        EventHandler.ResetEvent.RemoveListener(OnResetEvent);
+    }
+
+    /// <summary>
+    /// 人物掉出场景，道具复位
+    /// </summary>
+    private void OnResetEvent()
+    {
+        // 定义需要复位的道具类型数组
+        ThingOSType[] thingOSTypes =
+        {
+            ThingOSType.Rocket,
+            ThingOSType.KongMingLantern,
+            ThingOSType.Compass,
+            ThingOSType.Magnet
+        };
+
+        // 遍历道具类型，进行复位操作
+        foreach (ThingOSType type in thingOSTypes)
+        {
+            if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            {
+                ResetThingOnScene(type, cellTransform);
+            }
+        }
+    }
+
     /// <summary>
     /// 回溯时，场景中已放置的孔明灯、火箭、司南。磁石都回到放置点
     /// </summary>
     private void OnIdleEvent()
     {
         // 定义需要复位的道具类型数组
-        ThingOSType[] thingOSTypes = {
+        ThingOSType[] thingOSTypes = 
+        {
             ThingOSType.Rocket,
             ThingOSType.KongMingLantern,
             ThingOSType.Compass,

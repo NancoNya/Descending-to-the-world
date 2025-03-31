@@ -111,7 +111,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void Update()
     {
-        // currentDirection = Mathf.Sign(rb.velocity.x);
         TimeCounter();
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
         //else MilkyWay.SetActive(false);
@@ -119,11 +118,11 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (physicsCheckScript.isCloud)
-        {
-            rb.velocity = new Vector2(1, 0.3f);
-        } 
-        if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
+        //if (physicsCheckScript.isCloud)
+        //{
+        //    rb.velocity = new Vector2(1, 0.3f);
+        //} 
+        if(isMoving && (physicsCheckScript.isGround || physicsCheckScript.isCloud) && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
             //currentDirection = 1f;
             anim.SetBool("isWalking", true);
@@ -152,7 +151,6 @@ public class PlayerControllerScript : MonoBehaviour
             timer += Time.fixedDeltaTime;
             rb.gravityScale = 0;
             rb.velocity = new Vector3(speed * currentDirection, 0, 0);
-            Debug.Log("aaa重力" + rb.gravityScale);
         }
         if (timer >= 0.8f)   // 加速时间结束 
         {
@@ -161,7 +159,16 @@ public class PlayerControllerScript : MonoBehaviour
             rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             canAddSpeed = false;
             rb.gravityScale = 5f;
-            Debug.Log("bbbbbbbbbbbbbbbbbbb 重力" + rb.gravityScale);
+        }
+
+        if(physicsCheckScript.isCloud)   // 彩云（运动减速）
+        {
+            this.rb.gravityScale = 0;
+            rb.velocity = new Vector2(currentDirection * moveSpeed * 0.5f, 0);
+        }
+        if(!physicsCheckScript.isCloud)
+        {
+            rb.gravityScale = 5f;
         }
     }
 
@@ -185,6 +192,7 @@ public class PlayerControllerScript : MonoBehaviour
         holdCompass = false;
         moveToMagnet = false;
         arriveMagnet = false;
+        physicsCheckScript.isCloud = false;
         anim.SetBool("hasCompass", false);
         BackToInitial();
 
@@ -238,9 +246,8 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     private void FlipDirection()
     {
-        currentDirection = -currentDirection;
         // 翻转运动方向
-        //moveSpeed = -moveSpeed;
+        currentDirection = -currentDirection;
         Vector2 currentVelocity = rb.velocity;
         currentVelocity.x = moveSpeed;
         rb.velocity = currentVelocity;
@@ -332,14 +339,15 @@ public class PlayerControllerScript : MonoBehaviour
                 //FlipDirection();
             }
         }
-        if (collision.gameObject.CompareTag("Cloud"))
-        {
-            this.rb.gravityScale = 0;
-            float vectorY = collision.rigidbody.velocity.y;
-            //float vectorX = rb.velocity.x;
-            rb.velocity = new Vector2(moveSpeed*0.05f, vectorY);
-
-        }
+        ///////////////////////////////////////////////////////////////////////  彩云
+        //if (collision.gameObject.CompareTag("Cloud"))
+        //{
+        //    this.rb.gravityScale = 0;
+        //    //float vectorY = collision.rigidbody.velocity.y;
+        //    //float vectorX = rb.velocity.x;
+        //    rb.velocity = new Vector2(moveSpeed * 0.05f * currentDirection, rb.velocity.y);
+        //}
+        //////////////////////////////////////////////////////////////////////////////////////////
         if (collision.gameObject.CompareTag("Ground")) this.rb.gravityScale = 3;
         if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
@@ -348,6 +356,7 @@ public class PlayerControllerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
         {
             OnIdleEvent();
+            EventHandler.ResetEvent.Invoke();   // 彩云，坍塌地块，场景道具复位
             EventHandler.CallTimerStopEvent();
             EventHandler.isMoving = !EventHandler.isMoving;
         }

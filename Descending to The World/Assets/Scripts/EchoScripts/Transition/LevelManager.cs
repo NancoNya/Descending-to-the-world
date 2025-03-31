@@ -102,8 +102,8 @@ public class LevelManager : Singleton<LevelManager>
             fadeCanvasGroup = canvasFather.transform.Find("Fade Canvas")?.transform.Find("Panel").GetComponent<CanvasGroup>();
             gameCanvas = canvasFather.transform.Find("Game Canvas")?.GetComponent<Canvas>();
         }
-        else
-            Debug.Log("未获取canvas子物体");
+        //else
+        //    Debug.Log("未获取canvas子物体");
 
         if(gameCanvas != null)
         {
@@ -113,7 +113,6 @@ public class LevelManager : Singleton<LevelManager>
         {
             resultTimeText = resultCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             nextLevelButton = resultCanvas.transform.GetChild(2).transform.GetChild(0).GetComponent<Button>();
-            Debug.Log("next name   " + nextLevelButton);
         }
         
     }

@@ -6,9 +6,8 @@ public static class EventHandler
 {
     public static UnityEvent MovementEvent = new UnityEvent();
     public static UnityEvent IdleEvent = new UnityEvent();
-    public static UnityEvent ResetGroundEvent = new UnityEvent();
+    public static UnityEvent ResetEvent = new UnityEvent();   // 坍塌地块，彩云，道具恢复原位
     public static UnityEvent TimerStopEvent = new UnityEvent();
-
     public static bool isMoving = false;
 
     /// <summary>
@@ -16,13 +15,13 @@ public static class EventHandler
     /// </summary>
     public static void CallGameControlButtonClick()
     {
-        if (isMoving)
+        if (isMoving)   // 点击后回溯
         {
             Debug.Log("回到出发点");
             IdleEvent.Invoke();
-            ResetGroundEvent.Invoke();
+            ResetEvent.Invoke();
         }
-        else
+        else   // 点击后开始移动
         {
             Debug.Log("开始移动");
             MovementEvent.Invoke();
@@ -30,6 +29,9 @@ public static class EventHandler
         isMoving = !isMoving;
     }
 
+    /// <summary>
+    /// 人物掉落至场景外：回溯，计时器暂停
+    /// </summary>
     public static void CallTimerStopEvent()
     {
         LevelManager levelManager = LevelManager.Instance;

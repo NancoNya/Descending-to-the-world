@@ -54,8 +54,8 @@ public class LevelTimer : MonoBehaviour
             isTiming = true;
             isFirstPress = false;
         }
-        else
-            Debug.Log("not isFirstPress");
+        //else
+        //    Debug.Log("not isFirstPress");
     }
 
     /// <summary>

@@ -19,13 +19,13 @@ public class DoubleCollapseGround : MonoBehaviour
 
     private void Start()
     {
-        EventHandler.ResetGroundEvent.AddListener(OnResetGroundEvent);
+        EventHandler.ResetEvent.AddListener(OnResetGroundEvent);
         firstReachCompleted = false;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        EventHandler.ResetGroundEvent.RemoveListener(OnResetGroundEvent);
+        EventHandler.ResetEvent.RemoveListener(OnResetGroundEvent);
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public class DoubleCollapseGround : MonoBehaviour
         currentCooldown = 0f; // 重置冷却时间
         //if (!this.gameObject.activeSelf)
         //    gameObject.SetActive(true);
-        Debug.Log("00000000000000000"+this.gameObject.activeInHierarchy);
         //this.gameObject.SetActive(true);
+
         //查找所有坍塌地块
         DoubleCollapseGround[] allDoubleCollapseGrounds = Resources.FindObjectsOfTypeAll<DoubleCollapseGround>();
 
@@ -70,7 +70,7 @@ public class DoubleCollapseGround : MonoBehaviour
             {
                 reachCount++;
                 firstReachCompleted = true;
-                Debug.Log(reachCount);
+                // Debug.Log(reachCount);
                 currentCooldown = cooldownTime;
             }
             else if (reachCount == 1 && currentCooldown < 0.01f)

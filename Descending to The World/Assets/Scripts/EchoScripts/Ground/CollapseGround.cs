@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollapseGround : MonoBehaviour
 {
-    //protected int reachCount = 0;
     private Collider2D groundCollider;
 
     private void Awake()
@@ -14,20 +13,14 @@ public class CollapseGround : MonoBehaviour
 
     private void Start()
     {
-        EventHandler.ResetGroundEvent.AddListener(OnResetGroundEvent);
+        EventHandler.ResetEvent.AddListener(OnResetGroundEvent);
     }
 
-    //private void OnEnable()
-    //{
-    //    EventHandler.ResetGroundEvent.AddListener(OnResetGroundEvent);
-    //}
-
-    //private void OnDisable()
-    //{
-    //    EventHandler.ResetGroundEvent.RemoveListener(OnResetGroundEvent);
-    //}
-
-
+    private void OnDestroy()
+    {
+        EventHandler.ResetEvent.RemoveListener(OnResetGroundEvent);
+    }
+    
     /// <summary>
     /// 人物走上坍塌地块,坍塌地块消失
     /// </summary>
@@ -45,11 +38,9 @@ public class CollapseGround : MonoBehaviour
     /// </summary>
     private void OnResetGroundEvent()
     {
-        //reachCount = 0;
-
         //查找所有坍塌地块
         CollapseGround[] allCollapseGrounds = Resources.FindObjectsOfTypeAll<CollapseGround>();
-
+        Debug.Log(allCollapseGrounds);
         foreach (CollapseGround collapseGround in allCollapseGrounds)
         {
             if (collapseGround.CompareTag("CollapseGround"))
@@ -57,10 +48,5 @@ public class CollapseGround : MonoBehaviour
                 collapseGround.gameObject.SetActive(true);
             }
         }
-
-        //foreach (var collapseGround in FindObjectsOfType<CollapseGround>())
-        //{
-        //    collapseGround.gameObject.SetActive(true);
-        //}
     }
 }

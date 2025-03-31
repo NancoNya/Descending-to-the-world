@@ -24,12 +24,10 @@ public class PhysicsCheckScript : MonoBehaviour
     public Vector2 rightOffset;
     public LayerMask obstacleLayer;
 
-
     private void Update()
     {
         Check();
     }
-
 
     public void Check()
     {
@@ -45,11 +43,11 @@ public class PhysicsCheckScript : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-            isGround = true;
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+    //        isGround = true;
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -63,31 +61,45 @@ public class PhysicsCheckScript : MonoBehaviour
             isGround = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Cloud"))
-        {
-            isGround = false;
-            isCloud = true;
-        }
-        else
-        {
-            isCloud = false;
-            isGround = true;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Cloud"))
+    //    {
+    //        //isGround = false;
+    //        isCloud = true;
+    //    }
+    //    else
+    //    {
+    //        isCloud = false;
+    //        //isGround = true;
+    //    }
+    //}
 
+    /// <summary>
+    /// ≤»…œ≤ ‘∆
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Cloud"))
         {
-            isGround = false;
+            //isGround = false;
             isCloud = true;
+            //transform.SetParent(collision.transform);
         }
-        else
+        //else
+        //{
+        //    isCloud = false;
+        //    //isGround = true;
+        //}
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Cloud"))
         {
             isCloud = false;
-            isGround = true;
+            //transform.SetParent(null);
         }
     }
 }
