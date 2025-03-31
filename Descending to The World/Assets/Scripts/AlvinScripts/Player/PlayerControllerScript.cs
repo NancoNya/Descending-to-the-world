@@ -121,7 +121,7 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (physicsCheckScript.isCloud)
         {
-            rb.velocity = new Vector2(2, 0.3f);
+            rb.velocity = new Vector2(1, 0.3f);
         } 
         if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
