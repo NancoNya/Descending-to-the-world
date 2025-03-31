@@ -6,8 +6,6 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("AlvinScript")]
     private float speed = 8.0f;  // 火箭筒速度
     private float timer = 0f;
-    private GameObject Moon;
-    private GameObject MilkyWay;
 
 
     [Header("初始设置")]
@@ -121,7 +119,10 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (physicsCheckScript.isCloud)
+        {
+            rb.velocity = new Vector2(1, 0.3f);
+        } 
         if(isMoving && physicsCheckScript.isGround && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
             //currentDirection = 1f;
@@ -151,7 +152,7 @@ public class PlayerControllerScript : MonoBehaviour
             timer += Time.fixedDeltaTime;
             rb.gravityScale = 0;
             rb.velocity = new Vector3(speed * currentDirection, 0, 0);
-            Debug.Log("aaaaaaaaaaaaaaaaaaa 重力" + rb.gravityScale);
+            Debug.Log("aaa重力" + rb.gravityScale);
         }
         if (timer >= 0.8f)   // 加速时间结束 
         {
@@ -335,8 +336,8 @@ public class PlayerControllerScript : MonoBehaviour
         {
             this.rb.gravityScale = 0;
             float vectorY = collision.rigidbody.velocity.y;
-            float vectorX = rb.velocity.x;
-            rb.velocity = new Vector2(vectorX, vectorY);
+            //float vectorX = rb.velocity.x;
+            rb.velocity = new Vector2(moveSpeed*0.05f, vectorY);
 
         }
         if (collision.gameObject.CompareTag("Ground")) this.rb.gravityScale = 3;
