@@ -164,7 +164,7 @@ public class PlayerControllerScript : MonoBehaviour
         if(physicsCheckScript.isCloud)   // ≤ ‘∆£®‘À∂ØºıÀŸ£©
         {
             this.rb.gravityScale = 0;
-            rb.velocity = new Vector2(currentDirection * moveSpeed * 0.5f, 0);
+            // rb.velocity = new Vector2(currentDirection * moveSpeed * 0.5f, 0);
         }
         if(!physicsCheckScript.isCloud)
         {

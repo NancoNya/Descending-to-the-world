@@ -24,9 +24,15 @@ public class PhysicsCheckScript : MonoBehaviour
     public Vector2 rightOffset;
     public LayerMask obstacleLayer;
 
+    private Rigidbody2D rb;
     private void Update()
     {
         Check();
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Check()
@@ -85,6 +91,8 @@ public class PhysicsCheckScript : MonoBehaviour
         {
             //isGround = false;
             isCloud = true;
+
+            // rb.velocity.y = collision.gameObject.GetComponent<Rigidbody2D>()?.velocity.y;
             //transform.SetParent(collision.transform);
         }
         //else
