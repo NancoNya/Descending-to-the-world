@@ -81,13 +81,12 @@ public class PhysicsCheckScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cloud"))
         {
-            isGround = false;
+
             isCloud = true;
         }
         else
         {
             isCloud = false;
-            isGround = true;
         }
     }
 }
