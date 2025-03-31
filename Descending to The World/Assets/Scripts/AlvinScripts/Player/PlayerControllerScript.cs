@@ -9,6 +9,7 @@ public class PlayerControllerScript : MonoBehaviour
     private GameObject Moon;
     private GameObject MilkyWay;
 
+
     [Header("初始设置")]
     public float moveSpeed;
     public Vector3 initialPosition;
@@ -330,6 +331,15 @@ public class PlayerControllerScript : MonoBehaviour
                 //FlipDirection();
             }
         }
+        if (collision.gameObject.CompareTag("Cloud"))
+        {
+            this.rb.gravityScale = 0;
+            float vectorY = collision.rigidbody.velocity.y;
+            float vectorX = rb.velocity.x;
+            rb.velocity = new Vector2(vectorX, vectorY);
+
+        }
+        if (collision.gameObject.CompareTag("Ground")) this.rb.gravityScale = 3;
         if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
             canAddSpeed = true;
