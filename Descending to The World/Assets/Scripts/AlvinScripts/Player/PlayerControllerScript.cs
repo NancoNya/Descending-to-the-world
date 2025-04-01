@@ -17,7 +17,7 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField]private bool isMoving;
     [SerializeField]private Vector3 faceDir;
     public float currentDirection;  // 记录当前移动方向
-    private bool canAddSpeed = false;
+    public bool canAddSpeed = false;
     public bool isLantern;
 
     [Header("计时器")]
@@ -129,7 +129,7 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             StartWalking();
         }
-        else if (!physicsCheckScript.isGround)    // 不在地面上则自由落体
+        if (!physicsCheckScript.isGround &&canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
         {
             anim.SetBool("isWalking", false);
             FallDown();
@@ -157,8 +157,12 @@ public class PlayerControllerScript : MonoBehaviour
         {
             anim.SetBool("hasRocket", false);
             anim.SetBool("isWalking", true);
-            rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             canAddSpeed = false;
+            // rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
+            if(physicsCheckScript.isGround)
+                StartWalking();
+            if (!physicsCheckScript.isGround)
+                FallDown();
             rb.gravityScale = 3f;
         }
     }
@@ -187,6 +191,9 @@ public class PlayerControllerScript : MonoBehaviour
         isLantern = false;
         physicsCheckScript.isLantern = false;
         anim.SetBool("hasCompass", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("hasRocket", false);
+
         BackToInitial();
 
         if (door1 != null)

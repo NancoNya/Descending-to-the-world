@@ -1343,8 +1343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8423c8f9561f96d499ba6d47dfca2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compassPrefab: {fileID: 1699718635146983898, guid: 8c58011858c527047a34c5de58960875, type: 3}
-  compassPosition: {x: -2.79, y: 2.065, z: 0}
 --- !u!4 &320986827
 Transform:
   m_ObjectHideFlags: 0
@@ -3843,7 +3841,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1123996469}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 72dd02e0a4de2144a83702fe61f24839, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3888,7 +3886,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1123996469}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 72dd02e0a4de2144a83702fe61f24839, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4025,6 +4023,8 @@ MonoBehaviour:
   isMoving: 0
   faceDir: {x: 0, y: 0, z: 0}
   currentDirection: 0
+  canAddSpeed: 0
+  isLantern: 0
   waitTime: 1
   waitTimeCounter: 0
   wait: 0
@@ -4034,8 +4034,10 @@ MonoBehaviour:
   moveToMagnet: 0
   door1: {fileID: 0}
   door2: {fileID: 0}
+  door3: {fileID: 0}
   button1: {fileID: 0}
   button2: {fileID: 0}
+  button3: {fileID: 0}
   currentBigLevel: 0
   currentSmallLevel: 0
 --- !u!114 &1123996479
@@ -4053,7 +4055,7 @@ MonoBehaviour:
   isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
-  isCloud: 0
+  isLantern: 0
   checkRadius: 0.12
   bottomOffset: {x: 0, y: 0.03}
   groundLayer:

@@ -160,6 +160,7 @@ public class HandManager : MonoBehaviour
                         if (!thing.gameObject.activeSelf)
                         {
                             thing.gameObject.SetActive(true);
+                            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatrue");
                         }
                         break;
                     case ThingOSType.KongMingLantern:
