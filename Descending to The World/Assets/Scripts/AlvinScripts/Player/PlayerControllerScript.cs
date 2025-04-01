@@ -129,7 +129,7 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             StartWalking();
         }
-        if (!physicsCheckScript.isGround &&canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
+        if (!physicsCheckScript.isGround && canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
         {
             anim.SetBool("isWalking", false);
             FallDown();
@@ -148,6 +148,7 @@ public class PlayerControllerScript : MonoBehaviour
 
         if (canAddSpeed)   // 火箭加速
         {
+            Debug.Log("加速");
             anim.SetBool("hasRocket", true);
             timer += Time.fixedDeltaTime;
             rb.gravityScale = 0;
@@ -158,6 +159,7 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("hasRocket", false);
             anim.SetBool("isWalking", true);
             canAddSpeed = false;
+            timer = 0;
             // rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             if(physicsCheckScript.isGround)
                 StartWalking();
@@ -353,7 +355,10 @@ public class PlayerControllerScript : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
+            if(!canAddSpeed)
+            Debug.Log("前" + canAddSpeed);
             canAddSpeed = true;
+            Debug.Log("后" + canAddSpeed);
         }
         if (collision.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
         {

@@ -27,7 +27,8 @@ public class HandManager : MonoBehaviour
     public Button rocketButton1;
 
     // 道具类型对应的Cell位置存储（火箭，孔明灯,司南）
-    public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
+    public Dictionary<ThingOSType, List<Transform>> propCellDict = new Dictionary<ThingOSType, List<Transform>>();
+    ///////////////////// public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
     private void Awake()
     {
@@ -102,10 +103,17 @@ public class HandManager : MonoBehaviour
         // 遍历道具类型，进行复位操作
         foreach (ThingOSType type in thingOSTypes)
         {
-            if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            if (propCellDict.TryGetValue(type, out List<Transform> cellTransforms))
             {
-                ResetThingOnScene(type, cellTransform);
+                foreach (Transform cellTransform in cellTransforms)
+                {
+                    ResetThingOnScene(type, cellTransform);
+                }
             }
+            //if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            //{
+            //    ResetThingOnScene(type, cellTransform);
+            //}
         }
     }
 
@@ -129,10 +137,17 @@ public class HandManager : MonoBehaviour
         // 遍历道具类型，进行复位操作
         foreach (ThingOSType type in thingOSTypes)
         {
-            if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            if (propCellDict.TryGetValue(type, out List<Transform> cellTransforms))
             {
-                ResetThingOnScene(type, cellTransform);
+                foreach (Transform cellTransform in cellTransforms)
+                {
+                    ResetThingOnScene(type, cellTransform);
+                }
             }
+            //if (propCellDict.TryGetValue(type, out Transform cellTransform))
+            //{
+            //    ResetThingOnScene(type, cellTransform);
+            //}
         }
     }
 
@@ -160,7 +175,6 @@ public class HandManager : MonoBehaviour
                         if (!thing.gameObject.activeSelf)
                         {
                             thing.gameObject.SetActive(true);
-                            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatrue");
                         }
                         break;
                     case ThingOSType.KongMingLantern:
@@ -266,9 +280,14 @@ public class HandManager : MonoBehaviour
         }
 
         //////// 记录道具类型对应的Cell位置
-        if (currentThing.thingOSType == ThingOSType.KongMingLantern || currentThing.thingOSType == ThingOSType.Rocket || currentThing.thingOSType == ThingOSType.Compass || currentThing.thingOSType == ThingOSType.Magnet)
+        if (currentThing.thingOSType == ThingOSType.KongMingLantern || currentThing.thingOSType == ThingOSType.KongMingLantern1 || currentThing.thingOSType == ThingOSType.KongMingLantern2 || currentThing.thingOSType == ThingOSType.Rocket || currentThing.thingOSType == ThingOSType.Rocket1 || currentThing.thingOSType == ThingOSType.Compass || currentThing.thingOSType == ThingOSType.Magnet)
         {
-            propCellDict[currentThing.thingOSType] = cell.transform;
+            if (!propCellDict.ContainsKey(currentThing.thingOSType))
+            {
+                propCellDict[currentThing.thingOSType] = new List<Transform>();
+            }
+            propCellDict[currentThing.thingOSType].Add(cell.transform);
+            //////////////////propCellDict[currentThing.thingOSType] = cell.transform;
         }
 
         bool isSuccess = cell.AddThingOS(currentThing);
