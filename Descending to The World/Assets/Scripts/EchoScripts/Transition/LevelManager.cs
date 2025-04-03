@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using TMPro;
-using UnityEditor.SearchService;
+// using UnityEditor.SearchService;
 using Scene = UnityEngine.SceneManagement.Scene;
 
 public class LevelManager : Singleton<LevelManager>
