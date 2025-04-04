@@ -18,7 +18,7 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField]private Vector3 faceDir;
     public float currentDirection;  // 记录当前移动方向
     public bool canAddSpeed = false;
-    //public bool isLantern;
+    public bool isLantern;
 
     [Header("计时器")]
     [SerializeField]private float waitTime = 1f;
@@ -125,10 +125,11 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if(isMoving && (physicsCheckScript.isGround || physicsCheckScript.isLantern) && !moveToMagnet)   // 移动, 在地面上,不处于找磁石状态
         {
+            //currentDirection = 1f;
             anim.SetBool("isWalking", true);
             StartWalking();
         }
-        if ((!physicsCheckScript.isGround && !canAddSpeed))    // 不在地面上,不在背着火箭，则自由落体
+        if (!physicsCheckScript.isGround && !canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
         {
             anim.SetBool("isWalking", false);
             FallDown();
@@ -184,15 +185,13 @@ public class PlayerControllerScript : MonoBehaviour
     {
         currentDirection = 1f;
         rb.gravityScale = 3f;
-
         canAddSpeed = false;
         isMoving = false;
         holdCompass = false;
         moveToMagnet = false;
         arriveMagnet = false;
-        // isLantern = false;
+        isLantern = false;
         physicsCheckScript.isLantern = false;
-
         anim.SetBool("hasCompass", false);
         anim.SetBool("isWalking", false);
         anim.SetBool("hasRocket", false);
@@ -379,20 +378,10 @@ public class PlayerControllerScript : MonoBehaviour
         }
         if(physicsCheckScript.isLantern)
         {
-            if (!physicsCheckScript.isGround)
-            {
-                FallDown();
-                return;
-            }
             rb.gravityScale = 0;
         }
         if(!physicsCheckScript.isLantern && !canAddSpeed)
         {
-            if (!physicsCheckScript.isGround)
-            {
-                FallDown();
-                return;
-            }
             rb.gravityScale = 3f;
         }
     }

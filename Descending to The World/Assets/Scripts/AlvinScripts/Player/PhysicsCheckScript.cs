@@ -53,17 +53,17 @@ public class PhysicsCheckScript : MonoBehaviour
     //        isGround = true;
     //}
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //        isGround = true;
-    //}
-    
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //        isGround = false;
-    //}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = false;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -72,21 +72,10 @@ public class PhysicsCheckScript : MonoBehaviour
             isLantern = true;
             isGround = true;
         }
-        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-        {
-            isGround = true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Lantern"))
+        else
         {
             isLantern = false;
-            isGround = false;
-        }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-        {
-            isGround = false;
+            isGround = true;
         }
     }
 }
