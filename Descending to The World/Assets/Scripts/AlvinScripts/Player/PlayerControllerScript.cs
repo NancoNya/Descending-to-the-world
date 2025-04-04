@@ -129,7 +129,7 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             StartWalking();
         }
-        if (!physicsCheckScript.isGround && canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
+        if (!physicsCheckScript.isGround && !canAddSpeed)    // 不在地面上,不在背着火箭，则自由落体
         {
             anim.SetBool("isWalking", false);
             FallDown();
@@ -284,12 +284,16 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (magnet != null)
         {
+            if (!physicsCheckScript.isGround)
+            {
+                FallDown();
+                return;
+            }
             float targetX = magnet.transform.position.x;
             float currentX = transform.position.x;
 
             // 计算移动方向 
-            currentDirection = Mathf.Sign(targetX - currentX);  // PS: 根据最终人物图片大小调整
-            
+            currentDirection = Mathf.Sign(targetX - currentX);
             // 设置sprite朝向
             if (currentDirection != 0)
             {
