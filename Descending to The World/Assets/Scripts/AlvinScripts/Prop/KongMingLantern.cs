@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class KongMingLantern : MonoBehaviour
 {
-    private float liftSpeed = 5f;
+    private float liftSpeed = 1f;
     private Rigidbody2D rb;
     private Rigidbody2D playerRb;
+    public PlayerControllerScript playerController;
+    public PhysicsCheckScript physicsCheck;
 
     [Header("孔明灯状态")]
     public bool isHit;
@@ -19,12 +22,15 @@ public class KongMingLantern : MonoBehaviour
         
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
+        EventHandler.ResetEvent.AddListener(OnResetEvent);
     }
 
     private void OnDestroy()
     {
         EventHandler.MovementEvent.RemoveListener(OnMovementEvent);
         EventHandler.IdleEvent.RemoveListener(OnIdleEvent);
+        EventHandler.ResetEvent.RemoveListener(OnResetEvent);
+
     }
 
     private void FixedUpdate()
@@ -35,7 +41,7 @@ public class KongMingLantern : MonoBehaviour
             rb.velocity = new Vector2(0, liftSpeed);
         }
 
-        if (isHit && playerRb != null)
+        if (isHit && playerRb != null && canUse)
         {
             // 保持原有水平速度
             float horizontalVelocity = playerRb.velocity.x;
@@ -51,6 +57,8 @@ public class KongMingLantern : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            playerController = collision.gameObject.GetComponent<PlayerControllerScript>();
+            physicsCheck = collision.gameObject.GetComponent<PhysicsCheckScript>();
             playerRb.gravityScale = 0;
             isHit = true;
         }
@@ -62,33 +70,11 @@ public class KongMingLantern : MonoBehaviour
             isHit = false;
             playerRb.gravityScale = 3f;
             playerRb = null;
-            
         }
-    }
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    // 检测是否碰撞到tag为NormalFloor的对象
-    //    if (collision.gameObject.CompareTag("Cloud"))
-    //    {
-    //        isHit = true;
-    //        rb2 = collision.gameObject.GetComponent<Rigidbody2D>();
-    //        //if (Moon)
-    //        rb2.velocity = new Vector2(0, speed);
-    //        //else rb2.velocity = new Vector2(0, 0);
-    //        //Vector3 currentPosition = collision.gameObject.transform.position;
-
-    //        //// 计算新的 Y 坐标，使其向上移动
-    //        //float newYPosition = currentPosition.y + speed * Time.deltaTime;
-
-    //        //// 更新物体的位置
-    //        //transform.position = new Vector3(currentPosition.x, newYPosition, 0);
-    //    }
-    //}
-
-    private void Update()
-    {
-        //Moon = GameObject.Find("Moon");
-
+        if (physicsCheck != null && !physicsCheck.isLantern && playerController != null)
+        {
+            playerController.FallDown();
+        }
     }
 
     private void OnIdleEvent()
@@ -100,5 +86,11 @@ public class KongMingLantern : MonoBehaviour
     private void OnMovementEvent()
     {
         canUse = true;
+    }
+
+    private void OnResetEvent()
+    {
+        canUse = false;
+        isHit = false;
     }
 }
