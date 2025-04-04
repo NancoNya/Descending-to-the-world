@@ -3804,6 +3804,7 @@ GameObject:
   - component: {fileID: 1123996472}
   - component: {fileID: 1123996478}
   - component: {fileID: 1123996479}
+  - component: {fileID: 1123996480}
   m_Layer: 7
   m_Name: ///Player
   m_TagString: Player
@@ -3864,7 +3865,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.018848851, y: 0.02946998}
+  m_Offset: {x: -0.018848851, y: 0.05643512}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0.09483871, z: 0, w: 0}
     pivot: {x: 0.49999994, y: 0.08147112}
@@ -3875,7 +3876,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25588062, y: 0.13513045}
+  m_Size: {x: 0.25588062, y: 0.1293094}
   m_EdgeRadius: 0
 --- !u!70 &1123996474
 CapsuleCollider2D:
@@ -3884,7 +3885,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123996469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 72dd02e0a4de2144a83702fe61f24839, type: 2}
   m_IncludeLayers:
@@ -4024,7 +4025,6 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   currentDirection: 0
   canAddSpeed: 0
-  isLantern: 0
   waitTime: 1
   waitTimeCounter: 0
   wait: 0
@@ -4066,6 +4066,51 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!61 &1123996480
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123996469}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 72dd02e0a4de2144a83702fe61f24839, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.020148084, y: 0.3780711}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0.09483871, z: 0, w: 0}
+    pivot: {x: 0.49999994, y: 0.08147112}
+    oldSize: {x: 0.80008566, y: 1.1316129}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.22250485, y: 0.75600904}
+  m_EdgeRadius: 0
 --- !u!1 &1153481279
 GameObject:
   m_ObjectHideFlags: 0
