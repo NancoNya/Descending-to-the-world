@@ -47,46 +47,56 @@ public class PhysicsCheckScript : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //        isGround = true;
-    //}
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //        isGround = true;
-    //}
-    
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-    //        isGround = false;
-    //}
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = true;
         if (collision.gameObject.CompareTag("Lantern"))
         {
             isLantern = true;
             isGround = true;
         }
-        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-        {
-            isGround = true;
-        }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Lantern"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+            isGround = false;
+        if (collision.gameObject.CompareTag("Lantern"))
         {
             isLantern = false;
             isGround = false;
         }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
-        {
-            isGround = false;
-        }
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Lantern"))
+    //    {
+    //        isLantern = true;
+    //        isGround = true;
+    //    }
+    //    //if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+    //    //{
+    //    //    isGround = true;
+    //    //}
+    //}
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Lantern"))
+    //    {
+    //        isLantern = false;
+    //        isGround = false;
+    //    }
+    //    //if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
+    //    //{
+    //    //    isGround = false;
+    //    //}
+    //}
 }

@@ -52,7 +52,32 @@ public class KongMingLantern : MonoBehaviour
         //else rb.velocity = new Vector2(0, 0);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+    //        playerController = collision.gameObject.GetComponent<PlayerControllerScript>();
+    //        physicsCheck = collision.gameObject.GetComponent<PhysicsCheckScript>();
+    //        playerRb.gravityScale = 0;
+    //        isHit = true;
+    //    }
+    //}
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        isHit = false;
+    //        playerRb.gravityScale = 3f;
+    //        playerRb = null;
+    //    }
+    //    if (physicsCheck != null && !physicsCheck.isLantern && playerController != null)
+    //    {
+    //        playerController.FallDown();
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -63,7 +88,8 @@ public class KongMingLantern : MonoBehaviour
             isHit = true;
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
