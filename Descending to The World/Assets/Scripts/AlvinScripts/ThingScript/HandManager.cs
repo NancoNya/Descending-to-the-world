@@ -30,7 +30,7 @@ public class HandManager : MonoBehaviour
     public Dictionary<ThingOSType, List<Transform>> propCellDict = new Dictionary<ThingOSType, List<Transform>>();
     ///////////////////// public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
-    private bool shouldPauseGame = true;   // 将场景中道具放回道具栏，不将Time.timeScale设置为0
+    private bool isPickingBack = false;   // 将场景中道具放回道具栏，不将Time.timeScale设置为0（实现取回道具动画正常播放）
 
     private void Awake()
     {
@@ -228,6 +228,9 @@ public class HandManager : MonoBehaviour
             Debug.Log("未找到对应类型的道具预制体");
             return false;
         }
+
+        isPickingBack = false;
+
         currentThing = GameObject.Instantiate(thingOSPrefab);
         Debug.Log($"成功添加 {thingOSType} 类型的道具");
         if (buttonMap.ContainsKey(thingOSType))
@@ -266,12 +269,11 @@ public class HandManager : MonoBehaviour
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0;
             currentThing.transform.position = mouseWorldPosition;
-            // Time.timeScale = 0;
-            if (shouldPauseGame)
+            
+            if(!isPickingBack)
             {
                 Time.timeScale = 0;
             }
-            Debug.Log("followwwwwwwwwwwwwww" + Time.timeScale);
         }
         catch (Exception e)
         {
@@ -304,10 +306,7 @@ public class HandManager : MonoBehaviour
         {
             Debug.Log("成功将道具放置到单元格");
             Time.timeScale = 1;
-            Debug.Log("issuccessssssssssssssss" + Time.timeScale);
             currentThing = null;
-            // 放置道具成功后，恢复暂停游戏的标志
-            shouldPauseGame = true;
         }
         else
         {
@@ -338,8 +337,8 @@ public class HandManager : MonoBehaviour
             Debug.Log("单元格中没有道具，无法拾取");
             return;
         }
-        // 在拾取道具时，设置不暂停游戏
-        shouldPauseGame = false;
+        
+        isPickingBack = true;   // 拾取回道具，Time.timeScale不用设置为0
 
         Debug.Log($"准备拾取单元格中的道具: {cell.currentThing.thingOSType}");
         Debug.Log("开始执行拾取操作");
