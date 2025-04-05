@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using TMPro;
 // using UnityEditor.SearchService;
 using Scene = UnityEngine.SceneManagement.Scene;
+using UnityEditor.SearchService;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -30,6 +31,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public Button nextLevelButton;    // 通关大关卡，点击前往下一个大关卡
     public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
+    public TextMeshProUGUI levelDisplay;   // 显示当前所处关卡
 
     //override protected void Awake()
     //{
@@ -56,9 +58,16 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // player = FindPlayerInScene();
         FindChildObjects();
         SetInitialStates();
+
+        if(levelDisplay != null)
+        {
+            Scene activeScene = SceneManager.GetActiveScene();   // 获取当前激活场景的名字
+            string sceneName = activeScene.name;
+            levelDisplay.text = $"关卡{sceneName}";
+        }
+
         if (mode == LoadSceneMode.Additive)
         {
             // 遍历所有加载的场景
@@ -108,6 +117,7 @@ public class LevelManager : Singleton<LevelManager>
         if(gameCanvas != null)
         {
             levelTimer = gameCanvas.transform.GetChild(1).GetComponent<LevelTimer>();
+            levelDisplay = gameCanvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         }
         if(resultCanvas != null)
         {
