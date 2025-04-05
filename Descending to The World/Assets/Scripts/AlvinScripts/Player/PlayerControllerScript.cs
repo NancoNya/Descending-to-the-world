@@ -72,6 +72,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     void Start()
     {
+        FallDown();
         //Moon = GameObject.Find("Moon");
         //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);

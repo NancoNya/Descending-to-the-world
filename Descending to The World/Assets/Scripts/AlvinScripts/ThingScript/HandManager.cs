@@ -30,6 +30,8 @@ public class HandManager : MonoBehaviour
     public Dictionary<ThingOSType, List<Transform>> propCellDict = new Dictionary<ThingOSType, List<Transform>>();
     ///////////////////// public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
+    private bool shouldPauseGame = true;   // 将场景中道具放回道具栏，不将Time.timeScale设置为0
+
     private void Awake()
     {
         if (instance != null)
@@ -43,6 +45,8 @@ public class HandManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
+
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
         EventHandler.ResetEvent.AddListener(OnResetEvent);
 
@@ -262,7 +266,12 @@ public class HandManager : MonoBehaviour
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0;
             currentThing.transform.position = mouseWorldPosition;
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
+            if (shouldPauseGame)
+            {
+                Time.timeScale = 0;
+            }
+            Debug.Log("followwwwwwwwwwwwwww" + Time.timeScale);
         }
         catch (Exception e)
         {
@@ -295,7 +304,10 @@ public class HandManager : MonoBehaviour
         {
             Debug.Log("成功将道具放置到单元格");
             Time.timeScale = 1;
+            Debug.Log("issuccessssssssssssssss" + Time.timeScale);
             currentThing = null;
+            // 放置道具成功后，恢复暂停游戏的标志
+            shouldPauseGame = true;
         }
         else
         {
@@ -326,11 +338,14 @@ public class HandManager : MonoBehaviour
             Debug.Log("单元格中没有道具，无法拾取");
             return;
         }
+        // 在拾取道具时，设置不暂停游戏
+        shouldPauseGame = false;
+
         Debug.Log($"准备拾取单元格中的道具: {cell.currentThing.thingOSType}");
         Debug.Log("开始执行拾取操作");
         currentThing = cell.currentThing;
         cell.currentThing = null;
-        Time.timeScale = 0;
+        // Time.timeScale = 1;
         Debug.Log("成功从单元格拾取道具");
         if (currentThing != null)
         {
@@ -379,6 +394,7 @@ public class HandManager : MonoBehaviour
     {
         Debug.Log($"处理 {thingOSType} 类型道具的再次点击事件");
         MarkThingAsDestroyed(thingOSType);
+        // Time.timeScale = 1;
         Destroy(thingObject);
     }
 
