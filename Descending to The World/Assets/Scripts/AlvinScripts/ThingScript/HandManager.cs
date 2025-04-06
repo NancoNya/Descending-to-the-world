@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class HandManager : MonoBehaviour
 {
+    #region Data
     public static HandManager instance { get; private set; }
 
     public List<ThingOnScene> ThingOnSceneList;
@@ -31,7 +32,9 @@ public class HandManager : MonoBehaviour
     ///////////////////// public Dictionary<ThingOSType, Transform> propCellDict = new Dictionary<ThingOSType, Transform>();
 
     private bool isPickingBack = false;   // 将场景中道具放回道具栏，不将Time.timeScale设置为0（实现取回道具动画正常播放）
+    #endregion
 
+    #region Mono
     private void Awake()
     {
         if (instance != null)
@@ -81,12 +84,19 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        FollowCursor();
+    }
+
     private void OnDestroy()
     {
         EventHandler.IdleEvent.RemoveListener(OnIdleEvent);
         EventHandler.ResetEvent.RemoveListener(OnResetEvent);
     }
+    #endregion
 
+    #region 回溯
     /// <summary>
     /// 人物掉出场景，道具复位
     /// </summary>
@@ -213,7 +223,43 @@ public class HandManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    void FollowCursor()
+    {
+        if (currentThing == null)
+        {
+            return;
+        }
+        if (currentThing.gameObject == null)
+        {
+            Debug.LogError("道具对象已被销毁，无法跟随鼠标！");
+            MarkThingAsDestroyed(currentThing.thingOSType);
+            return;
+        }
+        if (Camera.main == null)
+        {
+            Debug.LogError("未找到主相机！");
+            return;
+        }
+        try
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = 0;
+            currentThing.transform.position = mouseWorldPosition;
+
+            if (!isPickingBack)
+            {
+                Time.timeScale = 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"跟随鼠标操作出错: {e.Message}");
+        }
+    }
+
+    #region 放置道具
     public bool AddThingOS(ThingOSType thingOSType)
     {
         Debug.Log($"尝试添加 {thingOSType} 类型的道具");
@@ -246,41 +292,9 @@ public class HandManager : MonoBehaviour
             if (thingOnScene.thingOSType == thingOSType) return thingOnScene;
         return null;
     }
+    #endregion
 
-    void FollowCursor()
-    {
-        if (currentThing == null)
-        {
-            return;
-        }
-        if (currentThing.gameObject == null)
-        {
-            Debug.LogError("道具对象已被销毁，无法跟随鼠标！");
-            MarkThingAsDestroyed(currentThing.thingOSType);
-            return;
-        }
-        if (Camera.main == null)
-        {
-            Debug.LogError("未找到主相机！");
-            return;
-        }
-        try
-        {
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0;
-            currentThing.transform.position = mouseWorldPosition;
-            
-            if(!isPickingBack)
-            {
-                Time.timeScale = 0;
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"跟随鼠标操作出错: {e.Message}");
-        }
-    }
-
+    #region 取回道具
     public void OnCellClick(Cell cell)
     {
         Debug.Log("尝试将手中道具放置到单元格");
@@ -396,9 +410,5 @@ public class HandManager : MonoBehaviour
         // Time.timeScale = 1;
         Destroy(thingObject);
     }
-
-    private void Update()
-    {
-        FollowCursor();
-    }
+    #endregion
 }

@@ -9,18 +9,22 @@ public class GameLevel : MonoBehaviour
     private int EscTime = 0;
     public GameObject PauseMenu;
 
-    //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
-    //注意修改该loadScene
-    public void Next()
+    private void Update()
     {
-        //Scene scene = SceneManager.GetSceneByName("GroundBigScene");
-        SceneManager.LoadScene("GroundBigScene");
+        EscTime %= 2;
+        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
+        {
+            EscTime++;
+            GamePause();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 1)
+        {
+            EscTime++;
+            GameContinue();
+        }
     }
-    public void Back()
-    {
-        //Scene scene = SceneManager.GetSceneByName("SkyBigScene");
-        SceneManager.LoadScene("SkyBigScene");
-    }
+
+    #region Game Start
     public void GameStart1()
     {
         Scene scene = SceneManager.GetSceneByName("1.1");
@@ -141,6 +145,21 @@ public class GameLevel : MonoBehaviour
         LevelManager.Instance.currentBigLevel = 12;
         LevelManager.Instance.currentSmallLevel = 1;
     }
+    #endregion
+
+    #region 菜单操作
+    //Scene MenuScene = SceneManager.GetSceneByName("PropColumn");
+    //注意修改该loadScene
+    public void Next()
+    {
+        //Scene scene = SceneManager.GetSceneByName("GroundBigScene");
+        SceneManager.LoadScene("GroundBigScene");
+    }
+    public void Back()
+    {
+        //Scene scene = SceneManager.GetSceneByName("SkyBigScene");
+        SceneManager.LoadScene("SkyBigScene");
+    }
 
     public void GameExit()
     {
@@ -157,23 +176,12 @@ public class GameLevel : MonoBehaviour
     public void GameContinue()
     {
         Time.timeScale = 1;
-        PauseMenu.SetActive(false); }
-        private void Update()
-    {
-        EscTime %= 2;
-        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0)
-        {
-            EscTime++;
-            GamePause();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 1)
-        {
-            EscTime++;
-            GameContinue();
-        }
+        PauseMenu.SetActive(false); 
     }
-
+    #endregion
 }
+
+
 
     //}
 

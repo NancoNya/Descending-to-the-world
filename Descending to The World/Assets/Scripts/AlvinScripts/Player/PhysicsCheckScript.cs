@@ -23,6 +23,7 @@ public class PhysicsCheckScript : MonoBehaviour
     public LayerMask obstacleLayer;
 
     private Rigidbody2D rb;
+
     private void Update()
     {
         Check();
@@ -47,6 +48,7 @@ public class PhysicsCheckScript : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
     }
 
+    #region Åö×²º¯Êý
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("CollapseGround"))
@@ -74,6 +76,9 @@ public class PhysicsCheckScript : MonoBehaviour
             isGround = false;
         }
     }
+    #endregion
+
+
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

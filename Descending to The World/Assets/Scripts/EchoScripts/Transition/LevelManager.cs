@@ -10,6 +10,7 @@ using UnityEditor.SearchService;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    #region Data
     [Header("计时器")]
     public LevelTimer levelTimer;
 
@@ -33,15 +34,11 @@ public class LevelManager : Singleton<LevelManager>
     public TextMeshProUGUI resultTimeText;   // 显示大关卡通关时间
     public TextMeshProUGUI levelDisplay;   // 显示当前所处关卡
 
-    //override protected void Awake()
-    //{
-    //    levelInitialData = Resources.Load<LevelInitialSO>("LevelInitialSO");
-    //}
+    // 用于通知 PlayerControllerScript 更新位置
+    public static event System.Action SceneSwitchedEvent;
+    #endregion
 
-    private void Start()
-    {
-    }
-
+    #region Mono
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -52,10 +49,9 @@ public class LevelManager : Singleton<LevelManager>
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    #endregion
 
-    // 用于通知 PlayerControllerScript 更新位置
-    public static event System.Action SceneSwitchedEvent;
-
+    #region 场景加载 初始化
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         FindChildObjects();
@@ -67,7 +63,6 @@ public class LevelManager : Singleton<LevelManager>
             string sceneName = activeScene.name;
             levelDisplay.text = $"关卡{sceneName}";
         }
-
         if (mode == LoadSceneMode.Additive)
         {
             // 遍历所有加载的场景
@@ -137,10 +132,10 @@ public class LevelManager : Singleton<LevelManager>
         if (fadeCanvasGroup != null)
             fadeCanvasGroup.gameObject.SetActive(false);
     }
+    #endregion
 
-    /// <summary>
-    /// 到达关卡终点
-    /// </summary>
+    #region 关卡传送
+    // 到达关卡终点
     public void OnReachCheckpoint()
     {
         levelTimer.PauseTimer();
@@ -203,7 +198,6 @@ public class LevelManager : Singleton<LevelManager>
         int minutes = Mathf.FloorToInt(totalTime / 60);
         int seconds = Mathf.FloorToInt(totalTime % 60);
         resultTimeText.text = string.Format("通关时间: {0:00}:{1:00}", minutes, seconds);
-        // 可以在这里添加保存时间等结算逻辑
     }
 
     /// <summary>
@@ -278,4 +272,5 @@ public class LevelManager : Singleton<LevelManager>
         isFading = false;
         fadeCanvasGroup.blocksRaycasts = false;
     }
+    #endregion'
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
+    #region Data
     [Header("AlvinScript")]
     private float speed = 8.0f;  // 火箭筒速度
     private float timer = 0f;
-
 
     [Header("初始设置")]
     public float moveSpeed;
@@ -52,7 +52,9 @@ public class PlayerControllerScript : MonoBehaviour
     [Header("所处场景")]
     public int currentBigLevel;
     public int currentSmallLevel;
+    #endregion
 
+    #region Mono
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -90,31 +92,9 @@ public class PlayerControllerScript : MonoBehaviour
         EventHandler.MovementEvent.AddListener(OnMovementEvent);
         EventHandler.IdleEvent.AddListener(OnIdleEvent);
     }
+    #endregion
 
-    private void UpdatePlayerPosition()
-    {
-        currentBigLevel = LevelManager.Instance.currentBigLevel;
-        currentSmallLevel = LevelManager.Instance.currentSmallLevel;
-
-        Debug.Log("大关卡: " + currentBigLevel);
-        Debug.Log("小关卡: " + currentSmallLevel);
-
-        int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
-        Debug.Log("关卡初始位置索引" + index);
-        // 从 LevelInitialSO 中获取对应索引的人物初始位置
-        if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
-        {
-            if (this == null)
-            {
-                initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
-                // 将人物设置在对应场景的初始位置
-                transform.position = initialPosition;
-            }
-        }
-        else
-            Debug.LogError("未能找到对应的初始位置");
-    }
-
+    #region 更新
     private void Update()
     {
         TimeCounter();
@@ -168,19 +148,17 @@ public class PlayerControllerScript : MonoBehaviour
             rb.gravityScale = 3f;
         }
     }
+    #endregion
 
-    /// <summary>
-    /// 触发移动事件，若在地上则行走，不在地上则垂直下落
-    /// </summary>
+    #region 回溯相关事件
+    // 触发移动事件
     void OnMovementEvent()
     {
         isMoving = true;
         currentDirection = 1f;
     }
 
-    /// <summary>
-    /// 触发回溯事件，人物停止移动，回到初始位置
-    /// </summary>
+    // 触发回溯事件
     void OnIdleEvent()
     {
         currentDirection = 1f;
@@ -207,7 +185,9 @@ public class PlayerControllerScript : MonoBehaviour
         if (door3 != null)
             door3.SetActive(true);
     }
+    #endregion
 
+    #region 移动
     /// <summary>
     /// 点击时钟，获得移动速度
     /// </summary>
@@ -264,6 +244,27 @@ public class PlayerControllerScript : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    public void TimeCounter()
+    {
+
+        if (wait)
+        {
+            if (!hasFlipped)
+            {
+                FlipDirection();
+                hasFlipped = true;
+            }
+            waitTimeCounter -= Time.deltaTime;
+            if (waitTimeCounter <= 0)
+            {
+                wait = false;
+                waitTimeCounter = waitTime;
+            }
+        }
+    }
+    #endregion
+
+    #region 司南移动
     /// <summary>
     /// 拾取司南，查找场景中有无磁石
     /// </summary>
@@ -319,7 +320,9 @@ public class PlayerControllerScript : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region 碰撞检测
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == button1)
@@ -362,9 +365,7 @@ public class PlayerControllerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Rocket"))   // 人物碰到火箭
         {
             if(!canAddSpeed)
-            Debug.Log("前" + canAddSpeed);
             canAddSpeed = true;
-            Debug.Log("后" + canAddSpeed);
         }
         if (collision.gameObject.CompareTag("DeadZone"))   // 人物掉落到边界
         {
@@ -397,31 +398,39 @@ public class PlayerControllerScript : MonoBehaviour
             rb.gravityScale = 3f;
         }
     }
+    #endregion
 
-    public void TimeCounter()
+
+
+
+    private void UpdatePlayerPosition()
     {
+        currentBigLevel = LevelManager.Instance.currentBigLevel;
+        currentSmallLevel = LevelManager.Instance.currentSmallLevel;
 
-        if (wait)
+        Debug.Log("大关卡: " + currentBigLevel);
+        Debug.Log("小关卡: " + currentSmallLevel);
+
+        int index = ((currentBigLevel - 1) * 2 + (currentSmallLevel - 1)) + 1;
+        Debug.Log("关卡初始位置索引" + index);
+        // 从 LevelInitialSO 中获取对应索引的人物初始位置
+        if (LevelManager.Instance.levelInitialData != null && index < LevelManager.Instance.levelInitialData.playerPositions.Length)
         {
-            if (!hasFlipped)
+            if (this == null)
             {
-                FlipDirection();
-                hasFlipped = true;
-            }
-            waitTimeCounter -= Time.deltaTime;
-            if (waitTimeCounter <= 0)
-            {
-                wait = false;
-                waitTimeCounter = waitTime;
+                initialPosition = LevelManager.Instance.levelInitialData.playerPositions[index];
+                // 将人物设置在对应场景的初始位置
+                transform.position = initialPosition;
             }
         }
+        else
+            Debug.LogError("未能找到对应的初始位置");
     }
-
-    /// <summary>
-    /// 到达通关点，停止运动
-    /// </summary>
-    public void SetHorizontalVelocityZero()
-    {
-        rb.velocity = new Vector2(0f, rb.velocity.y);
-    }
+    ///// <summary>
+    ///// 到达通关点，停止运动
+    ///// </summary>
+    //public void SetHorizontalVelocityZero()
+    //{
+    //    rb.velocity = new Vector2(0f, rb.velocity.y);
+    //}
 }

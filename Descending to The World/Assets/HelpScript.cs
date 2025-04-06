@@ -18,6 +18,22 @@ public class HelpScript : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        EscTime %= 2;
+        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0 && HelpCanvas.gameObject.activeSelf)
+        {
+            EscTime++;
+            HelpStart();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 1 && HelpCanvas.gameObject.activeSelf)
+        {
+            EscTime++;
+            HelpExit();
+        }
+    }
+
+    #region Next Help
     public void NextHelp1()
     {
         Next1.SetActive(true);
@@ -45,6 +61,16 @@ public class HelpScript : MonoBehaviour
 
     }
 
+    public void NextHelp4()
+    {
+        Next4.SetActive(true);
+        Next2.SetActive(false);
+        Next1.SetActive(false);
+        Next3.SetActive(false);
+
+    }
+    #endregion
+
     public void HelpStart()
     {
         HelpCanvas.gameObject.SetActive(true);
@@ -55,27 +81,5 @@ public class HelpScript : MonoBehaviour
         HelpCanvas.gameObject.SetActive(false);
     }
 
-    public void NextHelp4()
-    {
-        Next4.SetActive(true);
-        Next2.SetActive(false);
-        Next1.SetActive(false);
-        Next3.SetActive(false);
-
-    }
-
-    private void Update()
-    {
-        EscTime %= 2;
-        if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 0&&HelpCanvas.gameObject.activeSelf)
-        {
-            EscTime++;
-            HelpStart();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && EscTime == 1&&HelpCanvas.gameObject.activeSelf)
-        {
-            EscTime++;
-            HelpExit();
-        }
-    }
+    
 }
