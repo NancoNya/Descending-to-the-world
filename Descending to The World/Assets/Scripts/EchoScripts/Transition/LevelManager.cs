@@ -42,7 +42,6 @@ public class LevelManager : Singleton<LevelManager>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
     }
 
     private void OnDisable()
@@ -57,18 +56,25 @@ public class LevelManager : Singleton<LevelManager>
         FindChildObjects();
         SetInitialStates();
 
-        if(levelDisplay != null)
-        {
-            Scene activeScene = SceneManager.GetActiveScene();   // 获取当前激活场景的名字
-            string sceneName = activeScene.name;
-            levelDisplay.text = $"关卡{sceneName}";
-        }
         if (mode == LoadSceneMode.Additive)
         {
             // 遍历所有加载的场景
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Scene loadedScene = SceneManager.GetSceneAt(i);
+
+                if (levelDisplay != null)
+                {
+                    string sceneName = loadedScene.name;
+                    // 判断场景名字是否符合游戏关卡场景的格式
+                    string expectedSceneName = $"{currentBigLevel}.{currentSmallLevel}";
+                    Debug.Log(expectedSceneName);
+                    if (sceneName == expectedSceneName)
+                    {
+                        levelDisplay.text = $"关卡{sceneName}";   // UI显示当前关卡
+                    }
+                }
+
                 if (loadedScene.name == "PropColumn")   // 检查是否加载了 PropColumn 场景
                 {
                     // 在 PropColumn 场景中查找 Player 物体
@@ -167,6 +173,9 @@ public class LevelManager : Singleton<LevelManager>
         // 切换关卡
         currentSmallLevel++;
         string nextSceneName = $"{currentBigLevel}.{currentSmallLevel}";   // GameSceneX.X 指关卡场景名字，可根据后期命名需求更改
+        
+        levelDisplay.text = $"关卡{currentBigLevel}.{currentSmallLevel}";
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
         yield return loadOperation; // 等待加载完成
 
@@ -222,6 +231,9 @@ public class LevelManager : Singleton<LevelManager>
         levelTimer.ResetTimer();
         currentSmallLevel = 1;
         string nextSceneName = $"{currentBigLevel}.{currentSmallLevel}";
+
+        levelDisplay.text = $"关卡{currentBigLevel}.{currentSmallLevel}";   // UI显示当前关卡
+
         // SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
 
         AsyncOperation mainLoadOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
