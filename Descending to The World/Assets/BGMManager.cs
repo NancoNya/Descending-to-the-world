@@ -23,15 +23,20 @@ public class BGMManager : MonoBehaviour
         }
 
         UpdateMusicControllers();
+        lastVolume = GetCurrentVolume();
     }
 
     private async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 延迟 0.5 秒（可根据实际情况调整）
+        // 延迟一段时间确保 MusicController 初始化完成
         await Task.Delay(500);
-        lastVolume = GetCurrentVolume(); // 记录当前音量
         UpdateMusicControllers();
-        SetBGMVolume(lastVolume); // 恢复之前的音量设置
+
+        // 恢复之前的音量设置
+        if (musicControllers.Length > 0)
+        {
+            SetBGMVolume(lastVolume);
+        }
 
         // 允许 MusicController 自动播放
         foreach (MusicController controller in musicControllers)
@@ -46,7 +51,6 @@ public class BGMManager : MonoBehaviour
     private void UpdateMusicControllers()
     {
         musicControllers = FindObjectsOfType<MusicController>();
-        Debug.Log($"当前场景获取到 {musicControllers.Length} 个 MusicController 组件");
     }
 
     // 播放 BGM
@@ -97,7 +101,6 @@ public class BGMManager : MonoBehaviour
             if (controller.audioSource != null)
             {
                 controller.SetVolume(volume);
-                Debug.Log($"已将 {controller.gameObject.name} 的音量设置为 {volume}，实际音量：{controller.audioSource.volume}");
             }
         }
     }
@@ -109,6 +112,6 @@ public class BGMManager : MonoBehaviour
         {
             return musicControllers[0].audioSource.volume;
         }
-        return 0f;
+        return lastVolume;
     }
 }
