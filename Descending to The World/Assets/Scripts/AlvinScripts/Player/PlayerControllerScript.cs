@@ -32,7 +32,7 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField]private bool moveToMagnet = false;  // 是否正在向磁石移动
 
     private GameObject magnet;
-    private float positionThreshold = 0.01f; // 坐标差值
+    private float positionThreshold = 0.1f; // 坐标差值
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -75,6 +75,7 @@ public class PlayerControllerScript : MonoBehaviour
     void Start()
     {
         FallDown();
+        currentDirection = 1f;
         //Moon = GameObject.Find("Moon");
         //MilkyWay = GameObject.Find("MilkyWayCollision");
         //if (Moon.activeSelf) MilkyWay.SetActive(true);
@@ -140,7 +141,6 @@ public class PlayerControllerScript : MonoBehaviour
             anim.SetBool("isWalking", true);
             canAddSpeed = false;
             timer = 0;
-            // rb.velocity = new Vector2(moveSpeed * currentDirection,0); 
             if(physicsCheckScript.isGround)
                 StartWalking();
             if (!physicsCheckScript.isGround)
@@ -297,6 +297,7 @@ public class PlayerControllerScript : MonoBehaviour
 
             // 计算移动方向 
             currentDirection = Mathf.Sign(targetX - currentX);
+            
             // 设置sprite朝向
             if (currentDirection != 0)
             {
@@ -304,19 +305,20 @@ public class PlayerControllerScript : MonoBehaviour
                 theScale.x = currentDirection * enlargeScale;
                 transform.localScale = theScale;
             }
-            
             // 计算新的位置
             float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
             rb.MovePosition(new Vector2(newX, rb.position.y));
+
             // 判断是否到达目标位置
             if (Mathf.Abs(currentX - targetX) < positionThreshold)
             {
                 // 动画切换：拿司南到走路
                 anim.SetBool("hasCompass", false);
-                anim.SetBool("isWalking", false);
+                anim.SetBool("isWalking", true);
                 holdCompass = false;
                 arriveMagnet = true;
                 moveToMagnet = false;
+                StartWalking();
             }
         }
     }
