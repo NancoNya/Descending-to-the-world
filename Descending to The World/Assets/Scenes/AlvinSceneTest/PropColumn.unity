@@ -4615,7 +4615,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1392840976}
         m_TargetAssemblyTypeName: HelpScript, Assembly-CSharp
-        m_MethodName: NextHelp2
+        m_MethodName: NextHelp3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
